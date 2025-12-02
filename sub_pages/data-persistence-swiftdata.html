@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Persistence with SwiftData - COSC3062</title>
+    <link rel="icon" href="../assets/images/rmit-logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/base-theme.css">
+    <link rel="stylesheet" href="../css/extended-header.css">
+    <link rel="stylesheet" href="../css/collapsible.css">
+    <link rel="stylesheet" href="../css/code-styles.css">
+    <link rel="stylesheet" href="../css/shared-styles.css">
+    <style>
+        .logo { height: 60px; }
+        .university-name { font-size: 1.75rem; }
+        header .intro { max-width: 700px; }
+        .cheatsheet-section > h2.collapsible-header {
+            font-size: 2rem;
+            color: var(--heading-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+        }
+        .grid-container {
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+        }
+        .card { padding: 20px; }
+        pre { margin-bottom: 10px; }
+        .instruction-step.card { padding: 20px; }
+        .card ul, .card ol {
+            padding-left: 20px;
+        }
+        .card ul {
+            list-style-type: disc;
+        }
+        .pro-tip {
+            background-color: var(--accent-color-light);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .pro-tip h4 {
+            margin-top: 0;
+            color: var(--accent-color);
+        }
+        .image-pair {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .image-pair img {
+            width: 45%;
+            object-fit: contain;
+        }
+        .image-trio {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .image-trio img {
+            width: 32%;
+            object-fit: contain;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+        }
+        .image-quartet {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .image-quartet img.img-large {
+            width: 24%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="back-to-home-container">
+                <a href="../index.html" class="back-to-home-button">&larr; Back to Home</a>
+            </div>
+            <div class="university-branding">
+                <img src="https://sites.rmit.edu.au/artschoolgraduates/files/2022/10/rmit-logo-red.png" alt="RMIT University Logo" class="logo">
+                <span class="university-name">RMIT University</span>
+            </div>
+            <h1>Data Persistence on Local Database with SwiftData <span>Step by Step Guide</span></h1>
+            <p class="intro">This guide will walk you through setting up and using SwiftData for data persistence in your iOS applications.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="cheatsheet-section" id="task0">
+            <h2 class="collapsible-header start-open">
+                📜 A Brief History: From Core Data to SwiftData
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <h3>🕰️ Understanding the Predecessor: Core Data</h3>
+                    <p>Before SwiftData, the primary solution for data persistence on Apple platforms was <strong>Core Data</strong>. For nearly two decades, it has been a powerful and robust framework for managing an app's model layer. Core Data is not a database itself but an object graph and persistence framework that can use SQLite as its persistent store.</p>
+                    <p><strong>Key Concepts of Core Data:</strong></p>
+                    <ul>
+                        <li><strong>Managed Object Model:</strong> A schema, typically defined in a visual editor (<code>.xcdatamodeld</code> file), that describes the entities (data models), attributes (properties), and relationships in your app.</li>
+                        <li><strong>Managed Object Context:</strong> An in-memory "scratchpad" where you create, fetch, and modify your data objects.</li>
+                        <li><strong>Persistent Store Coordinator:</strong> A coordinator that saves and fetches data between the context and the actual database file.</li>
+                        <li><strong>NSManagedObject:</strong> The base class for all Core Data objects. You would typically create subclasses of this to represent your app's data models.</li>
+                    </ul>
+                    <img src="../assets/guide_imgs/swiftdata/coredata-examples.png" alt="Core Data Examples" class="img-large">
+                    <div class="pro-tip">
+                        <h4>Why Was a Change Needed?</h4>
+                        <p>While powerful, Core Data comes from an older, Objective-C era of development. For modern Swift and SwiftUI developers, it often felt verbose and complex. Common pain points included:</p>
+                        <ul>
+                            <li><strong>Boilerplate Code:</strong> Setting up the Core Data stack required a significant amount of boilerplate code.</li>
+                            <li><strong>Context Management:</strong> Manually managing the managed object context, especially across different threads, was a common source of bugs.</li>
+                            <li><strong>Separate Model File:</strong> The data model was defined in a separate visual editor, disconnected from the Swift code that used it.</li>
+                            <li><strong>Integration with SwiftUI:</strong> While possible, making Core Data work seamlessly with SwiftUI's reactive nature required custom wrappers and a deep understanding of both frameworks.</li>
+                        </ul>
+                        <img src="../assets/guide_imgs/swiftdata/transition-to-swiftData-from-coredata.png" alt="Transition to SwiftData from Core Data" class="img-large">
+                    </div>
+                    <h3>✨ The Evolution: Why SwiftData is Better</h3>
+                    <p>Apple introduced SwiftData to address these challenges directly. It provides a modern, Swift-native API that is built on top of the proven Core Data engine. Think of it as a beautiful, modern facade on a powerful, time-tested foundation.</p>
+                    <p>SwiftData is better for modern development because it is:</p>
+                    <ul>
+                        <li><strong>Code-First:</strong> Define your models directly in Swift with the <code>@Model</code> macro, keeping your schema and code in one place.</li>
+                        <li><strong>Declarative:</strong> Designed from the ground up to work with SwiftUI's declarative syntax, using property wrappers like <code>@Query</code> to seamlessly link your data to your views.</li>
+                        <li><strong>Safe and Simple:</strong> It eliminates most of the boilerplate and complexity, especially around context management and threading, reducing common errors.</li>
+                    </ul>
+                    <p>By learning SwiftData, you are using a framework that is not only easier to learn and use but also fully optimized for the future of Apple platform development.</p>
+                    <div class="pro-tip">
+                        <h4>Interested in Core Data?</h4>
+                        <p>For students who are still interested in understanding Core Data, a version of the To-Do List app implemented with Core Data can be found in this Github repo: <a href="https://github.com/TomHuynhSG/To-Do-List-Core-Data-iOS" target="_blank">https://github.com/TomHuynhSG/To-Do-List-Core-Data-iOS</a></p>
+                        <img src="../assets/guide_imgs/swiftdata/to-do-list-core-data.png" alt="To-Do List Core Data" class="img-large">
+                        <p>Additionally, a Movie Store app using Core Data can be found here: <a href="https://github.com/TomHuynhSG/Movie-Store-Core-Data-iOS/tree/main" target="_blank">https://github.com/TomHuynhSG/Movie-Store-Core-Data-iOS/tree/main</a></p>
+                        <img src="../assets/guide_imgs/swiftdata/movie-store-core-data.png" alt="Movie Store Core Data" class="img-large">
+                    </div>
+                </div>
+        </section>
+        <section class="cheatsheet-section" id="task1">
+            <h2 class="collapsible-header">
+                🚀 SwiftData: Your Comprehensive Guide to Modern Data Persistence in SwiftUI
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <img src="../assets/guide_imgs/swiftdata/swiftdata-intro.png" alt="SwiftData Intro" class="img-large">
+                    <p>SwiftData is a powerful, Swift-native framework introduced by Apple that revolutionizes data persistence in SwiftUI applications. Built upon the robust foundation of Core Data, SwiftData offers a more intuitive and streamlined API, allowing developers to manage and persist data with significantly less code and complexity. This guide will walk you through everything you need to know to master SwiftData, from its fundamental concepts to advanced techniques.</p>
+
+                    <h3>🎯 The Core Principles of SwiftData</h3>
+                    <p>At its heart, SwiftData is designed for seamless integration with the declarative nature of SwiftUI. It leverages modern Swift features like macros to make data persistence a natural extension of your app's logic. The key benefits of using SwiftData include:</p>
+                    <ul>
+                        <li><strong>Declarative and Code-Based:</strong> Define your entire data model directly in Swift code, eliminating the need for external model files.</li>
+                        <li><strong>Seamless SwiftUI Integration:</strong> SwiftData is built to work hand-in-hand with SwiftUI, providing property wrappers that automatically update your views when the underlying data changes.</li>
+                        <li><strong>Simplified API:</strong> Compared to Core Data, SwiftData offers a more concise and easier-to-understand API for common data operations.</li>
+                        <li><strong>Built on Core Data:</strong> It inherits the power and performance of Core Data's proven persistence architecture.</li>
+                        <li><strong>Automatic iCloud Syncing:</strong> Effortlessly sync your app's data across multiple devices with CloudKit integration.</li>
+                    </ul>
+
+                    <h3>🛠️ Getting Started: The Core Components</h3>
+                    <p>To begin working with SwiftData, you'll need to familiarize yourself with its three main components:</p>
+                    <ul>
+                        <li><strong>@Model:</strong> A macro that transforms a regular Swift class into a persistent data model that SwiftData can manage.</li>
+                        <li><strong>ModelContainer:</strong> A container that manages the schema and persistence for your data models. You typically set this up once at the root of your application.</li>
+                        <li><strong>ModelContext:</strong> An object that allows you to interact with your data. You use it to create, fetch, update, and delete your model objects.</li>
+                    </ul>
+
+                    <h3>📝 Defining Your Data Model with @Model</h3>
+                    <p>Creating a persistent model in SwiftData is as simple as adding the <code>@Model</code> macro to a class. This macro automatically handles the necessary transformations to make your class's properties persistable.</p>
+                    <div class="pro-tip">
+                        <h4>What does @Model do?</h4>
+                        <p>The <code>@Model</code> macro is a powerful feature of modern Swift. At compile time, it automatically rewrites your simple class to include all the necessary code for data persistence. This includes making properties trackable, handling database schema generation, and more, all without you having to write any boilerplate code.</p>
+                    </div>
+<pre><code><span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="property-wrapper">@Model</span>
+<span class="keyword">class</span> <span class="type">Trip</span> {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="keyword">var</span> destination: <span class="type">String</span>
+    <span class="keyword">var</span> startDate: <span class="type">Date</span>
+    <span class="keyword">var</span> endDate: <span class="type">Date</span>
+
+    <span class="keyword">init</span>(name: <span class="type">String</span>, destination: <span class="type">String</span>, startDate: <span class="type">Date</span>, endDate: <span class="type">Date</span>) {
+        <span class="keyword">self</span>.name = name
+        <span class="keyword">self</span>.destination = destination
+        <span class="keyword">self</span>.startDate = startDate
+        <span class="keyword">self</span>.endDate = endDate
+    }
+}</code></pre>
+
+                    <h4>Key Attributes and Relationships:</h4>
+                    <p>SwiftData provides additional macros to fine-tune your model's properties and define relationships between different models:</p>
+                    <ul>
+                        <li><strong>@Attribute(.unique):</strong> Ensures that the value of a property is unique across all instances of that model.</li>
+                        <li><strong>@Relationship:</strong> Defines how different models relate to each other, such as one-to-many or many-to-many relationships. You can also specify delete rules, like cascading deletes.</li>
+                        <li><strong>@Transient:</strong> Marks a property to be excluded from the persistent storage.</li>
+                    </ul>
+                    <p>Here's an example of a more complex model with a relationship:</p>
+<pre><code><span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="property-wrapper">@Model</span>
+<span class="keyword">class</span> <span class="type">BucketListItem</span> {
+    <span class="keyword">var</span> title: <span class="type">String</span>
+    <span class="keyword">var</span> hasBeenCompleted: <span class="type">Bool</span> = <span class="literal">false</span>
+    <span class="keyword">var</span> trip: <span class="type">Trip</span>? <span class="comment">// A to-one relationship to a Trip</span>
+
+    <span class="keyword">init</span>(title: <span class="type">String</span>) {
+        <span class="keyword">self</span>.title = title
+    }
+}
+
+<span class="property-wrapper">@Model</span>
+<span class="keyword">class</span> <span class="type">Trip</span> {
+    <span class="property-wrapper">@Attribute</span>(.<span class="variable">unique</span>) <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="keyword">var</span> destination: <span class="type">String</span>
+    <span class="keyword">var</span> startDate: <span class="type">Date</span>
+    <span class="keyword">var</span> endDate: <span class="type">Date</span>
+
+    <span class="property-wrapper">@Relationship</span>(deleteRule: .<span class="variable">cascade</span>) <span class="keyword">var</span> bucketList: [<span class="type">BucketListItem</span>] = [] <span class="comment">// A one-to-many relationship</span>
+
+    <span class="keyword">init</span>(name: <span class="type">String</span>, destination: <span class="type">String</span>, startDate: <span class="type">Date</span>, endDate: <span class="type">Date</span>) {
+        <span class="keyword">self</span>.name = name
+        <span class="keyword">self</span>.destination = destination
+        <span class="keyword">self</span>.startDate = startDate
+        <span class="keyword">self</span>.endDate = endDate
+    }
+}</code></pre>
+                    <p>In this example, deleting a <code>Trip</code> will also delete all of its associated <code>BucketListItem</code> objects due to the <code>.cascade</code> delete rule.</p>
+
+                    <h3>📦 Setting Up the ModelContainer</h3>
+                    <p>To make your SwiftData models available to your application, you need to configure a <code>ModelContainer</code>. This is typically done in your app's main entry point using the <code>.modelContainer(for:)</code> view modifier.</p>
+                    <div class="pro-tip">
+                        <h4>What is a ModelContainer?</h4>
+                        <p>Think of the <code>ModelContainer</code> as the digital filing cabinet for your app's data. When you call <code>.modelContainer(for:)</code>, you are setting up this entire cabinet. SwiftData handles everything behind the scenes: it builds the cabinet (the underlying SQLite database), creates labeled folders based on your <code>@Model</code> classes (the schema), and gets it ready for you to start storing and retrieving files (your data).</p>
+                    </div>
+<pre><code><span class="keyword">import</span> <span class="type">SwiftUI</span>
+<span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="property-wrapper">@main</span>
+<span class="keyword">struct</span> <span class="type">YourAppNameApp</span>: <span class="type">App</span> {
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Scene</span> {
+        <span class="function">WindowGroup</span> {
+            <span class="function">ContentView</span>()
+        }
+        .<span class="function">modelContainer</span>(<span class="keyword">for</span>: [<span class="type">Trip</span>.<span class="keyword">self</span>, <span class="type">BucketListItem</span>.<span class="keyword">self</span>])
+    }
+}</code></pre>
+
+                    <h3>🔄 Performing CRUD Operations with ModelContext</h3>
+                    <p>The <code>ModelContext</code> is your primary tool for interacting with your data. You can access it within any SwiftUI view using the <code>@Environment</code> property wrapper.</p>
+                    <div class="pro-tip">
+                        <h4>Think of ModelContext as a Scratchpad</h4>
+                        <p>The <code>ModelContext</code> is your in-memory "workspace" or "scratchpad." When you create, delete, or change an object, you're not writing directly to the database file on disk. Instead, you're making these changes on this temporary scratchpad. This is incredibly fast and efficient. SwiftData then intelligently saves these changes from the scratchpad to the permanent database at the right time, like when your app closes or moves to the background, ensuring your data is safe without slowing down the user experience.</p>
+                    </div>
+<pre><code><span class="keyword">import</span> <span class="type">SwiftUI</span>
+<span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
+    <span class="property-wrapper">@Environment</span>(\.modelContext) <span class="keyword">private</span> <span class="keyword">var</span> modelContext
+
+    <span class="comment">// ... your view body</span>
+}</code></pre>
+                    <p>Here's how to perform the fundamental CRUD (Create, Read, Update, Delete) operations:</p>
+                    <ol>
+                        <li><strong>Create (Insert):</strong> To create a new object, you initialize your model and then insert it into the <code>modelContext</code>.
+<pre><code><span class="keyword">func</span> <span class="function">addTrip</span>() {
+    <span class="keyword">let</span> newTrip = <span class="function">Trip</span>(name: <span class="string">"Summer Vacation"</span>, destination: <span class="string">"Hawaii"</span>, startDate: <span class="function">Date</span>(), endDate: <span class="function">Date</span>().<span class="function">addingTimeInterval</span>(<span class="number">86400</span> * <span class="number">7</span>))
+    modelContext.<span class="function">insert</span>(newTrip)
+}</code></pre>
+                        </li>
+                        <li><strong>Read (Fetch):</strong> The primary way to fetch and display data in SwiftUI is with the <code>@Query</code> property wrapper, which we'll cover in the next section.</li>
+                        <li><strong>Update:</strong> To update an existing object, you simply modify its properties. SwiftData automatically tracks these changes.
+<pre><code><span class="keyword">func</span> <span class="function">updateTrip</span>(trip: <span class="type">Trip</span>) {
+    trip.destination = <span class="string">"Maui"</span>
+}</code></pre>
+                        </li>
+                        <li><strong>Delete:</strong> To delete an object, you pass it to the <code>delete()</code> method of the <code>modelContext</code>.
+<pre><code><span class="keyword">func</span> <span class="function">deleteTrip</span>(trip: <span class="type">Trip</span>) {
+    modelContext.<span class="function">delete</span>(trip)
+}</code></pre>
+                        </li>
+                    </ol>
+
+                    <h3>🔍 Displaying and Filtering Data with @Query</h3>
+                    <p>The <code>@Query</code> property wrapper is the magic that connects your SwiftData models to your SwiftUI views. It fetches data and automatically updates your view whenever the data changes, without any need for manual refresh logic.</p>
+                    <div class="pro-tip">
+                        <h4>The Declarative Bridge</h4>
+                        <p><code>@Query</code> is the declarative bridge between your data and your UI. Think of it as a live news feed for your data. You don't tell it *how* to fetch the data or *when* to refresh. You simply declare *what* data you want (e.g., "all trips, sorted by start date"). SwiftData and SwiftUI handle the rest, ensuring your UI is always a direct reflection of your data's current state. This is a core principle of SwiftUI.</p>
+                    </div>
+                    <p>Here's a simple example of how to display a list of trips:</p>
+<pre><code><span class="keyword">import</span> <span class="type">SwiftUI</span>
+<span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="keyword">struct</span> <span class="type">TripListView</span>: <span class="type">View</span> {
+    <span class="property-wrapper">@Query</span>(sort: \.startDate, order: .<span class="variable">reverse</span>) <span class="keyword">var</span> trips: [<span class="type">Trip</span>]
+
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="function">List</span>(trips) { trip <span class="keyword">in</span>
+            <span class="function">VStack</span>(alignment: .leading) {
+                <span class="function">Text</span>(trip.name).<span class="function">font</span>(.<span class="variable">headline</span>)
+                <span class="function">Text</span>(trip.destination)
+            }
+        }
+    }
+}</code></pre>
+
+                    <h4>Filtering and Sorting with Predicates:</h4>
+                    <p><code>@Query</code> is highly configurable. You can easily sort and filter your data using its parameters:</p>
+                    <ul>
+                        <li><strong>sort:</strong> Specifies the key path to sort by.</li>
+                        <li><strong>order:</strong> Determines the sort order (<code>.forward</code> or <code>.reverse</code>).</li>
+                        <li><strong>predicate:</strong> A powerful way to filter your data based on specific criteria using the <code>#Predicate</code> macro.</li>
+                    </ul>
+                    <p>Here's how you would fetch only upcoming trips:</p>
+<pre><code><span class="property-wrapper">@Query</span>(filter: <span class="macro">#Predicate</span><<span class="type">Trip</span>> { $0.startDate > <span class="function">Date</span>() }, sort: \.startDate) <span class="keyword">var</span> upcomingTrips: [<span class="type">Trip</span>]</code></pre>
+                    <div class="pro-tip">
+                        <h4>Deeper Dive into #Predicate</h4>
+                        <p>The <code>#Predicate</code> macro is like a powerful search filter or "sieve" for your data. It lets you be very specific about what you want to show. You can build complex queries by combining conditions.</p>
+                        <p><strong>Filtering by Text:</strong> Find all trips whose destination contains the letter "a".</p>
+<pre><code><span class="macro">#Predicate</span><<span class="type">Trip</span>> { $0.destination.<span class="function">contains</span>(<span class="string">"a"</span>) }</code></pre>
+                        <p><strong>Combining Conditions (AND):</strong> Find all trips to Hawaii that have already started.</p>
+<pre><code><span class="macro">#Predicate</span><<span class="type">Trip</span>> { $0.destination == <span class="string">"Hawaii"</span> && $0.startDate < <span class="function">Date</span>() }</code></pre>
+                        <p><strong>Combining Conditions (OR):</strong> Find all trips that are either to Hawaii OR to Maui.</p>
+<pre><code><span class="macro">#Predicate</span><<span class="type">Trip</span>> { $0.destination == <span class="string">"Hawaii"</span> || $0.destination == <span class="string">"Maui"</span> }</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="task2">
+            <h2 class="collapsible-header">
+                🔗 Defining Model Relationships
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <p>Establishing relationships between your data models is a fundamental aspect of building robust applications. SwiftData, while simplifying many aspects of data persistence, provides powerful and explicit ways to define how your models connect to each other. Let's dive into one-to-one, one-to-many, and many-to-many relationships with clear examples.</p>
+
+                    <h3>🔑 The @Relationship Macro: Your Key to Connections</h3>
+                    <p>The primary tool you'll use to define and customize relationships in SwiftData is the <code>@Relationship</code> macro. While SwiftData can often infer simple relationships, using this macro gives you explicit control over crucial aspects like:</p>
+                    <ul>
+                        <li><strong>Inverse Relationships:</strong> Defining the "other side" of the connection, which is essential for data integrity and proper updates.</li>
+                        <li><strong>Delete Rules:</strong> Specifying what happens to related objects when an object is deleted.</li>
+                    </ul>
+                    <div class="pro-tip">
+                        <h4>Why are Inverse Relationships Important?</h4>
+                        <p>Think of an inverse relationship as a "two-way street." If you only define the connection from one side (e.g., a <code>Customer</code> has an array of <code>Order</code>s), SwiftData doesn't automatically know that an <code>Order</code> belongs to that <code>Customer</code>. By defining the inverse (linking <code>Order.customer</code> back to <code>Customer.orders</code>), you complete the circuit. This allows SwiftData to maintain the integrity of your data. Now, when you add an order to a customer's array, SwiftData automatically sets the order's customer property, keeping both sides perfectly in sync without any extra work from you.</p>
+                    </div>
+
+                    <h3>🤝 One-to-One Relationships</h3>
+                    <p>A one-to-one relationship exists when one instance of a model is related to exactly one instance of another model. Think of a <code>Person</code> and their <code>Profile</code>. A person has one profile, and that profile belongs to only one person.</p>
+                    <p><strong>Key Implementation Points:</strong></p>
+                    <ul>
+                        <li>Each model has a property that holds an optional reference to the other.</li>
+                        <li>It's best practice to make both sides of the relationship optional. This avoids a "chicken-and-egg" problem where you can't create one object without first creating the other.</li>
+                    </ul>
+                    <p><strong>Example: <code>Employee</code> and <code>Computer</code></strong></p>
+                    <p>Let's model a scenario where each employee is assigned exactly one computer.</p>
+<pre><code><span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="property-wrapper">@Model</span>
+<span class="keyword">class</span> <span class="type">Employee</span> {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="comment">// The inverse tells SwiftData that this is connected to the 'employee' property in the Computer class</span>
+    <span class="property-wrapper">@Relationship</span>(inverse: \Computer.employee)
+    <span class="keyword">var</span> computer: <span class="type">Computer</span>?
+
+    <span class="keyword">init</span>(name: <span class="type">String</span>) {
+        <span class="keyword">self</span>.name = name
+    }
+}
+
+<span class="property-wrapper">@Model</span>
+<span class="keyword">class</span> <span class="type">Computer</span> {
+    <span class="keyword">var</span> modelName: <span class="type">String</span>
+    <span class="keyword">var</span> employee: <span class="type">Employee</span>? <span class="comment">// The other side of the one-to-one relationship</span>
+
+    <span class="keyword">init</span>(modelName: <span class="type">String</span>) {
+        <span class="keyword">self</span>.modelName = modelName
+    }
+}</code></pre>
+                    <p><strong>How it works:</strong></p>
+                    <ul>
+                        <li>The <code>Employee</code> class has an optional <code>computer</code> property.</li>
+                        <li>The <code>Computer</code> class has an optional <code>employee</code> property.</li>
+                        <li>The <code>@Relationship(inverse: \Computer.employee)</code> on the <code>computer</code> property explicitly tells SwiftData that these two properties are linked. This ensures that if you assign a computer to an employee, the employee is also automatically linked back to that computer.</li>
+                    </ul>
+
+                    <h3>👨‍👩‍👧‍👦 One-to-Many Relationships</h3>
+                    <p>This is one of the most common relationships. It exists when one instance of a model can be related to many instances of another, but each of those instances is related to only one of the first. A classic example is a <code>Folder</code> that can contain many <code>Notes</code>, but each <code>Note</code> belongs to only one <code>Folder</code>.</p>
+                    <p><strong>Key Implementation Points:</strong></p>
+                    <ul>
+                        <li>The "one" side of the relationship has an array of the "many" side.</li>
+                        <li>The "many" side has a single, optional property for the "one" side.</li>
+                        <li>You must define the inverse relationship to ensure data consistency.</li>
+                    </ul>
+                    <p><strong>Example: <code>Customer</code> and <code>Order</code></strong></p>
+                    <p>A customer can have multiple orders, but each order belongs to a single customer.</p>
+<pre><code><span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="property-wrapper">@Model</span>
+<span class="keyword">class</span> <span class="type">Customer</span> {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="comment">// A customer can have many orders. The delete rule .cascade means if a customer is deleted, all their orders are also deleted.</span>
+    <span class="property-wrapper">@Relationship</span>(deleteRule: .<span class="variable">cascade</span>, inverse: \Order.customer)
+    <span class="keyword">var</span> orders: [<span class="type">Order</span>] = []
+
+    <span class="keyword">init</span>(name: <span class="type">String</span>) {
+        <span class="keyword">self</span>.name = name
+    }
+}
+
+<span class="property-wrapper">@Model</span>
+<span class="keyword">class</span> <span class="type">Order</span> {
+    <span class="keyword">var</span> orderNumber: <span class="type">Int</span>
+    <span class="keyword">var</span> orderDate: <span class="type">Date</span>
+    <span class="keyword">var</span> customer: <span class="type">Customer</span>? <span class="comment">// An order belongs to one customer</span>
+
+    <span class="keyword">init</span>(orderNumber: <span class="type">Int</span>, orderDate: <span class="type">Date</span>) {
+        <span class="keyword">self</span>.orderNumber = orderNumber
+        <span class="keyword">self</span>.orderDate = orderDate
+    }
+}</code></pre>
+                    <p><strong>How it works:</strong></p>
+                    <ul>
+                        <li>The <code>Customer</code> model has an <code>orders</code> array to hold multiple <code>Order</code> objects.</li>
+                        <li>The <code>Order</code> model has an optional <code>customer</code> property.</li>
+                        <li>The <code>@Relationship</code> macro on <code>orders</code> specifies two important things:
+                            <ul>
+                                <li><code>deleteRule: .cascade</code>: This is the most common rule for one-to-many relationships. It means, "If you delete the 'one' (the <code>Customer</code>), automatically delete all of the 'many' (all their <code>Order</code>s)." This is great for preventing orphaned data that no longer has a parent.</li>
+                                <li><strong>Other Delete Rules:</strong>
+                                    <ul>
+                                        <li><code>.nullify</code>: This is the default. If you delete the <code>Customer</code>, the <code>customer</code> property on all their <code>Order</code>s is simply set to <code>nil</code>. The orders themselves are not deleted.</li>
+                                        <li><code>.deny</code>: This rule prevents you from deleting a <code>Customer</code> if they still have any <code>Order</code>s associated with them. It's a protective measure to ensure you don't accidentally delete a parent object that still has children.</li>
+                                    </ul>
+                                </li>
+                                <li><code>inverse: \Order.customer</code>: This explicitly links <code>Customer.orders</code> with <code>Order.customer</code>. When you append an order to a customer's <code>orders</code> array, SwiftData will automatically set the <code>customer</code> property on that <code>Order</code> instance.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>📚 Many-to-Many Relationships</h3>
+                    <p>A many-to-many relationship exists when one instance of a model can be related to many instances of another, and vice-versa. For example, a <code>Student</code> can enroll in many <code>Courses</code>, and a <code>Course</code> can have many <code>Students</code>.</p>
+                    <p><strong>Key Implementation Points:</strong></p>
+                    <ul>
+                        <li>Both models will have an array property to hold references to the other model.</li>
+                        <li>You <strong>must</strong> be explicit and use the <code>@Relationship</code> macro to define the inverse relationship on at least one side. SwiftData will not infer many-to-many relationships automatically.</li>
+                    </ul>
+                    <p><strong>Example: <code>Book</code> and <code>Author</code></strong></p>
+                    <p>A book can be written by multiple authors, and an author can write multiple books.</p>
+<pre><code><span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="property-wrapper">@Model</span>
+<span class="keyword">class</span> <span class="type">Book</span> {
+    <span class="keyword">var</span> title: <span class="type">String</span>
+    <span class="keyword">var</span> authors: [<span class="type">Author</span>] = []
+
+    <span class="keyword">init</span>(title: <span class="type">String</span>) {
+        <span class="keyword">self</span>.title = title
+    }
+}
+
+<span class="property-wrapper">@Model</span>
+<span class="keyword">class</span> <span class="type">Author</span> {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="comment">// We must be explicit with the inverse for many-to-many relationships.</span>
+    <span class="property-wrapper">@Relationship</span>(inverse: \Book.authors)
+    <span class="keyword">var</span> books: [<span class="type">Book</span>] = []
+
+    <span class="keyword">init</span>(name: <span class="type">String</span>) {
+        <span class="keyword">self</span>.name = name
+    }
+}</code></pre>
+                    <p><strong>How it works:</strong></p>
+                    <ul>
+                        <li>The <code>Book</code> model has an <code>authors</code> array.</li>
+                        <li>The <code>Author</code> model has a <code>books</code> array.</li>
+                        <li>The <code>@Relationship(inverse: \Book.authors)</code> on the <code>books</code> property is crucial. It tells SwiftData that these two arrays are linked. Without this, SwiftData would likely interpret them as two separate one-to-many relationships, leading to incorrect behavior.</li>
+                    </ul>
+                    <p>By mastering these relationship patterns, you can accurately model complex data structures in your SwiftUI applications, ensuring your data remains consistent, manageable, and easy to work with.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="task3">
+            <h2 class="collapsible-header">
+                🏆 Challenge: Building a To-Do List App with SwiftData
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <p>Let's build a simple yet powerful to-do list application from scratch. This guide is designed for beginners, with detailed explanations for each step.</p>
+                    <p>Our app will allow users to:</p>
+                    <ul>
+                        <li>Create different <strong>Projects</strong> (e.g., "House Chores", "Work Deadlines").</li>
+                        <li>Add <strong>To-Do Items</strong> to each project.</li>
+                        <li>Create and assign <strong>Tags</strong> (e.g., "Urgent", "Quick Task") to any to-do item.</li>
+                    </ul>
+                    <p>This structure will allow us to implement both a <strong>one-to-many</strong> relationship (one Project has many To-Do Items) and a <strong>many-to-many</strong> relationship (one To-Do Item can have many Tags, and one Tag can be on many To-Do Items).</p>
+
+                    <h3>Step 1: 🏗️ Create a New Xcode Project</h3>
+                    <p>First, let's set up the project correctly.</p>
+                    <ol>
+                        <li>Open Xcode and select <strong>"Create a new Xcode project"</strong>.</li>
+                        <li>Choose the <strong>iOS</strong> platform and the <strong>"App"</strong> template.</li>
+                        <li>Name your project something like <code>SwiftDataTodo</code>.</li>
+                        <li>For the <strong>"Storage"</strong> option, make sure you select <strong>"SwiftData"</strong>. This is crucial as Xcode will automatically set up the basic configuration for us.</li>
+                        <li>Save the project on your computer.</li>
+                    </ol>
+                    <img src="../assets/guide_imgs/swiftdata/swiftdata-to-do-new-project.png" alt="Create a new Xcode project for SwiftData" class="img-large">
+                    <p>Xcode will generate a project with some sample code. We will modify and build upon this.</p>
+
+                    <h3>Step 2: 🧱 Define Your Data Models</h3>
+                    <p>This is where we create the blueprints for our data. We'll create three models: <code>Project</code>, <code>TodoItem</code>, and <code>Tag</code>.</p>
+                    <ol>
+                        <li>Right-click on your project folder in the Xcode navigator and choose <strong>"New File"</strong>.</li>
+                        <li>Select <strong>"Swift File"</strong> and name it <code>Project.swift</code>.</li>
+                        <li>Replace the contents of the file with the following code:
+<pre><code><span class="comment">// Project.swift</span>
+<span class="keyword">import</span> <span class="type">Foundation</span>
+<span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="property-wrapper">@Model</span>
+<span class="keyword">final</span> <span class="keyword">class</span> <span class="type">Project</span> {
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    <span class="keyword">var</span> creationDate: <span class="type">Date</span>
+    
+    <span class="comment">// One-to-Many Relationship: A project can have many items.</span>
+    <span class="comment">// deleteRule: .cascade means if a project is deleted, all its items are also deleted.</span>
+    <span class="comment">// inverse: tells SwiftData how this is connected to the TodoItem model.</span>
+    <span class="property-wrapper">@Relationship</span>(deleteRule: .<span class="variable">cascade</span>, inverse: \TodoItem.project)
+    <span class="keyword">var</span> items: [<span class="type">TodoItem</span>] = []
+    
+    <span class="keyword">init</span>(name: <span class="type">String</span>, creationDate: <span class="type">Date</span>) {
+        <span class="keyword">self</span>.name = name
+        <span class="keyword">self</span>.creationDate = creationDate
+    }
+}</code></pre>
+                            <strong>Beginner's Explanation:</strong>
+                            <ul>
+                                <li><code>@Model</code>: This macro transforms our simple Swift class into a powerful data model that SwiftData can save, fetch, and manage.</li>
+                                <li><code>@Relationship(deleteRule: .cascade, inverse: \TodoItem.project)</code>: This is how we define the <strong>one-to-many</strong> relationship.
+                                    <ul>
+                                        <li><code>deleteRule: .cascade</code>: This is a safety feature. It means "If I delete a project, automatically delete all the to-do items inside it." This prevents orphaned data.</li>
+                                        <li><code>inverse: \TodoItem.project</code>: This is essential for data integrity. It creates a two-way link, telling SwiftData that this <code>items</code> array is directly connected to the <code>project</code> property that we are about to create in the <code>TodoItem</code> model.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Create another new Swift file named <code>TodoItem.swift</code>. Add this code:
+<pre><code><span class="comment">// TodoItem.swift</span>
+<span class="keyword">import</span> <span class="type">Foundation</span>
+<span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="property-wrapper">@Model</span>
+<span class="keyword">final</span> <span class="keyword">class</span> <span class="type">TodoItem</span> {
+    <span class="keyword">var</span> title: <span class="type">String</span>
+    <span class="keyword">var</span> timestamp: <span class="type">Date</span>
+    <span class="keyword">var</span> isCompleted: <span class="type">Bool</span>
+    
+    <span class="comment">// The "one" side of the one-to-many relationship.</span>
+    <span class="keyword">var</span> project: <span class="type">Project</span>?
+    
+    <span class="comment">// Many-to-Many Relationship: An item can have many tags.</span>
+    <span class="keyword">var</span> tags: [<span class="type">Tag</span>] = []
+    
+    <span class="keyword">init</span>(title: <span class="type">String</span>, timestamp: <span class="type">Date</span>, isCompleted: <span class="type">Bool</span>) {
+        <span class="keyword">self</span>.title = title
+        <span class="keyword">self</span>.timestamp = timestamp
+        <span class="keyword">self</span>.isCompleted = isCompleted
+    }
+}</code></pre>
+                        </li>
+                        <li>Finally, create a third Swift file named <code>Tag.swift</code>. Add this code:
+<pre><code><span class="comment">// Tag.swift</span>
+<span class="keyword">import</span> <span class="type">Foundation</span>
+<span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="property-wrapper">@Model</span>
+<span class="keyword">final</span> <span class="keyword">class</span> <span class="type">Tag</span> {
+    <span class="comment">// .unique ensures that we can't create two tags with the exact same name.</span>
+    <span class="property-wrapper">@Attribute</span>(.<span class="variable">unique</span>)
+    <span class="keyword">var</span> name: <span class="type">String</span>
+    
+    <span class="comment">// Many-to-Many Relationship: A tag can be applied to many items.</span>
+    <span class="comment">// We must specify the inverse to complete the link with TodoItem.</span>
+    <span class="property-wrapper">@Relationship</span>(inverse: \TodoItem.tags)
+    <span class="keyword">var</span> items: [<span class="type">TodoItem</span>] = []
+    
+    <span class="keyword">init</span>(name: <span class="type">String</span>) {
+        <span class="keyword">self</span>.name = name
+    }
+}</code></pre>
+                            <strong>Beginner's Explanation:</strong>
+                            <ul>
+                                <li><code>@Attribute(.unique)</code>: This is a powerful data integrity rule. It tells SwiftData that the <code>name</code> property of a <code>Tag</code> must be unique across all tags. If you try to create a new tag with a name that already exists, SwiftData will prevent a duplicate from being made, which is perfect for this use case.</li>
+                                <li><code>@Relationship(inverse: \TodoItem.tags)</code>: This is the crucial second half of our <strong>many-to-many</strong> relationship. It explicitly tells SwiftData that the <code>items</code> array in this <code>Tag</code> model is the other side of the coin to the <code>tags</code> array in the <code>TodoItem</code> model. This two-way link is what makes the many-to-many relationship work correctly.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h3>Step 3: ⚙️ Configure the Main App File</h3>
+                    <p>Now we need to tell our app about all the new models we just created.</p>
+                    <ol>
+                        <li>Open the file named <code>SwiftDataTodoApp.swift</code> (or whatever you named your project).</li>
+                        <li>Find the <code>.modelContainer</code> modifier. Xcode likely created it with just <code>Item.self</code> inside.</li>
+                        <li>Update it to include all three of our models: <code>Project</code>, <code>TodoItem</code>, and <code>Tag</code>.
+<pre><code><span class="keyword">import</span> <span class="type">SwiftUI</span>
+<span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="property-wrapper">@main</span>
+<span class="keyword">struct</span> <span class="type">SwiftDataTodoApp</span>: <span class="type">App</span> {
+    <span class="keyword">var</span> sharedModelContainer: <span class="type">ModelContainer</span> = {
+        <span class="comment">// Define the schema (the blueprints) for our data</span>
+        <span class="keyword">let</span> schema = <span class="function">Schema</span>([
+            <span class="type">Project</span>.<span class="keyword">self</span>,
+            <span class="type">TodoItem</span>.<span class="keyword">self</span>,
+            <span class="type">Tag</span>.<span class="keyword">self</span>,
+        ])
+        <span class="keyword">let</span> modelConfiguration = <span class="function">ModelConfiguration</span>(schema: schema, isStoredInMemoryOnly: <span class="literal">false</span>)
+
+        <span class="keyword">do</span> {
+            <span class="keyword">return</span> <span class="keyword">try</span> <span class="function">ModelContainer</span>(<span class="keyword">for</span>: schema, configurations: [modelConfiguration])
+        } <span class="keyword">catch</span> {
+            <span class="function">fatalError</span>(<span class="string">"Could not create ModelContainer: \(error)"</span>)
+        }
+    }()
+
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Scene</span> {
+        <span class="function">WindowGroup</span> {
+            <span class="function">ProjectListView</span>() <span class="comment">// We will create this view next</span>
+        }
+        .<span class="function">modelContainer</span>(sharedModelContainer) <span class="comment">// This makes the database available to all our views</span>
+    }
+}</code></pre>
+                            <strong>Beginner's Explanation:</strong> The <code>.modelContainer(...)</code> is like plugging in a hard drive for your app. By listing our models in the <code>Schema</code>, we are telling SwiftData what kind of data to expect so it can prepare the database accordingly. This container is then made available to all child views.
+                        </li>
+                    </ol>
+
+                    <h3>Step 4: 📋 Build the Project List View</h3>
+                    <p>This will be the main screen of our app, showing a list of all projects.</p>
+                    <ol>
+                        <li>Delete the default <code>ContentView.swift</code> file.</li>
+                        <li>Create a new <strong>SwiftUI View</strong> file and name it <code>ProjectListView.swift</code>.</li>
+                        <li>Add the following code:
+<pre><code><span class="comment">// ProjectListView.swift</span>
+<span class="keyword">import</span> <span class="type">SwiftUI</span>
+<span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="keyword">struct</span> <span class="type">ProjectListView</span>: <span class="type">View</span> {
+    <span class="comment">// The modelContext is our "workspace" for adding, editing, and deleting data.</span>
+    <span class="property-wrapper">@Environment</span>(\.modelContext) <span class="keyword">private</span> <span class="keyword">var</span> modelContext
+    
+    <span class="comment">// @Query is a magic property wrapper that fetches data and automatically updates the view when the data changes.</span>
+    <span class="property-wrapper">@Query</span>(sort: \Project.creationDate, order: .<span class="variable">reverse</span>) <span class="keyword">private</span> <span class="keyword">var</span> projects: [<span class="type">Project</span>]
+    
+    <span class="comment">// A temporary state variable to hold the name of the new project before it's created.</span>
+    <span class="property-wrapper">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> newProjectName = <span class="string">""</span>
+
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="function">NavigationStack</span> {
+            <span class="function">VStack</span> {
+                <span class="function">List</span> {
+                    <span class="comment">// Loop through each project fetched by the @Query.</span>
+                    <span class="function">ForEach</span>(projects) { project <span class="keyword">in</span>
+                        <span class="comment">// Each project is a link that takes the user to its specific to-do list.</span>
+                        <span class="function">NavigationLink</span>(destination: <span class="function">TodoListView</span>(project: project)) {
+                            <span class="function">Text</span>(project.name)
+                        }
+                    }
+                    <span class="comment">// Enable the swipe-to-delete functionality on the list.</span>
+                    .<span class="function">onDelete</span>(perform: deleteProjects)
+                }
+                
+                <span class="comment">// A simple form at the bottom to add a new project.</span>
+                <span class="function">HStack</span> {
+                    <span class="function">TextField</span>(<span class="string">"New Project Name"</span>, text: $newProjectName)
+                        .<span class="function">textFieldStyle</span>(.<span class="variable">roundedBorder</span>)
+                    <span class="function">Button</span>(<span class="string">"Add"</span>, action: addProject)
+                        <span class="comment">// The button is disabled if the text field is empty to prevent creating blank projects.</span>
+                        .<span class="function">disabled</span>(newProjectName.<span class="property">isEmpty</span>)
+                }
+                .<span class="function">padding</span>()
+            }
+            .<span class="function">navigationTitle</span>(<span class="string">"Projects"</span>)
+        }
+    }
+
+    <span class="comment">// This function is called when the "Add" button is tapped.</span>
+    <span class="keyword">private</span> <span class="keyword">func</span> <span class="function">addProject</span>() {
+        <span class="comment">// Create a new Project instance with the current name and date.</span>
+        <span class="keyword">let</span> newProject = <span class="function">Project</span>(name: newProjectName, creationDate: .<span class="property">now</span>)
+        <span class="comment">// Insert the new project into the modelContext to save it.</span>
+        modelContext.<span class="function">insert</span>(newProject)
+        <span class="comment">// Clear the text field for the next entry.</span>
+        newProjectName = <span class="string">""</span>
+    }
+
+    <span class="comment">// This function is called when a user swipes to delete a row.</span>
+    <span class="keyword">private</span> <span class="keyword">func</span> <span class="function">deleteProjects</span>(offsets: <span class="type">IndexSet</span>) {
+        <span class="comment">// Loop through all the indices of the items to be deleted.</span>
+        <span class="keyword">for</span> index <span class="keyword">in</span> offsets {
+            <span class="keyword">let</span> projectToDelete = projects[index]
+            <span class="comment">// Tell the modelContext to delete the specified project.</span>
+            modelContext.<span class="function">delete</span>(projectToDelete)
+        }
+    }
+}
+
+<span class="macro">#Preview</span> {
+    <span class="function">ProjectListView</span>()
+        <span class="comment">// This sets up a temporary, in-memory database just for this preview.</span>
+        .<span class="function">modelContainer</span>(<span class="keyword">for</span>: <span class="type">Project</span>.<span class="keyword">self</span>, inMemory: <span class="literal">true</span>)
+}</code></pre>
+                            <strong>Beginner's Explanation:</strong>
+                            <ul>
+                                <li><code>@Environment(\.modelContext)</code>: This gives us access to the "workspace" that SwiftData provides. We need it to <code>insert</code> and <code>delete</code> objects.</li>
+                                <li><code>@Query(...)</code>: This is the core of SwiftData in SwiftUI. It fetches all <code>Project</code> objects from the database, sorts them by creation date, and displays them. If you add or delete a project, <code>@Query</code> automatically detects the change and refreshes the list on screen.</li>
+                                <li><code>modelContext.insert()</code>: This is how you save a new object. You create it, then insert it into the context. SwiftData handles the rest.</li>
+                                <li><code>modelContext.delete()</code>: This is how you delete an object. You find the object you want to remove and tell the context to delete it.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h3>Step 5: ✅ Build the To-Do List View</h3>
+                    <p>This view will show the to-do items for a specific project.</p>
+                    <ol>
+                        <li>Create a new <strong>SwiftUI View</strong> file named <code>TodoListView.swift</code>.</li>
+                        <li>Add the following code:
+<pre><code><span class="comment">// TodoListView.swift</span>
+<span class="keyword">import</span> <span class="type">SwiftUI</span>
+<span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="keyword">struct</span> <span class="type">TodoListView</span>: <span class="type">View</span> {
+    <span class="comment">// We receive the project from the previous view, so this view knows which project's items to show.</span>
+    <span class="keyword">let</span> project: <span class="type">Project</span>
+    
+    <span class="property-wrapper">@Environment</span>(\.modelContext) <span class="keyword">private</span> <span class="keyword">var</span> modelContext
+    <span class="comment">// A temporary state variable for the new to-do item's title.</span>
+    <span class="property-wrapper">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> newTodoTitle = <span class="string">""</span>
+
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="function">VStack</span> {
+            <span class="function">List</span> {
+                <span class="comment">// We loop directly over the 'items' array of the passed-in project.</span>
+                <span class="function">ForEach</span>(project.items) { item <span class="keyword">in</span>
+                    <span class="function">HStack</span> {
+                        <span class="comment">// This button toggles the completion status of the to-do item.</span>
+                        <span class="function">Button</span>(action: {
+                            item.isCompleted.<span class="function">toggle</span>()
+                        }) {
+                            <span class="function">Image</span>(systemName: item.isCompleted ? <span class="string">"checkmark.circle.fill"</span> : <span class="string">"circle"</span>)
+                        }
+                        
+                        <span class="function">Text</span>(item.title)
+                    }
+                }
+                .<span class="function">onDelete</span>(perform: deleteItems)
+            }
+            
+            <span class="comment">// Form to add a new to-do item to the current project.</span>
+            <span class="function">HStack</span> {
+                <span class="function">TextField</span>(<span class="string">"New To-Do Item"</span>, text: $newTodoTitle)
+                    .<span class="function">textFieldStyle</span>(.<span class="variable">roundedBorder</span>)
+                <span class="function">Button</span>(<span class="string">"Add"</span>, action: addTodoItem)
+                    .<span class="function">disabled</span>(newTodoTitle.<span class="property">isEmpty</span>)
+            }
+            .<span class="function">padding</span>()
+        }
+        .<span class="function">navigationTitle</span>(project.name)
+    }
+    
+    <span class="keyword">private</span> <span class="keyword">func</span> <span class="function">addTodoItem</span>() {
+        <span class="keyword">let</span> newItem = <span class="function">TodoItem</span>(title: newTodoTitle, timestamp: .<span class="property">now</span>, isCompleted: <span class="literal">false</span>)
+        <span class="comment">// IMPORTANT: By appending the item to the project's list,</span>
+        <span class="comment">// the inverse relationship automatically links the item back to this project. SwiftData saves it for us.</span>
+        project.items.<span class="function">append</span>(newItem)
+        newTodoTitle = <span class="string">""</span>
+    }
+    
+    <span class="keyword">private</span> <span class="keyword">func</span> <span class="function">deleteItems</span>(offsets: <span class="type">IndexSet</span>) {
+        <span class="keyword">for</span> index <span class="keyword">in</span> offsets {
+            <span class="keyword">let</span> itemToDelete = project.items[index]
+            modelContext.<span class="function">delete</span>(itemToDelete)
+        }
+    }
+}</code></pre>
+                            <strong>Beginner's Explanation:</strong>
+                            <ul>
+                                <li><code>let project: Project</code>: This view doesn't fetch all projects with <code>@Query</code>. Instead, it's given one specific <code>Project</code> to work with, passed in from the <code>ProjectListView</code> when the user taps a navigation link.</li>
+                                <li><code>ForEach(project.items)</code>: We simply loop over the <code>items</code> array that belongs to the specific <code>project</code> we were given. Because of SwiftData's reactive nature, this list will automatically update on screen whenever you add or remove items from this array.</li>
+                                <li><code>project.items.append(newItem)</code>: This is a key concept. Notice we are <strong>not</strong> using <code>modelContext.insert()</code> here. Because we defined the inverse relationship between <code>Project</code> and <code>TodoItem</code>, SwiftData is smart enough to know that adding a new item to a project's <code>items</code> array means that the new item should be inserted into the database and automatically linked to that project. This is often more intuitive than using <code>insert()</code> for child objects.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h3>Step 6: 🏷️ Build the Tag Management View</h3>
+                    <p>This final piece will handle the many-to-many relationship. We'll create a view to create and assign tags.</p>
+                    <ol>
+                        <li>Create a new <strong>SwiftUI View</strong> file named <code>ManageTagsView.swift</code>.</li>
+                        <li>Add the following code:
+<pre><code><span class="comment">// ManageTagsView.swift</span>
+<span class="keyword">import</span> <span class="type">SwiftUI</span>
+<span class="keyword">import</span> <span class="type">SwiftData</span>
+
+<span class="keyword">struct</span> <span class="type">ManageTagsView</span>: <span class="type">View</span> {
+    <span class="comment">// The specific to-do item we are tagging, passed from the previous view.</span>
+    <span class="keyword">let</span> todoItem: <span class="type">TodoItem</span>
+    
+    <span class="comment">// Fetch all available tags from the database to display them as options.</span>
+    <span class="property-wrapper">@Query</span>(sort: \Tag.name) <span class="keyword">private</span> <span class="keyword">var</span> allTags: [<span class="type">Tag</span>]
+    <span class="property-wrapper">@Environment</span>(\.modelContext) <span class="keyword">private</span> <span class="keyword">var</span> modelContext
+    
+    <span class="property-wrapper">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> newTagName = <span class="string">""</span>
+
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="function">VStack</span> {
+            <span class="function">List</span> {
+                <span class="function">Section</span>(<span class="string">"Tap to Add/Remove"</span>) {
+                    <span class="function">ForEach</span>(allTags) { tag <span class="keyword">in</span>
+                        <span class="function">Button</span>(action: {
+                            <span class="function">toggle</span>(tag: tag)
+                        }) {
+                            <span class="function">HStack</span> {
+                                <span class="function">Text</span>(tag.name)
+                                <span class="function">Spacer</span>()
+                                <span class="comment">// Show a checkmark if the item already has this tag.</span>
+                                <span class="keyword">if</span> todoItem.tags.<span class="function">contains</span>(where: { $0.id == tag.id }) {
+                                    <span class="function">Image</span>(systemName: <span class="string">"checkmark"</span>)
+                                }
+                            }
+                        }
+                        .<span class="function">buttonStyle</span>(.<span class="variable">plain</span>) <span class="comment">// Use plain style to make the whole row tappable.</span>
+                    }
+                }
+            }
+            
+            <span class="comment">// Form to create a new tag available for all items.</span>
+            <span class="function">HStack</span> {
+                <span class="function">TextField</span>(<span class="string">"New Tag Name"</span>, text: $newTagName)
+                    .<span class="function">textFieldStyle</span>(.<span class="variable">roundedBorder</span>)
+                <span class="function">Button</span>(<span class="string">"Create Tag"</span>, action: createTag)
+                    .<span class="function">disabled</span>(newTagName.<span class="property">isEmpty</span>)
+            }
+            .<span class="function">padding</span>()
+        }
+        .<span class="function">navigationTitle</span>(<span class="string">"Manage Tags"</span>)
+    }
+    
+    <span class="keyword">private</span> <span class="keyword">func</span> <span class="function">createTag</span>() {
+        <span class="keyword">let</span> newTag = <span class="function">Tag</span>(name: newTagName)
+        modelContext.<span class="function">insert</span>(newTag)
+        newTagName = <span class="string">""</span>
+    }
+    
+    <span class="keyword">private</span> <span class="keyword">func</span> <span class="function">toggle</span>(tag: <span class="type">Tag</span>) {
+        <span class="comment">// Check if the item already has the tag.</span>
+        <span class="keyword">if</span> <span class="keyword">let</span> index = todoItem.tags.<span class="function">firstIndex</span>(where: { $0.id == tag.id }) {
+            <span class="comment">// If it does, remove it.</span>
+            todoItem.tags.<span class="function">remove</span>(at: index)
+        } <span class="keyword">else</span> {
+            <span class="comment">// If it doesn't, add it.</span>
+            todoItem.tags.<span class="function">append</span>(tag)
+        }
+    }
+}</code></pre>
+                        </li>
+                        <li><strong>Final Touch:</strong> Now, let's add a way to get to this new tag management screen. Go back to <code>TodoListView.swift</code> and modify the <code>ForEach</code> loop to include a <code>NavigationLink</code> and display the tags.
+<pre><code><span class="comment">// Inside TodoListView.swift's body</span>
+
+<span class="function">List</span> {
+    <span class="function">ForEach</span>(project.items) { item <span class="keyword">in</span>
+        <span class="function">NavigationLink</span>(destination: <span class="function">ManageTagsView</span>(todoItem: item)) {
+            <span class="function">HStack</span> {
+                <span class="function">Image</span>(systemName: item.isCompleted ? <span class="string">"checkmark.circle.fill"</span> : <span class="string">"circle"</span>)
+                    .<span class="function">onTapGesture</span> {
+                        <span class="comment">// Make the checkmark tappable directly in the list.</span>
+                        item.isCompleted.<span class="function">toggle</span>()
+                    }
+                
+                <span class="function">VStack</span>(alignment: .leading) {
+                    <span class="function">Text</span>(item.title)
+                    
+                    <span class="comment">// Display the tags for this item if any exist.</span>
+                    <span class="keyword">if</span> !item.tags.<span class="property">isEmpty</span> {
+                        <span class="function">HStack</span> {
+                            <span class="comment">// Sort the tags alphabetically for a consistent order.</span>
+                            <span class="function">ForEach</span>(item.tags.<span class="function">sorted</span>(by: { $0.name < $1.name })) { tag <span class="keyword">in</span>
+                                <span class="function">Text</span>(tag.name)
+                                    .<span class="function">font</span>(.<span class="variable">caption</span>)
+                                    .<span class="function">padding</span>(<span class="number">4</span>)
+                                    .<span class="function">background</span>(<span class="type">Color</span>.<span class="variable">gray</span>.<span class="function">opacity</span>(<span class="number">0.2</span>))
+                                    .<span class="function">cornerRadius</span>(<span class="number">5</span>)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .<span class="function">onDelete</span>(perform: deleteItems)
+}</code></pre>
+                        </li>
+                    </ol>
+                    <p>You now have a fully functional to-do list app! Run it in the simulator. You can create projects, add to-do items to them, create tags, and assign those tags to your items, demonstrating all three types of data relationships in a practical way.</p>
+                    
+                    <h3>Step 7: 🧪 Test Your Application</h3>
+                    <p>Now it's time to test the app. You can either compile and deploy it to a simulator/physical device or use the interactive preview in the <code>ProjectListView</code>.</p>
+                    <ol>
+                        <li><strong>Create a Project:</strong> Use the text field at the bottom to type a name like "Test a few things" and tap "Add".</li>
+                        <li><strong>Go to the To-Do List:</strong> Tap on the project you just created ("Test a few things"). This will navigate you to the <code>TodoListView</code>.</li>
+                        <li><strong>Go to the Tag Management Screen:</strong> Now that you have a to-do item, tap on the item itself (the row that says "Learn SwiftData"). This will navigate you to the <code>ManageTagsView</code> for that specific item.</li>
+                        <li><strong>Create and Assign a Tag:</strong> You are now on the "Manage Tags" screen.
+                            <ul>
+                                <li><strong>Create a New Tag:</strong> Use the text field at the bottom to type a tag name (e.g., "Urgent") and tap "Create Tag".</li>
+                                <li><strong>Assign the Tag:</strong> The new tag will appear in the list above. Tap on the "Urgent" row. A checkmark will appear, and the tag is now assigned to your "Learn SwiftData" to-do item. You can tap it again to un-assign it.</li>
+                            </ul>
+                        </li>
+                        <li>When you navigate back to the to-do list, you will see the "Urgent" tag displayed neatly under your to-do item.</li>
+                    </ol>
+                    <div class="image-trio">
+                        <img src="../assets/guide_imgs/swiftdata/swiftdata-to-do-project-view.png" alt="To-Do App Project View">
+                        <img src="../assets/guide_imgs/swiftdata/swiftdata-to-do-items-view.png" alt="To-Do App Items View">
+                        <img src="../assets/guide_imgs/swiftdata/swiftdata-to-do-tag-view.png" alt="To-Do App Tag View">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="task4">
+            <h2 class="collapsible-header">
+                💡 Common Pitfalls & Best Practices
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <p>As you begin your journey with SwiftData, you might encounter a few common stumbling blocks. This section highlights these potential issues and provides best practices to help you write cleaner, more efficient, and bug-free code.</p>
+
+                    <div class="pro-tip">
+                        <h4>🤔 Why does my data disappear when the preview refreshes?</h4>
+                        <p>This is one of the most common points of confusion for beginners, but it's actually a feature, not a bug!</p>
+                        <p><strong>The Short Answer:</strong> The preview is specifically configured to use a temporary, in-memory database. When the preview refreshes, that temporary database is wiped clean and a new, empty one is created.</p>
+                        <p><strong>The Detailed Explanation:</strong></p>
+                        <p>Look at the <code>#Preview</code> block at the bottom of your <code>ProjectListView.swift</code> file:</p>
+<pre><code><span class="macro">#Preview</span> {
+    <span class="function">ProjectListView</span>()
+        .<span class="function">modelContainer</span>(<span class="keyword">for</span>: <span class="type">Project</span>.<span class="keyword">self</span>, inMemory: <span class="literal">true</span>) <span class="comment">// <-- This is the key part</span>
+}</code></pre>
+                        <p>The <code>inMemory: true</code> parameter tells SwiftData: "For this preview only, don't save anything to the phone's permanent storage. Just create a temporary database that exists only in the device's RAM."</p>
+                        <p>Think of it like this:</p>
+                        <ul>
+                            <li><strong>The Simulator/Real Device:</strong> This is like writing in a notebook with a pen. When you add a project, it's written down permanently. You can close the app and come back, and your notes will still be there. This is what happens when you set <code>isStoredInMemoryOnly: false</code> in your main app file.</li>
+                            <li><strong>The SwiftUI Preview:</strong> This is like writing on a whiteboard with a dry-erase marker. You can add projects and tasks, but as soon as the "meeting" is over (the preview refreshes), the board is wiped clean for the next session. This is what <code>inMemory: true</code> does.</li>
+                        </ul>
+                        <p>This behavior is intentional and very useful because it ensures your previews are always in a clean, predictable state and don't get cluttered with test data.</p>
+                        <p><strong>To see your data persist, you must run the app in the Simulator or on a real device.</strong> Click the "Play" button at the top of Xcode to build and run the app. Any data you add there will be saved permanently.</p>
+                    </div>
+
+                    <h4>Understanding `insert()` vs. `.append()`</h4>
+                    <p>When adding new objects, especially in a relationship, it can be confusing whether to use <code>modelContext.insert()</code> or append to an array (like <code>project.items.append()</code>). Here’s a simple rule of thumb:</p>
+                    <ul>
+                        <li><strong>Use <code>modelContext.insert(newObject)</code> for parent or independent objects.</strong> When you create a brand new <code>Project</code> or a <code>Tag</code> that doesn't belong to anything yet, you should insert it directly into the context.</li>
+                        <li><strong>Use <code>parent.children.append(newChild)</code> for child objects in a relationship.</strong> When you create a <code>TodoItem</code> that belongs to a specific <code>Project</code>, appending it to the project's <code>items</code> array is more intuitive. Because you defined the inverse relationship, SwiftData is smart enough to know that this also means the new item should be inserted into the database.</li>
+                    </ul>
+                    <p>Both methods will correctly save the data, but following this convention makes your code's intent clearer.</p>
+
+                    <h4>Always Define Inverse Relationships</h4>
+                    <p>While SwiftData can sometimes infer relationships, it's a strong best practice to always define the inverse relationship explicitly using <code>@Relationship(inverse: ...)</code>. Forgetting this is a common source of bugs.</p>
+                    <p><strong>Why?</strong> Without the inverse, SwiftData might not know that two properties are linked. This can lead to data inconsistency, where updating one side of the relationship doesn't correctly update the other. For many-to-many relationships, the inverse is not just a best practice—it's required.</p>
+
+                    <h4>Simple Model Changes are (Usually) Handled Automatically</h4>
+                    <p>Beginners often worry about changing their <code>@Model</code> classes after they've already run the app and saved data. The good news is that SwiftData handles many simple changes automatically. This is called a lightweight migration.</p>
+                    <p>You can safely make changes like:</p>
+                    <ul>
+                        <li>Adding a new property.</li>
+                        <li>Removing a property.</li>
+                        <li>Making a non-optional property optional (e.g., <code>String</code> to <code>String?</code>).</li>
+                    </ul>
+                    <p>SwiftData will update the database schema for you the next time you run the app. For more complex changes (like renaming a property or changing its type), you'll need to learn about more advanced migration techniques, but for most day-to-day development, SwiftData makes evolving your data model painless.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="task5">
+            <h2 class="collapsible-header">
+                🗺️ What's Next? Advancing Your SwiftData Skills
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <p>Congratulations on building a complete app with SwiftData! You've mastered the fundamentals of creating models, defining relationships, and connecting your data to a SwiftUI interface. Now that you have a solid foundation, here are some more advanced topics you can explore to become a SwiftData expert.</p>
+
+                    <h4>☁️ iCloud and CloudKit Sync</h4>
+                    <p>One of the most powerful features of SwiftData is its incredibly simple integration with iCloud. With just a few lines of configuration, you can enable your app's data to automatically and seamlessly sync across all of a user's devices. This is perfect for apps where users expect their data to be available on their iPhone, iPad, and Mac.</p>
+                    <p>To get started, you'll need to add the "iCloud" capability in your Xcode project settings and then configure your <code>ModelContainer</code> to use a CloudKit container.</p>
+
+                    <h4>🗂️ Custom Configurations and Data Stores</h4>
+                    <p>Sometimes you need more control over where and how your data is stored. SwiftData allows you to create custom <code>ModelConfiguration</code> objects. This lets you:</p>
+                    <ul>
+                        <li><strong>Store data in specific locations,</strong> such as a shared App Group container, so that your main app and its widgets or extensions can access the same data.</li>
+                        <li><strong>Create multiple databases</strong> within the same app, perhaps to separate user data from cached data.</li>
+                        <li><strong>Implement read-only stores,</strong> which can be useful for shipping your app with pre-loaded data that the user cannot modify.</li>
+                    </ul>
+
+                    <h4>🧪 Testing Your Data Layer</h4>
+                    <p>As your app grows, it becomes crucial to test your data logic. Because SwiftData can be configured to run entirely in-memory (as we saw in the SwiftUI Previews), it's very well-suited for unit testing. You can write tests that create a temporary in-memory database, perform a series of operations (add, update, delete), and then verify that your data logic behaves exactly as you expect, all without touching the user's real on-disk database.</p>
+
+                    <h4>🔄 Advanced Migrations</h4>
+                    <p>For complex changes to your data model—like renaming a property, changing a property's type (e.g., from <code>String</code> to <code>Int</code>), or splitting one model into two—SwiftData's automatic "lightweight" migration isn't enough. For these scenarios, you'll need to provide a <code>MigrationPlan</code>. This gives you fine-grained control to map data from the old version of your model to the new version, ensuring that your users never lose their data when they update your app.</p>
+                    <p>By exploring these topics, you can build even more powerful, robust, and professional-grade applications with SwiftData.</p>
+
+                    <h4>📱 Example Projects with SwiftData</h4>
+                    <p>To see SwiftData in action, check out these example projects that have been converted from Core Data to SwiftData:</p>
+                    <p><strong>To-Do List App with SwiftData:</strong> <a href="https://github.com/TomHuynhSG/To-Do-List-Core-Data-iOS/tree/swiftdata" target="_blank">https://github.com/TomHuynhSG/To-Do-List-Core-Data-iOS/tree/swiftdata</a></p>
+                    <img src="../assets/guide_imgs/swiftdata/to-do-list-core-data.png" alt="To-Do List SwiftData" class="img-large">
+                    <p><strong>Movie Store App with SwiftData:</strong> <a href="https://github.com/TomHuynhSG/Movie-Store-Core-Data-iOS/tree/swiftdata" target="_blank">https://github.com/TomHuynhSG/Movie-Store-Core-Data-iOS/tree/swiftdata</a></p>
+                    <img src="../assets/guide_imgs/swiftdata/movie-store-core-data.png" alt="Movie Store SwiftData" class="img-large">
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="task6">
+            <h2 class="collapsible-header">
+                🧠 Final Challenge: Book Library App
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <h3>Your Task</h3>
+                    <p>To test your understanding of SwiftData, your challenge is to build a simple "Book Library" application. This app will allow users to keep track of books they have read and the authors who wrote them.</p>
+                    <p><strong>Core Requirements:</strong></p>
+                    <ul>
+                        <li><strong>Book Model:</strong> Create a <code>Book</code> model with properties for <code>title</code> (String), <code>author</code> (String), and <code>isRead</code> (Bool).</li>
+                        <li><strong>Main View:</strong> Design a main view that displays a list of all the books in the library. Each item in the list should show the book's title and author.</li>
+                        <li><strong>Add Book View:</strong> Create a separate view (perhaps presented as a sheet) that allows users to add a new book to the library by entering its title and author.</li>
+                        <li><strong>Toggle Read Status:</strong> In the main list, allow users to tap on a book to toggle its <code>isRead</code> status. You could show a checkmark or change the text color to indicate that a book has been read.</li>
+                        <li><strong>Delete Books:</strong> Implement a way for users to delete books from the library (e.g., using a swipe-to-delete gesture).</li>
+                    </ul>
+            <div class="pro-tip">
+                <h4>Bonus Challenge</h4>
+                <p>If you want to take it a step further, try to refactor the app to have a separate <code>Author</code> model. Then, create a one-to-many relationship where one <code>Author</code> can have many <code>Book</code>s. This will require you to update your UI to handle this new relationship, perhaps by allowing users to select an existing author or create a new one when adding a book.</p>
+            </div>
+            <div class="image-quartet">
+                <img src="../assets/guide_imgs/swiftdata/bookstore - main view.png" alt="Bookstore Main View" class="img-large">
+                <img src="../assets/guide_imgs/swiftdata/bookstore - add book.png" alt="Bookstore Add Book" class="img-large">
+                <img src="../assets/guide_imgs/swiftdata/bookstore - add book 2.png" alt="Bookstore Add Book 2" class="img-large">
+                <img src="../assets/guide_imgs/swiftdata/bookstore - main view 2.png" alt="Bookstore Main View 2" class="img-large">
+            </div>
+        </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Created by Tom Huynh with love ❤️</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

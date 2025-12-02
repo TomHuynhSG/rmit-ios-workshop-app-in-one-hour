@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate Swift Guide - COSC3062</title>
+    <link rel="icon" href="../assets/images/rmit-logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/base-theme.css">
+    <link rel="stylesheet" href="../css/extended-header.css">
+    <link rel="stylesheet" href="../css/collapsible.css">
+    <link rel="stylesheet" href="../css/code-styles.css">
+    <link rel="stylesheet" href="../css/shared-styles.css">
+    <style>
+        /* Page-specific styles for bootcamp-snippets.html */
+        .logo {
+            /* Override from extended-header.css if needed */
+            height: 60px;
+        }
+
+        .university-name {
+            /* Override from extended-header.css if needed */
+            font-size: 1.75rem;
+        }
+
+        header .intro {
+            /* Override from extended-header.css if needed */
+            max-width: 700px;
+        }
+
+        .cheatsheet-section>h2.collapsible-header {
+            /* Style for the main collapsible header */
+            font-size: 2rem;
+            color: var(--heading-color);
+            margin-bottom: 20px;
+            /* Applied when open */
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+        }
+
+        .grid-container {
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            /* Override from base-theme.css if needed */
+            padding: 20px;
+        }
+
+        .card ul {
+            padding-left: 20px;
+        }
+
+        .card table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .card th, .card td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: center;
+        }
+
+        .card th {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        pre {
+            /* Override from code-styles.css if needed */
+            margin-bottom: 10px;
+            /* Reduced margin for snippets */
+        }
+
+        .challenge-criteria li {
+            margin-bottom: 10px;
+        }
+
+        .instruction-step.card {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="back-to-home-container">
+                <a href="../index.html" class="back-to-home-button">&larr; Back to Home</a>
+            </div>
+            <div class="university-branding">
+                <img src="https://sites.rmit.edu.au/artschoolgraduates/files/2022/10/rmit-logo-red.png"
+                    alt="RMIT University Logo" class="logo">
+                <span class="university-name">RMIT University</span>
+            </div>
+            <h1>Intermediate Swift <span>Step by Step Guide</span></h1>
+            <p class="intro">The goal of our second assignment is to start to get a handle on slightly more advanced
+                topics of Swift which are very important to get familiar with to prepare the upcoming lecture to build
+                an actual iOS app.</p>
+            <p class="intro">Please read the section of the <a
+                    href="https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html" target="_blank">Swift
+                    Programming Language</a> document throughout the course! We encourage scrolling through the document
+                to understand more about Swift during the course. You'll be reading the majority of the content in 11 ½
+                of the first 14 chapters listed down the left-hand side of Swift Programming Language, in addition to A
+                Swift Tour and the Swift API Guidelines, for quick reference. As you get more practice, these questions
+                will become easier, but you will still make mistakes here and there. Feel free to be wrong and try
+                again!</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="cheatsheet-section" id="start-with-xcode">
+            <h2 class="collapsible-header">
+                🚀 Steps to Start a New Swift Project in Xcode
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="grid-container" style="grid-template-columns: 1fr;">
+                    <div class="card instruction-step">
+                        <h3>Step 1: Create a New Project</h3>
+                        <p>Open Xcode. When the "Welcome to Xcode" window appears, click on "Create a new Xcode project".</p>
+                        <img src="../assets/intruction_imgs/Start With Xcode for Swift - Step 1.png" alt="Create a New Project in Xcode" class="img-small">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 2: Choose a Template</h3>
+                        <p>In the template selection window, first select the "macOS" tab. Then, choose the "Command Line Tool" template from the available options and click "Next".</p>
+                        <img src="../assets/intruction_imgs/Start With Xcode for Swift - Step 2.png" alt="Choose a Template in Xcode" class="img-small">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 3: Configure Project Options</h3>
+                        <p>On the next screen, fill in your project details. Enter a "Product Name" (for example, TaiXiu) and provide an "Organization Identifier" if needed. Make sure the "Language" is set to "Swift", then click "Next".</p>
+                        <img src="../assets/intruction_imgs/Start With Xcode for Swift - Step 3.png" alt="Configure Project Options in Xcode" class="img-small">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 4: Save the Project</h3>
+                        <p>Choose a location to save your new project, such as the "Developer" folder. Make sure to untick the checkbox labeled "Create Git repository on my Mac", and then click the "Create" button.</p>
+                        <img src="../assets/intruction_imgs/Start With Xcode for Swift - Step 4.png" alt="Save the Project in Xcode" class="img-small">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 5: Write and Run Your Code</h3>
+                        <p>In the left-hand navigation pane, select the main Swift file, usually named main.swift. Enter your Swift code in the central editor pane. To run your code, click the "Run" button (the play icon) located at the top of the window. You’ll see the output in the console area at the bottom of the Xcode interface.</p>
+                        <img src="../assets/intruction_imgs/Start With Xcode for Swift - Step 5.png" alt="Write and Run Your Code in Xcode" class="img-small">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="cheatsheet-section" id="organize-files-xcode">
+            <h2 class="collapsible-header">
+                📂 How to organize your swift files in Xcode
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="grid-container" style="grid-template-columns: 1fr;">
+                    <div class="card instruction-step">
+                        <h3>Step 1: Create a function in your first Swift file (question1.swift)</h3>
+                        <p><strong>Instruction:</strong> In Xcode, you can organize your code into multiple files. Apart from the special main.swift file, you cannot write code directly at the top level of other Swift files. Instead, you need to place your code inside functions. In this step, a new file named question1.swift has been created. Inside this file, a function called questionSolution1() is defined to hold the code that will print a message.</p>
+                        <img src="../assets/intruction_imgs/Organize-swift-files-in-Xcode-Step-1.png" alt="Organize Swift Files in Xcode Step 1" class="img-small">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 2: Create a function in your second Swift file (question2.swift)</h3>
+                        <p><strong>Instruction:</strong> Similarly, create another file named question2.swift. Just like in the previous step, define a function within this file to hold your code. Here, a function named questionSolution2() is created to print a different message. This practice of separating code into different files and functions makes your project more organized and easier to manage.</p>
+                        <img src="../assets/intruction_imgs/Organize-swift-files-in-Xcode-Step-2.png" alt="Organize Swift Files in Xcode Step 2" class="img-small">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 3: Call your functions from the main.swift file</h3>
+                        <p><strong>Instruction:</strong> The main.swift file is the entry point of your application. When you run your program, the code inside main.swift is executed from top to bottom. Unlike other Swift files, you can write top-level code here without needing to wrap it in a function. To execute the code from your other files, you simply call the functions you created (questionSolution1() and questionSolution2()) from within main.swift.</p>
+                        <img src="../assets/intruction_imgs/Organize-swift-files-in-Xcode-Step-3.png" alt="Organize Swift Files in Xcode Step 3" class="img-small">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 4: Run the program and observe the output</h3>
+                        <p><strong>Instruction:</strong> After setting up your files and calling the functions in main.swift, run your project. The output console will display the results. The messages from both question1.swift and question2.swift are printed in the order they were called in main.swift. The message "Program ended with exit code: 0" indicates that your program ran successfully without any errors.</p>
+                        <img src="../assets/intruction_imgs/Organize-swift-files-in-Xcode-Step-4.png" alt="Organize Swift Files in Xcode Step 4" class="img-small">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header start-open">
+                🗓️ Question 1. Switch
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/intermediate-swift/Question1a.png" alt="Question 1a"
+                        class="card-img img-small">
+
+                    <h3>Description</h3>
+                    <p>Create a program that takes a number (Int) as an input and prints the corresponding day of the
+                        week using a Switch statement.</p>
+                    <p>If the input was 5 then the function should print: "Friday".</p>
+                    <p>If the input number does not match a day of the week then your program should print "Invalid
+                        day".</p>
+                    <pre><code><span class="keyword">func</span> <span class="function">dayOfTheWeek</span>(day: <span class="type">Int</span>) <span class="operator">-></span> <span class="type">String</span>{
+    <span class="comment">//Complete the function body</span>
+}
+
+print(<span class="string">"Enter a day of a week (1-7):"</span>)
+<span class="keyword">if</span> <span class="keyword">let</span> dayString <span class="operator">=</span> readLine(){
+    <span class="keyword">if</span> <span class="keyword">let</span> dayInteger <span class="operator">=</span> Int(dayString){
+        print(<span class="string">"The day is \(dayOfTheWeek(day: dayInteger))"</span>)
+    } <span class="keyword">else</span> {
+        print(<span class="string">"Error: the correct format of day must be 1-7!"</span>)
+    }
+}</code></pre>
+                    <h3>Sample Outputs:</h3>
+                    <pre><code>Enter a day of a week (1-7):
+2
+The day is Tuesday
+
+Enter a day of a week (1-7):
+7
+The day is Sunday
+
+Enter a day of a week (1-7):
+20
+The day is an invalid day!
+
+Enter a day of a week (1-7):
+hello
+Error: the correct format of day must be 1-7!</code></pre>
+                    <img src="../assets/guide_imgs/intermediate-swift/Question1b.png" alt="Question 1b"
+                        class="card-img img-small">
+                </div>
+
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                📖 Question 2. Dictionary
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/intermediate-swift/Question2a.png" alt="Question 2a"
+                        class="card-img img-small">
+                    <h3>Description</h3>
+                    <p>You have a dictionary to store interesting fun facts/figures of RMIT Vietnam. However, there are
+                        a few wrong pieces of information you need to fix:</p>
+                    <ul>
+                        <li>The number of graduates is 22500 instead of 20500.</li>
+                        <li>The number of student clubs is 60 instead of 50.</li>
+                        <li>The QS World Ranking is 140 instead 150</li>
+                    </ul>
+                    <p>Also, we want to add a few more entries in our dictionary as following:</p>
+                    <ul>
+                        <li>yearFounded: 1887</li>
+                        <li>numberOfStaffs: 10000</li>
+                    </ul>
+                    <pre><code><span class="comment">//Don't change this dictionary</span>
+<span class="keyword">var</span> funFactsRMIT: [<span class="type">String</span>: <span class="type">Int</span>] <span class="operator">=</span> [
+    <span class="string">"numberOfStudents"</span> : <span class="number">12000</span>,
+    <span class="string">"numberScholarships"</span>: <span class="number">1700</span>,
+    <span class="string">"numberOfGraduates"</span>: <span class="number">20500</span>,
+    <span class="string">"numberMasterPrograms"</span>: <span class="number">90</span>,
+    <span class="string">"numberPhDPrograms"</span>: <span class="number">3</span>,
+    <span class="string">"numberStudentClubs"</span>: <span class="number">50</span>,
+    <span class="string">"QSWorldRanking"</span>: <span class="number">150</span>,
+]
+
+<span class="comment">//Write your code here (update values of some entries, add new entries in the</span>
+<span class="comment">//dictionary and print out some entry values like in the sample output)</span></code></pre>
+                    <h3>The expected output should be:</h3>
+                    <pre><code>Here are some fun facts of RMIT:
+The Number Of Students: 12000
+The Number Scholarships: 1700
+The Number Of Graduates: 22500
+The Number Master Programs: 90
+The Number Phd Programs: 3
+The Number Student Clubs: 60
+The Qs World Ranking: 140
+The Year Founded: 1887
+The Number Of Staffs: 10000
+There are 9 facts in our fun facts dictionary about RMIT!</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                ❔ Question 3. Optionals
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/intermediate-swift/Question3a.png" alt="Question 3a"
+                        class="card-img img-small">
+                    <h3>Description</h3>
+                    <p>First, create a function that returns the number of times an integer can be divided by another
+                        integer without a remainder. The function should return nil if the division doesn’t produce a
+                        whole number. Name the function divideIfWhole.</p>
+                    <p>Then, write code that tries to unwrap the optional result of the function. There should be two
+                        cases: upon success, print "Yep, it divides \(x) times", and upon failure, print "Not divisible
+                        :((".</p>
+                    <p>Finally, test your function:</p>
+                    <ul>
+                        <li>Divide 10 by 2. This should print "Yep, it divides 5 times."</li>
+                        <li>Divide 10 by 3. This should print "Not divisible :[."</li>
+                    </ul>
+                    <pre><code><span class="keyword">func</span> <span class="function">divideIfWhole</span>(value: <span class="type">Int</span>, divisor: <span class="type">Int</span>) <span class="operator">-></span> <span class="type">Int</span>? {
+    <span class="comment">// Complete the body of the function</span>
+}
+
+print(<span class="string">"Enter the value:"</span>)
+<span class="keyword">let</span> value <span class="operator">=</span> readLine()      <span class="comment">// Remember, this is an optional string</span>
+print(<span class="string">"Enter the divisor:"</span>)
+<span class="keyword">let</span> divisor <span class="operator">=</span> readLine()   <span class="comment">// Remember, this is an optional string</span>
+<span class="comment">// Complete your code below to optional binding to unwrap safely the values of</span>
+<span class="comment">// divideIfWhole, these inputs of readLine()</span></code></pre>
+                    <h3>Sample Outputs:</h3>
+                    <pre><code>Enter the value:
+10
+Enter the divisor:
+2
+Yep, it divides 5 times
+
+Enter the value:
+10
+Enter the divisor:
+3
+Not divisible :((
+
+Enter the value:
+9
+Enter the divisor:
+3
+Yep, it divides 3 times</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                🏗️ Question 4. Structure
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/intermediate-swift/Question4a.png" alt="Question 4a"
+                        class="card-img img-small">
+                    <h3>Description</h3>
+                    <p>After Elon Musk brought Twitter, he asked you to create the next big social networking app,
+                        exclusive to business leaders called TwitterByElonMusk.</p>
+                    <h4>Define a Structure</h4>
+                    <p>As part of this app, you need to define a struct called User to represent a user. This struct
+                        needs to hold onto the user's name, email (optional), number of followers, and whether they are
+                        active or not. The User struct needs to have the properties:</p>
+                    <ul>
+                        <li>name</li>
+                        <li>email?</li>
+                        <li>followers</li>
+                        <li>isActive</li>
+                    </ul>
+                    <p>The Struct also needs to have a method called logStatus(). If the user is active, the method
+                        needs to print "XXX is working hard". Otherwise, it needs to print "XXX has left earth" (where
+                        XXX is the name of the user).</p>
+                    <h4>Initialise the Structure</h4>
+                    <p>After you have defined the struct, create a user with the name "Jerry" with 0 followers who are
+                        not active. Then print the status of this user to the console with logStatus().</p>
+                    <pre><code><span class="comment">// Define the User struct here</span>
+
+
+<span class="comment">// Initialise a User struct here (for Jerry)</span>
+
+
+<span class="comment">// Diagnostic code - do not change this code (to test your User struct)</span>
+print(<span class="string">"\nDiagnostic code to test your User struct:"</span>)
+<span class="keyword">var</span> musk <span class="operator">=</span> User(name: <span class="string">"Elon"</span>, email: <span class="string">"elon@tesla.com"</span>, followers: <span class="number">2001</span>, isActive: <span class="boolean">true</span>)
+musk.logStatus()
+print(<span class="string">"Contacting \(musk.name) on \(musk.email!) ..."</span>)
+print(<span class="string">"\(musk.name) has \(musk.followers) followers"</span>)
+<span class="comment">// sometime later</span>
+musk.isActive <span class="operator">=</span> <span class="boolean">false</span>
+musk.logStatus()</code></pre>
+                    <h3>To succeed in this question, the sample output must be:</h3>
+                    <pre><code>Jerry has left earth
+
+Diagnostic code to test your User struct:
+Elon is working hard
+Contacting Elon on elon@tesla.com ...
+Elon has 2001 followers
+Elon has left earth</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                🏛️ Question 5. Class
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/intermediate-swift/Question5a.png" alt="Question 5a"
+                        class="card-img img-small">
+                    <h3>Description</h3>
+                    <p>Write a Point class that has private attributes for coordinates x and y. The class has
+                        Initializers to initialize the values for x and y of the point.</p>
+                    <p>In the class, write a method distance to compute the distance from the current point and the
+                        given target point.</p>
+                    <p>Note: the distance d between two points A and B can be computed with the following formula</p>
+                    <p>d = sqrt((x<sub>A</sub> - x<sub>B</sub>)<sup>2</sup> + (y<sub>A</sub> -
+                        y<sub>B</sub>)<sup>2</sup>)</p>
+                    <p>To test the class Point and the distance method, create some Point instances and test them.</p>
+                    <pre><code><span class="keyword">class</span> <span class="class">Point</span> {
+    <span class="comment">// complete the body of this class Point</span>
+
+    <span class="comment">// declare properties for x and y coordinates</span>
+
+
+    <span class="comment">// declare the initializer (constructor)</span>
+
+
+    <span class="comment">// declare the function distance</span>
+    <span class="keyword">func</span> <span class="function">distance</span>(target: <span class="type">Point</span>) <span class="operator">-></span> <span class="type">Double</span> {
+        <span class="comment">// complete the body of this function</span>
+
+
+    }
+}
+
+<span class="comment">// Write your code to read user inputs for two points coordinations</span>
+
+
+<span class="comment">// Convert from string input to double numbers</span>
+
+
+<span class="comment">// Create two instances of two points and call distance to calculate the distance of</span>
+<span class="comment">// two points</span></code></pre>
+                    <h3>Sample Outputs (yours can be different):</h3>
+                    <pre><code>Enter the first x and y:
+5 5
+Enter the second x and y:
+7 5
+The distance between X and Y is 2.000
+
+Enter the first x and y:
+3 3
+Enter the second x and y:
+4 4
+The distance between X and Y is 1.414
+
+Enter the first x and y:
+-2.5 4
+Enter the second x and y:
+3 -5
+The distance between X and Y is 10.548</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                🎲 Question 6. Randomisation
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/intermediate-swift/Question6a.png" alt="Question 6a"
+                        class="card-img img-small">
+                    <h3>Description</h3>
+                    <p>You are going to create a password generator. We have created an array called the alphabet which
+                        contains all 26 letters in the alphabet.</p>
+                    <p>Write some code to randomly pick 6 letters out of the alphabet to create a random 6 character
+                        password.</p>
+                    <p>HINT: You can add characters together with the "+" symbol. e.g.</p>
+                    <pre><code><span class="keyword">var</span> a <span class="operator">=</span> <span class="string">"Jerry"</span>
+<span class="keyword">var</span> b <span class="operator">=</span> <span class="string">"Mouse"</span>
+<span class="keyword">var</span> c <span class="operator">=</span> a <span class="operator">+</span> b
+print(c) <span class="comment">//The output would be: "Jerry Mouse"</span></code></pre>
+                    <p>Alright, complete your code as below here:</p>
+                    <pre><code><span class="keyword">let</span> alphabet <span class="operator">=</span>
+[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>,<span class="string">"g"</span>,<span class="string">"h"</span>,<span class="string">"i"</span>,<span class="string">"j"</span>,<span class="string">"k"</span>,<span class="string">"l"</span>,<span class="string">"m"</span>,<span class="string">"n"</span>,<span class="string">"o"</span>,<span class="string">"p"</span>,<span class="string">"q"</span>,<span class="string">"r"</span>,<span class="string">"s"</span>,<span class="string">"t"</span>,<span class="string">"u"</span>,<span class="string">"v"</span>,
+<span class="string">"w"</span>,<span class="string">"x"</span>,<span class="string">"y"</span>,<span class="string">"z"</span>]
+
+<span class="comment">//The number of letters in alphabet equals 26</span>
+
+<span class="keyword">let</span> password <span class="operator">=</span> <span class="comment">//Replace this comment with your code.</span>
+
+print(password)</code></pre>
+                    <p>NOTE: The variable password should be a String of characters like "vacbae" or "abcefg", it should
+                        not be an array.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                🧑‍💻 Question 7. Closure
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/intermediate-swift/Question7a.png" alt="Question 7a"
+                        class="card-img img-small">
+                    <h3>Description</h3>
+                    <p>Given a function to take two integer numbers and a closure function which will call the closure
+                        function with a and b as arguments.</p>
+                    <p>Your task is to call doMath function and write inline functions which satisfy the comments below:
+                    </p>
+                    <pre><code><span class="comment">// Do not modify this function</span>
+<span class="keyword">func</span> <span class="function">doMath</span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>, operation: (<span class="type">Int</span>, <span class="type">Int</span>) <span class="operator">-></span> <span class="type">Int</span>) {
+    print(operation(a, b))
+}
+
+<span class="comment">// Call doMath function and provide an inline closure so that it will return the</span>
+<span class="comment">// larger value between two numbers and print it out</span>
+
+
+
+<span class="comment">// Call doMath function again and this time provide an another inline closure</span>
+<span class="comment">// so that it will multiple two numbers together and print it out</span></code></pre>
+                    <p>Note: If possible, could you please make those inline closures to be in the form of trailing
+                        closures so it look neat and clean (check the lecture or this link: <a
+                            href="https://docs.swift.org/swift-book/LanguageGuide/Closures.html"
+                            target="_blank">https://docs.swift.org/swift-book/LanguageGuide/Closures.html</a>)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                🤑 Question 8. Challenge question
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/intermediate-swift/Question8a.png" alt="Question 8a"
+                        class="card-img img-small">
+
+
+                    <h3>Description</h3>
+                    <p>The 649 Lotto Lottery is a popular lottery game in Canada, offering players the chance to win
+                        significant cash prizes twice a week through a draw of six numbers from a pool of 49.
+                        Established in 1982, it is renowned for its large jackpots and additional bonus draws.</p>
+                    <p>Noel Patricio won the Lotto 6/49 prize worth $68 million and is “Ontario’s newest
+                        multimillionaire”</p>
+                    <p>Let’s build a lottery simulation 649 Lotto Lottery.</p>
+                    <img src="../assets/guide_imgs/intermediate-swift/Question8c.png" alt="Question 8c"
+                        class="card-img img-small">
+                    <p>A lottery ticket is $4.</p>
+                    <p>A ticket having 6 different numbers (from 1 to 49) (Can be repeated)</p>
+                                        <img src="../assets/guide_imgs/intermediate-swift/Question8b.png" alt="Question 8b"
+                        class="card-img img-small">
+                    <p>On a Saturday, they draw the lottery, and the winning numbers are: 11, 43, 24, 30, 5, 43</p>
+                    <h4>Match at each position:</h4>
+                    <ul>
+                        <li>Match One or Two numbers to get a small prize. ($10)</li>
+                        <li>Match Three numbers to get a small prize. ($100)</li>
+                        <li>Matching Four numbers gets a bigger prize. ($1000)</li>
+                        <li>Matching Five is even bigger. ($5000)</li>
+                        <li>Matching ALL SIX of the numbers you might win millions. ($5 million in cash)</li>
+                    </ul>
+                    <p>In the example, we got matches at position 1, 3, 4, 6 (4 numbers) = $1000</p>
+                    <h4>Requirements and Advice:</h4>
+                    <p>you can use both structs and classes to organize your code effectively. Here are some guidelines
+                        and an example to help you structure the code:</p>
+                    <ul>
+                        <li>Use structs to represent simple data models like a lottery ticket or a set of lottery
+                            numbers. Structs are suitable here because they are value types and provide copy-on-write
+                            behavior, which is useful for representing distinct tickets and results:
+                            <ul>
+                                <li>Represents a lottery ticket with six numbers.</li>
+                                <li>Provides a static method to generate a random ticket.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <pre><code><span class="keyword">struct</span> <span class="class">LotteryTicket</span> {
+    <span class="comment">// fill in the properties and functions</span>
+
+
+}</code></pre>
+                    <ul>
+                        <li>Use classes for managing the lottery game logic, such as drawing winning numbers and
+                            calculating prizes. Classes can manage shared state and provide more flexibility for future
+                            expansions of game rules.
+                            <ul>
+                                <li>Manages the winning numbers and game logic.</li>
+                                <li>Provides methods to draw winning numbers and check the prize based on a given
+                                    ticket.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <pre><code><span class="keyword">class</span> <span class="class">LotteryGame</span> {
+    <span class="comment">// fill in the properties and functions</span>
+
+
+
+}</code></pre>
+                    <ul>
+                        <li>In your main program:
+                            <ul>
+                                <li>Creates an instance of LotteryGame.</li>
+                                <li>Draws winning numbers and prints them.</li>
+                                <li>Creates a user ticket with predefined numbers and checks for a prize.</li>
+                                <li>Prints the prize amount.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4>Task 1:</h4>
+                    <p>You need to write a simple program that allows you to buy a ticket with six random numbers, and
+                        generate the winning numbers and return what kind of prize you won (one game).</p>
+                    <p>If you choose to play one game then you can have a choice to pick your own ticket numbers. But
+                        when you choose to play many games, to make it a realistic simulation of the lottery, then
+                        ticket numbers must be randomly generated.</p>
+                      <p>Here is just an example of an implementation of 649 Lottery, you can try something different:</p>
+                            <img src="../assets/guide_imgs/intermediate-swift/Question8-output1.png" alt="Question 8 output 1"
+                        class="card-img img-small">
+                        <img src="../assets/guide_imgs/intermediate-swift/Question8-output2.png" alt="Question 8 output 2"
+                        class="card-img img-small">
+                    <h4>Task 2:</h4>
+                    <p>figure out if you got profit or loss when you learn this game many times (just like how a normal
+                        person keeps buying lottery tickets for many years). Each game round, a person will buy one
+                        ticket and compare it to one winning number. Note, it means each game has a different winning
+                        ticket number and the player only buys one ticket for each game.</p>
+                    <p>Imagine you play this game 10 times:</p>
+                    <img src="../assets/guide_imgs/intermediate-swift/Question8-output3.png" alt="Question 8 output 3"
+                        class="card-img img-small">
+                    <p>Imagine you play this lottery game up to 100,000 times, can you figure out if you actually profit
+                        or lose in the long run? (? is for you to figure out)</p>
+                        <img src="../assets/guide_imgs/intermediate-swift/Question8-output4.png" alt="Question 8 output 4"
+                        class="card-img img-small">
+                    <h4>Task 3:</h4>
+                    <p>Now, it is pretty fun to figure out the long run statistics of 649 lottery game, but you know
+                        that one of the biggest Vietnamese lottery game, Vietlott, has very similar rules like our 649
+                        lottery game:</p>
+                    <ul>
+                        <li>Each ticket costs 10000 VND.</li>
+                        <li>The ticket also got 6 numbers.</li>
+                        <li>Each number goes up to 45 only, instead of 49.</li>
+                    </ul>
+                    <img src="../assets/guide_imgs/intermediate-swift/Question8d.png" alt="Question 8d"
+                        class="card-img img-small">
+                    <img src="../assets/guide_imgs/intermediate-swift/Question8e.png" alt="Question 8e"
+                        class="card-img img-small">
+                    <p>Here is the structure of Vietlott prizes:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Prize Type</th>
+                                <th>Result</th>
+                                <th>Money Prize (VND)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Special Prize</td>
+                                <td>Match 6 numbers</td>
+                                <td>At least 12 billion</td>
+                            </tr>
+                            <tr>
+                                <td>First Prize</td>
+                                <td>Match 5 numbers</td>
+                                <td>10 billion</td>
+                            </tr>
+                            <tr>
+                                <td>Second Prize</td>
+                                <td>Match 4 numbers</td>
+                                <td>300.000</td>
+                            </tr>
+                            <tr>
+                                <td>Third Prize</td>
+                                <td>Match 3 numbers</td>
+                                <td>30.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Based on this information, could you roughly calculate the statistics of winning Vietlott and
+                        compare that to our 649 lottery game? Which lottery got a better chance?</p>
+                    <p>Every week, they will draw the winning numbers and you would always buy one ticket to play
+                        everyday. After 1000 weeks (games) (20 years of your life), could you simulate how much money
+                        you have lost or profit by playing the Vietlott lottery?</p>
+
+                    <img src="../assets/guide_imgs/intermediate-swift/Question8f.png" alt="Question 8f"
+                        class="card-img img-small">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Created by Tom Huynh with love ❤️</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <button id="scrollToTopBtn" class="scroll-to-top-button" title="Go to top">⬆️</button>
+</body>
+
+</html>

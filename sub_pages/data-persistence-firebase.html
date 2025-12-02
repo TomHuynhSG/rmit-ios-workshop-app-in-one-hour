@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Persistence with Firebase - COSC3062</title>
+    <link rel="icon" href="../assets/images/rmit-logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/base-theme.css">
+    <link rel="stylesheet" href="../css/extended-header.css">
+    <link rel="stylesheet" href="../css/collapsible.css">
+    <link rel="stylesheet" href="../css/code-styles.css">
+    <link rel="stylesheet" href="../css/shared-styles.css">
+    <style>
+        .logo { height: 60px; }
+        .university-name { font-size: 1.75rem; }
+        header .intro { max-width: 700px; }
+        .cheatsheet-section > h2.collapsible-header {
+            font-size: 2rem;
+            color: var(--heading-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+        }
+        .grid-container {
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+        }
+        .card { padding: 20px; }
+        pre { margin-bottom: 10px; }
+        .instruction-step.card { padding: 20px; }
+        .card ul, .card ol {
+            padding-left: 20px;
+        }
+        .card ul {
+            list-style-type: disc;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="back-to-home-container">
+                <a href="../index.html" class="back-to-home-button">&larr; Back to Home</a>
+            </div>
+            <div class="university-branding">
+                <img src="https://sites.rmit.edu.au/artschoolgraduates/files/2022/10/rmit-logo-red.png" alt="RMIT University Logo" class="logo">
+                <span class="university-name">RMIT University</span>
+            </div>
+            <h1>Data Persistence on Cloud Database with Firebase <span>Step by Step Guide</span></h1>
+            <p class="intro">This guide will walk you through setting up and using Firebase for data persistence in your iOS applications, covering Authentication and Cloud Firestore.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="cheatsheet-section" id="task1">
+            <h2 class="collapsible-header start-open">
+                🚀 Task 1: Setup Firebase Project
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <h3>Objective</h3>
+                    <p>To setup and configure a Firebase project to be used in your iOS app projects.</p>
+                    <div class="pro-tip">
+                        <h4>What is Firebase?</h4>
+                        <p>Firebase is a platform developed by Google for creating mobile and web applications. It provides a suite of tools that developers can use to build high-quality apps, grow their user base, and earn more money. For iOS developers, it's particularly useful for backend services like authentication, databases, file storage, and more, without needing to manage servers yourself.</p>
+                    </div>
+                    <img src="../assets/guide_imgs/firebase/firebase_plus_swift_logo.png" alt="Firebase and Swift" class="img-large">
+                    
+                    <h4>0. Follow the lecture slides of this week for the comprehensive visual guide.</h4>
+
+                    <h4>1. Create a new project in Firebase ➕</h4>
+                    <img src="../assets/guide_imgs/firebase/firebase_project_creation_flow.png" alt="Firebase Project Creation" class="img-large">
+
+                    <h4>2. Register Firebase App 📱</h4>
+                    <p>Use your bundle identifier in your Xcode project to register as Apple bundle ID in the Firebase app registration.</p>
+                    <img src="../assets/guide_imgs/firebase/firebase_register_app_with_bundle_id.png" alt="Register Firebase App" class="img-large">
+
+                    <h4>3. Add Config Firebase file to the XCode Project ⚙️</h4>
+                    <p>This <code>GoogleService-Info.plist</code> file contains all the necessary keys and identifiers for your app to connect to your specific Firebase project. It's unique to your app.</p>
+                    <div class="pro-tip">
+                        <h4>Security Note 🔒</h4>
+                        <p>Treat the <code>GoogleService-Info.plist</code> file as a sensitive file. It contains your project's API keys. While it's needed in your app bundle, you should not commit it to public source control repositories. A common practice is to add it to your <code>.gitignore</code> file.</p>
+                    </div>
+                    <img src="../assets/guide_imgs/firebase/add_firebase_config_file_to_xcode.png" alt="Add Firebase Config File" class="img-large">
+
+                    <h4>4a. Add firebase SDK as a package in the Xcode project 📦</h4>
+                    <img src="../assets/guide_imgs/firebase/firebase_sdk_installation_instructions.png" alt="Firebase SDK Installation" class="img-large">
+
+                    <h4>4b. Install Firebase iOS SDK with Swift Package Manager  SPM</h4>
+                    <img src="../assets/guide_imgs/firebase/xcode_swift_package_manager_search.png" alt="Xcode Swift Package Manager" class="img-large">
+
+                    <h4>4c. Choose the packages of Firebase you need! ✅</h4>
+                    <p>Depending on what Firebase services your app use, please select them accordingly:</p>
+                    <ul>
+                        <li><strong>Firebase Auth</strong> provides many methods and utilities for enabling you to integrate secure authentication into your application.</li>
+                        <li><strong>Firebase Database (Realtime Database)</strong> provides a simple, efficient NoSQL cloud database which is synced across all clients in real time. It's structured as one large JSON tree.</li>
+                        <li><strong>Firebase Firestore</strong> provides a more flexible, scalable NoSQL database from Firebase and Google Cloud. It stores data in documents, which are organized into collections, allowing for more complex queries than the Realtime Database. For most new projects, Firestore is the recommended choice.</li>
+                        <li><strong>Firebase Storage</strong> provides simple storage for uploading and downloading user-generated content like images and videos.</li>
+                    </ul>
+                    <img src="../assets/guide_imgs/firebase/xcode_choose_firebase_packages.png" alt="Choose Firebase Packages" class="img-large">
+
+                    <h4>5. Add Initialization Code: ✍️</h4>
+                    <p>We need to integrate the initialization directly within the App structure's init method. This method is more streamlined and suits a SwiftUI-centric approach.</p>
+                    <pre><code><span class="keyword">import</span> <span class="type">SwiftUI</span>
+<span class="keyword">import</span> <span class="type">Firebase</span>
+
+<span class="property-wrapper">@main</span>
+<span class="keyword">struct</span> <span class="type">YourApp</span>: <span class="type">App</span> {
+    <span class="keyword">init</span>() {
+        <span class="type">FirebaseApp</span>.<span class="function">configure</span>()
+    }
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Scene</span> {
+        <span class="function">WindowGroup</span> {
+            <span class="function">ContentView</span>()
+        }
+    }
+}</code></pre>
+
+                    <h4>6. That's it! 🎉 We have now set up everything to use Firebase services in our app.</h4>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="task2">
+            <h2 class="collapsible-header">
+                🔐 Task 2: Setup Firebase Authentication
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <h3>Objective</h3>
+                    <p>To setup and configure a Firebase authentication just like in the lecture example in this Github repo: <a href="https://github.com/TomHuynhSG/User-Authentication-iOS-Firebase" target="_blank">https://github.com/TomHuynhSG/User-Authentication-iOS-Firebase</a>.</p>
+
+                    <h4>Step 0: Make sure the we setup authentication service on Firebase properly: ✅</h4>
+                    <p>Firebase Authentication provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app. It supports authentication using passwords, phone numbers, popular federated identity providers like Google, Facebook and Twitter, and more.</p>
+                    <ul>
+                        <li>In the Firebase Console, we need to enable the authentication feature. For this example, we'll enable the "Email/Password" sign-in method.</li>
+                    </ul>
+                    <img src="../assets/guide_imgs/firebase/firebase_enable_email_password_auth.png" alt="Enable Email/Password Auth" class="img-large">
+                    <ul>
+                        <li>Create a test user to test authentication</li>
+                    </ul>
+                    <img src="../assets/guide_imgs/firebase/firebase_add_test_user.png" alt="Add Test User" class="img-large">
+
+                    <h4>Step 1: Make sure the GoogleService-Info file is in the project directory: 📁</h4>
+                    <img src="../assets/guide_imgs/firebase/add_firebase_config_file_to_xcode.png" alt="Add Firebase Config File" class="img-large">
+
+                    <h4>Step 2: Make sure Initialization code is ready: 🚀</h4>
+                    <pre><code><span class="keyword">import</span> <span class="type">SwiftUI</span>
+<span class="keyword">import</span> <span class="type">Firebase</span>
+
+<span class="property-wrapper">@main</span>
+<span class="keyword">struct</span> <span class="type">UserLoginWithFirebaseApp</span>: <span class="type">App</span> {
+    <span class="keyword">init</span>() {
+        <span class="type">FirebaseApp</span>.<span class="function">configure</span>()
+    }
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Scene</span> {
+        <span class="function">WindowGroup</span> {
+            <span class="function">ContentView</span>()
+        }
+    }
+}</code></pre>
+
+                    <h4>Step 3: Create a new "SignUpView" SwiftUI file for the sign-up (register) page: 📝</h4>
+                    <pre><code><span class="keyword">import</span> <span class="type">SwiftUI</span>
+<span class="keyword">import</span> <span class="type">Firebase</span>
+
+<span class="keyword">struct</span> <span class="type">SignUpView</span>: <span class="type">View</span> {
+    <span class="comment">// The @Environment property wrapper gives us access to values stored in the view's environment.</span>
+    <span class="comment">// \.dismiss is an action that allows us to programmatically dismiss a view that was presented, like a sheet.</span>
+    <span class="property-wrapper">@Environment</span>(\.dismiss) <span class="keyword">var</span> dismiss
+    
+    <span class="property-wrapper">@State</span> <span class="keyword">var</span> email = <span class="string">""</span>
+    <span class="property-wrapper">@State</span> <span class="keyword">var</span> password = <span class="string">""</span>
+    <span class="property-wrapper">@State</span> <span class="keyword">var</span> passwordConfirmation = <span class="string">""</span>
+    
+    <span class="property-wrapper">@State</span> <span class="keyword">var</span> signUpSuccess = <span class="literal">false</span>
+    
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="function">VStack</span>{
+            <span class="function">Spacer</span>()
+            
+            <span class="comment">// Sign up fields to sign up for a new account</span>
+            <span class="function">Group</span> {
+                <span class="function">TextField</span>(<span class="string">"Email"</span>, text: $email)
+                    .<span class="function">padding</span>()
+                    .<span class="function">background</span>(.<span class="variable">thinMaterial</span>)
+                    .<span class="function">cornerRadius</span>(10)
+                    .<span class="function">textInputAutocapitalization</span>(.<span class="variable">never</span>)
+                <span class="function">SecureField</span>(<span class="string">"Password"</span>, text: $password)
+                    .<span class="function">padding</span>()
+                    .<span class="function">background</span>(.<span class="variable">thinMaterial</span>)
+                    .<span class="function">cornerRadius</span>(10)
+                <span class="function">SecureField</span>(<span class="string">"Confirm Password"</span>, text: $passwordConfirmation)
+                    .<span class="function">padding</span>()
+                    .<span class="function">background</span>(.<span class="variable">thinMaterial</span>)
+                    .<span class="function">cornerRadius</span>(10)
+                    .<span class="function">border</span>(<span class="type">Color</span>.<span class="variable">red</span>, width: passwordConfirmation != password ? 1 : 0)
+                    .<span class="function">padding</span>(.<span class="variable">bottom</span>, 30)
+            }
+            
+            <span class="comment">// Sign up button</span>
+            <span class="function">Button</span>(action: {
+                <span class="function">signUp</span>()
+            }) {
+                <span class="function">Text</span>(<span class="string">"Sign Up"</span>)
+                    .<span class="function">bold</span>()
+                    .<span class="function">frame</span>(width: 360, height: 50)
+                    .<span class="function">background</span>(.<span class="variable">thinMaterial</span>)
+                    .<span class="function">cornerRadius</span>(10)
+            }
+            
+            <span class="comment">// Sign up message after pressing the sign up button</span>
+            <span class="keyword">if</span> signUpSuccess {
+                <span class="function">Text</span>(<span class="string">"Sign Up Successfully! ✅"</span>)
+                    .<span class="function">foregroundColor</span>(.<span class="variable">green</span>)
+            } <span class="keyword">else</span> {
+                <span class="function">Text</span>(<span class="string">"Not Sign Up Successfully Yet! ❌"</span>)
+                    .<span class="function">foregroundColor</span>(.<span class="variable">red</span>)
+            }
+            
+            <span class="function">Spacer</span>()
+            
+            <span class="comment">// Button to dismiss the sign up sheet and go back to the sign in page</span>
+            <span class="function">Button</span> {
+                <span class="function">dismiss</span>()
+            } label: {
+                <span class="function">Text</span>(<span class="string">"Back to Sign In Page"</span>)
+            }
+            <span class="function">Spacer</span>()
+        }
+    }
+    
+    <span class="comment">// Sign up function to use Firebase to create a new user account in Firebase</span>
+    <span class="keyword">func</span> <span class="function">signUp</span>() {
+        <span class="comment">// This is an asynchronous network call to Firebase.</span>
+        <span class="comment">// The code inside the closure { ... } will be executed when the network request completes.</span>
+        <span class="type">Auth</span>.<span class="function">auth</span>().<span class="function">createUser</span>(withEmail: email, password: password) { authResult, error <span class="keyword">in</span>
+            <span class="keyword">if</span> <span class="keyword">let</span> error = error {
+                <span class="comment">// If there's an error (e.g., email already in use, weak password), print it.</span>
+                <span class="function">print</span>(error.localizedDescription)
+                signUpSuccess = <span class="literal">false</span>
+            } <span class="keyword">else</span> {
+                <span class="comment">// If the user was created successfully, the error will be nil.</span>
+                <span class="function">print</span>(<span class="string">"User created successfully!"</span>)
+                signUpSuccess = <span class="literal">true</span>
+            }
+        }
+    }
+}</code></pre>
+
+                    <h4>Step 4: Modify the “ContentView” SwiftUI file for the sign-in (login in) page: 💻</h4>
+                    <pre><code><span class="keyword">import</span> <span class="type">SwiftUI</span>
+<span class="keyword">import</span> <span class="type">Firebase</span>
+
+<span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
+    <span class="property-wrapper">@State</span> <span class="keyword">var</span> email = <span class="string">""</span>
+    <span class="property-wrapper">@State</span> <span class="keyword">var</span> password = <span class="string">""</span>
+    <span class="property-wrapper">@State</span> <span class="keyword">var</span> loginSuccess = <span class="literal">false</span>
+    <span class="property-wrapper">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> showingSignUpSheet = <span class="literal">false</span>
+    
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="function">VStack</span> {
+            <span class="function">Spacer</span>()
+            
+            <span class="comment">// Login fields to sign in</span>
+            <span class="function">Group</span> {
+                <span class="function">TextField</span>(<span class="string">"Email"</span>, text: $email)
+                <span class="function">SecureField</span>(<span class="string">"Password"</span>, text: $password)
+            }
+            
+            <span class="comment">// Login button</span>
+            <span class="function">Button</span> {
+                <span class="function">login</span>()
+            } label: {
+                <span class="function">Text</span>(<span class="string">"Sign in"</span>)
+                    .<span class="function">bold</span>()
+                    .<span class="function">frame</span>(width: 360, height: 50)
+                    .<span class="function">background</span>(.<span class="variable">thinMaterial</span>)
+                    .<span class="function">cornerRadius</span>(10)
+            }
+            
+            <span class="comment">// Login message after pressing the login button</span>
+            <span class="keyword">if</span> loginSuccess {
+                <span class="function">Text</span>(<span class="string">"Login Successfully! ✅"</span>)
+                    .<span class="function">foregroundColor</span>(.<span class="variable">green</span>)
+            } <span class="keyword">else</span> {
+                <span class="function">Text</span>(<span class="string">"Not Login Successfully Yet! ❌"</span>)
+                    .<span class="function">foregroundColor</span>(.<span class="variable">red</span>)
+            }
+            
+            <span class="function">Spacer</span>()
+            
+            <span class="comment">// Button to show the sign up sheet</span>
+            <span class="function">Button</span> {
+                showingSignUpSheet.<span class="function">toggle</span>()
+            } label: {
+                <span class="function">Text</span>(<span class="string">"Sign Up Here!"</span>)
+            }
+        }
+        .<span class="function">padding</span>()
+        .<span class="function">sheet</span>(isPresented: $showingSignUpSheet) {
+            <span class="function">SignUpView</span>()
+        }
+    }
+    
+    <span class="comment">// Login function to use Firebase to check username and password to sign in</span>
+    <span class="keyword">func</span> <span class="function">login</span>() {
+        <span class="comment">// Similar to signUp, this is an asynchronous call.</span>
+        <span class="type">Auth</span>.<span class="function">auth</span>().<span class="function">signIn</span>(withEmail: email, password: password) { (result, error) <span class="keyword">in</span>
+            <span class="keyword">if</span> <span class="keyword">let</span> error = error {
+                <span class="comment">// If there's an error (e.g., wrong password, user not found), print it.</span>
+                <span class="function">print</span>(error.localizedDescription)
+                loginSuccess = <span class="literal">false</span>
+            } <span class="keyword">else</span> {
+                <span class="comment">// If login is successful, the error will be nil.</span>
+                <span class="function">print</span>(<span class="string">"Login successful!"</span>)
+                loginSuccess = <span class="literal">true</span>
+            }
+        }
+    }
+}</code></pre>
+
+                    <h4>Step 5: Test the sign-up and sign-up features and confirm those accounts in the Firebase Auth Page: 🧪</h4>
+                    <ul>
+                        <li>Try to sign up to create a new account and later on sign in to log in the app:</li>
+                    </ul>
+                    <img src="../assets/guide_imgs/firebase/app_signin_signup_flow.png" alt="App Signin/Signup Flow" class="img-large">
+                    <ul>
+                        <li>Also, you can check out these accounts in real time in the Firebase Authentication page:</li>
+                    </ul>
+                    <img src="../assets/guide_imgs/firebase/firebase_auth_user_list.png" alt="Firebase Auth User List" class="img-large">
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="task3">
+            <h2 class="collapsible-header">
+                ☁️ Task 3: Setup Firebase Cloud Firestore
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <h3>Objective</h3>
+                    <p>To setup and configure a Firebase Cloud Firestore just like in the lecture example in this Github repo: <a href="https://github.com/TomHuynhSG/Movie-List-Firestore-iOS-Firebase" target="_blank">https://github.com/TomHuynhSG/Movie-List-Firestore-iOS-Firebase</a></p>
+                    <p>Ideally, we would like to setup our project with MVVM architecture pattern:</p>
+                    <img src="../assets/guide_imgs/firebase/mvvm_architecture_diagram.png" alt="MVVM Architecture" class="img-large">
+                    <div class="pro-tip">
+                        <h4>Understanding MVVM</h4>
+                        <p>The Model-View-ViewModel (MVVM) pattern helps us separate our code into three distinct roles:</p>
+                        <ul>
+                            <li><strong>Model:</strong> Represents the data and the business logic. It's the source of truth for your app's data (e.g., a <code>Movie</code> struct).</li>
+                            <li><strong>View:</strong> The UI. It's responsible for displaying the data from the ViewModel and capturing user input. In SwiftUI, this is your <code>ContentView</code>. The View should be as "dumb" as possible.</li>
+                            <li><strong>ViewModel:</strong> Acts as a bridge between the Model and the View. It holds the application's state and presentation logic. It formats the data from the Model in a way that the View can easily display, and it handles user actions from the View.</li>
+                        </ul>
+                        <p>This separation makes your code easier to test, maintain, and reason about as your app grows in complexity.</p>
+                    </div>
+
+                    <h4>Step 0: Make sure the we setup firestore service on Firebase properly: ✅</h4>
+                    <img src="../assets/guide_imgs/firebase/firestore_setup_flow.png" alt="Firestore Setup" class="img-large">
+
+                    <h4>Step 1: Create a Collection & Document in Firestore 📂</h4>
+                    <p>Cloud Firestore is a NoSQL document database. Unlike traditional SQL databases with tables and rows, Firestore stores data in <strong>documents</strong>, which are organized into <strong>collections</strong>.</p>
+                    <ul>
+                        <li>A <strong>Collection</strong> is like a folder that holds documents. For example, you could have collections for <code>users</code>, <code>movies</code>, or <code>products</code>.</li>
+                        <li>A <strong>Document</strong> is a set of key-value pairs, similar to a JSON object. It's where you store your actual data. Each document has a unique ID within its collection.</li>
+                    </ul>
+                    <p>For this task, you will:</p>
+                    <ul>
+                        <li>Create a "movies" Collection.</li>
+                        <li>Create a document within that collection to hold information about the movie "Deadpool".</li>
+                    </ul>
+                    <img src="../assets/guide_imgs/firebase/firestore_create_collection_and_document.png" alt="Firestore Create Collection and Document" class="img-large">
+
+                    <h4>Step 2a: Overall, we need to setup “read” and “write” to Firestore: ↔️</h4>
+                    <ul>
+                        <li>Import & create a firestore object to initialize the connection to Firestore database.
+                            <pre><code><span class="keyword">import</span> <span class="type">FirebaseFirestore</span>
+<span class="keyword">var</span> db = <span class="type">Firestore</span>.<span class="function">firestore</span>()</code></pre>
+                        </li>
+                        <li>Read from Firestore:
+                            <ul>
+                                <li>Retrieve a collection</li>
+                                <li>Loop documents in the collection.</li>
+                                <li>Extract the data from each field from each document.</li>
+                            </ul>
+                            <pre><code><span class="comment">// Retrieve the "movies" collection</span>
+db.<span class="function">collection</span>(<span class="string">"movies"</span>).<span class="function">addSnapshotListener</span> { (querySnapshot, error) <span class="keyword">in</span>
+    <span class="keyword">guard</span> <span class="keyword">let</span> documents = querySnapshot?.documents <span class="keyword">else</span> {
+        <span class="function">print</span>(<span class="string">"No documents"</span>)
+        <span class="keyword">return</span>
+    }
+    <span class="comment">// Loop to get the "name" field inside each movie document</span>
+    <span class="keyword">self</span>.movies = documents.<span class="function">map</span> { (queryDocumentSnapshot) -> <span class="type">Movie</span> <span class="keyword">in</span>
+        <span class="keyword">let</span> data = queryDocumentSnapshot.<span class="function">data</span>()
+        <span class="keyword">let</span> name = data[<span class="string">"name"</span>] <span class="keyword">as</span>? <span class="type">String</span> ?? <span class="string">""</span>
+        <span class="keyword">return</span> <span class="function">Movie</span>(name: name)
+    }
+}</code></pre>
+                        </li>
+                        <li>Write to Firestore:
+                            <pre><code><span class="comment">// add a new document of a movie name in the "movies" collection</span>
+db.<span class="function">collection</span>(<span class="string">"movies"</span>).<span class="function">addDocument</span>(data: [<span class="string">"name"</span>: name])</code></pre>
+                        </li>
+                    </ul>
+
+                    <h4>Step 2b: Let's do it step by step! Firstly, let's create a new Movie swift file as our Model: 🧱</h4>
+                    <pre><code><span class="keyword">import</span> <span class="type">Foundation</span>
+
+<span class="keyword">struct</span> <span class="type">Movie</span>: <span class="type">Codable</span>, <span class="type">Identifiable</span> {
+    <span class="keyword">var</span> id: <span class="type">String</span> = <span class="type">UUID</span>().uuidString
+    <span class="keyword">var</span> name: <span class="type">String</span>?
+}</code></pre>
+
+                    <h4>Step 2c: Secondly, let's create a new MovieViewModel swift file as our ViewModel for the movies: 🧠</h4>
+                    <pre><code><span class="keyword">import</span> <span class="type">Foundation</span>
+<span class="keyword">import</span> <span class="type">FirebaseFirestore</span>
+
+<span class="keyword">class</span> <span class="type">MovieViewModel</span>: <span class="type">ObservableObject</span> {
+    <span class="property-wrapper">@Published</span> <span class="keyword">var</span> movies = [<span class="type">Movie</span>]()
+    <span class="keyword">private</span> <span class="keyword">var</span> db = <span class="type">Firestore</span>.<span class="function">firestore</span>()
+    
+    <span class="keyword">init</span>() {
+        <span class="function">getAllMovieData</span>()
+    }
+    
+    <span class="keyword">func</span> <span class="function">getAllMovieData</span>() {
+        <span class="comment">// addSnapshotListener sets up a real-time listener on the "movies" collection.</span>
+        <span class="comment">// This means that whenever data is added, changed, or removed in this collection on the server,</span>
+        <span class="comment">// this code block will automatically be re-executed with the updated data.</span>
+        <span class="comment">// This is what makes Firestore so powerful for building reactive, real-time applications.</span>
+        db.<span class="function">collection</span>(<span class="string">"movies"</span>).<span class="function">addSnapshotListener</span> { (querySnapshot, error) <span class="keyword">in</span>
+            <span class="keyword">guard</span> <span class="keyword">let</span> documents = querySnapshot?.documents <span class="keyword">else</span> {
+                <span class="function">print</span>(<span class="string">"No documents"</span>)
+                <span class="keyword">return</span>
+            }
+            
+            <span class="comment">// We use .map to transform the array of Firestore documents into an array of our `Movie` model objects.</span>
+            <span class="keyword">self</span>.movies = documents.<span class="function">map</span> { (queryDocumentSnapshot) -> <span class="type">Movie</span> <span class="keyword">in</span>
+                <span class="keyword">let</span> data = queryDocumentSnapshot.<span class="function">data</span>()
+                <span class="keyword">let</span> name = data[<span class="string">"name"</span>] <span class="keyword">as</span>? <span class="type">String</span> ?? <span class="string">""</span>
+                <span class="keyword">return</span> <span class="function">Movie</span>(name: name)
+            }
+        }
+    }
+    
+    <span class="keyword">func</span> <span class="function">addNewMovieData</span>(name: <span class="type">String</span>) {
+        <span class="comment">// add a new document of a movie name in the "movies" collection</span>
+        db.<span class="function">collection</span>(<span class="string">"movies"</span>).<span class="function">addDocument</span>(data: [<span class="string">"name"</span>: name])
+    }
+}</code></pre>
+
+                    <h4>Step 2d: Secondly, let's create a ContentView SwiftUI file so that users can have a text field to add a movie and see what movies are in the firestore already: 🖥️</h4>
+                    <pre><code><span class="keyword">import</span> <span class="type">SwiftUI</span>
+
+<span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
+    <span class="property-wrapper">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> movie: <span class="type">String</span> = <span class="string">""</span>
+    
+    <span class="comment">// @StateObject is a property wrapper used to create and manage the lifecycle of a reference type (like our ViewModel) within a view.</span>
+    <span class="comment">// SwiftUI ensures that this ViewModel instance is created only once for the lifetime of the view and is not destroyed during view updates.</span>
+    <span class="property-wrapper">@StateObject</span> <span class="keyword">private</span> <span class="keyword">var</span> movieViewModel = <span class="function">MovieViewModel</span>()
+    
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="function">VStack</span>{
+            <span class="comment">// input field for a movie name</span>
+            <span class="function">TextField</span>(<span class="string">"Enter a movie name..."</span>, text: $movie)
+                .<span class="function">padding</span>()
+                .<span class="function">border</span>(.<span class="variable">black</span>)
+                .<span class="function">frame</span>(width: 230, height: 40, alignment: .leading)
+                .<span class="function">padding</span>()
+            
+            <span class="comment">// button to add a movie</span>
+            <span class="function">Button</span> {
+                <span class="keyword">self</span>.movieViewModel.<span class="function">addNewMovieData</span>(name: movie)
+            } label: {
+                <span class="function">Text</span>(<span class="string">"Add Movies"</span>)
+                    .<span class="function">padding</span>()
+                    .<span class="function">foregroundColor</span>(.<span class="variable">white</span>)
+                    .<span class="function">background</span>(<span class="type">Color</span>.<span class="variable">black</span>)
+            }
+            
+            <span class="comment">// List of all movies name fetched from firestore</span>
+            <span class="function">NavigationView</span> {
+                <span class="function">List</span> {
+                    <span class="function">ForEach</span>(movieViewModel.movies, id: \.id) { movie <span class="keyword">in</span>
+                        <span class="function">Text</span>(movie.name ?? <span class="string">""</span>)
+                    }
+                }
+                .<span class="function">navigationTitle</span>(<span class="string">"All Movies"</span>)
+            }
+        }
+    }
+}</code></pre>
+
+                    <h4>Step 3: Test the app and check the documents in the movie collection in real time on the firestore website: 🧪</h4>
+                    <img src="../assets/guide_imgs/firebase/firestore_app_and_database_sync.png" alt="Firestore App and Database Sync" class="img-large">
+                    <p><strong>Hints:</strong> The full solution code is here: <a href="https://github.com/TomHuynhSG/User-Authentication-iOS-Firebase" target="_blank">https://github.com/TomHuynhSG/User-Authentication-iOS-Firebase</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="task4">
+            <h2 class="collapsible-header">
+                🗑️ Task 4: Add a Delete Feature
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <h3>Objective</h3>
+                    <p>To modify this Firestore app example so that it allows users to delete movie as well: <a href="https://github.com/TomHuynhSG/Movie-List-Firestore-iOS-Firebase" target="_blank">https://github.com/TomHuynhSG/Movie-List-Firestore-iOS-Firebase</a></p>
+                    <p>Overall, To add the functionality to remove movies from the list, you can do the following:</p>
+                    <ul>
+                        <li>Add a method in MovieViewModel to remove a movie by its document ID.</li>
+                        <li>Modify the existing Movie struct to include a property for the document ID.</li>
+                        <li>Update the getAllMovieData method to map the document ID as well when creating a Movie object.</li>
+                        <li>Add a swipe onDelete in the list view in ContentView, which calls the remove movie method when clicked.</li>
+                    </ul>
+
+                    <h4>Step 1: Update Movie Struct. Add a documentID property to store the Firestore document ID: 🧱</h4>
+                    <pre><code><span class="keyword">struct</span> <span class="type">Movie</span>: <span class="type">Codable</span>, <span class="type">Identifiable</span> {
+    <span class="keyword">var</span> id: <span class="type">String</span> = <span class="type">UUID</span>().uuidString
+    <span class="keyword">var</span> name: <span class="type">String</span>?
+    <span class="keyword">var</span> documentID: <span class="type">String</span>?
+}</code></pre>
+
+                    <h4>Step 2: Update MovieViewModel. Add a method to remove a movie by its Firestore document ID: 🧠</h4>
+                    <pre><code><span class="keyword">func</span> <span class="function">removeMovieData</span>(documentID: <span class="type">String</span>) {
+    db.<span class="function">collection</span>(<span class="string">"movies"</span>).<span class="function">document</span>(documentID).<span class="function">delete</span> { (error) <span class="keyword">in</span>
+        <span class="keyword">if</span> <span class="keyword">let</span> error = error {
+            <span class="function">print</span>(<span class="string">"Error removing document: \(error)"</span>)
+        } <span class="keyword">else</span> {
+            <span class="function">print</span>(<span class="string">"Document successfully removed!"</span>)
+        }
+    }
+}</code></pre>
+
+                    <h4>Step 3: Update the getAllMovieData method to include the document ID: 🔄</h4>
+                    <pre><code><span class="keyword">func</span> <span class="function">getAllMovieData</span>() {
+    <span class="comment">// The same code as before</span>
+    
+    <span class="keyword">self</span>.movies = documents.<span class="function">map</span> { (queryDocumentSnapshot) -> <span class="type">Movie</span> <span class="keyword">in</span>
+        <span class="comment">// The same code as before</span>
+        <span class="keyword">let</span> name = ...
+        <span class="comment">// each returned movie document includes the document ID as well</span>
+        <span class="keyword">return</span> <span class="function">Movie</span>(name: name, documentID: queryDocumentSnapshot.documentID)
+    }
+}</code></pre>
+
+                    <h4>Step 4: SwiftUI provides built-in functionality to add swipe actions to list items. You can use the onDelete(perform:) modifier to add swipe to delete functionality: 🗑️</h4>
+                    <p>The <code>.onDelete</code> modifier can be attached to a <code>ForEach</code> loop within a <code>List</code>. When a user swipes to delete a row, SwiftUI provides an <code>IndexSet</code> containing the positions of the rows to be deleted. We can then use this information to identify the correct document in our database and delete it.</p>
+                    <pre><code><span class="comment">// In ContentView.swift</span>
+
+<span class="comment">// List of all movies name fetched from firestore</span>
+<span class="function">NavigationView</span> {
+    <span class="function">List</span> {
+        <span class="function">ForEach</span>(movieViewModel.movies, id: \.id) { movie <span class="keyword">in</span>
+            <span class="function">Text</span>(movie.name ?? <span class="string">""</span>)
+        }
+        .<span class="function">onDelete</span>(perform: removeMovie)
+    }
+    .<span class="function">navigationTitle</span>(<span class="string">"All Movies"</span>)
+}
+
+<span class="keyword">func</span> <span class="function">removeMovie</span>(at offsets: <span class="type">IndexSet</span>) {
+    <span class="keyword">for</span> index <span class="keyword">in</span> offsets {
+        <span class="keyword">if</span> <span class="keyword">let</span> documentID = movieViewModel.movies[index].documentID {
+            movieViewModel.<span class="function">removeMovieData</span>(documentID: documentID)
+        }
+    }
+}</code></pre>
+                    <p><strong>Explanation:</strong></p>
+                    <ul>
+                        <li>We have modified the List to use a ForEach so we can attach the onDelete(perform:) modifier which provides swipe to delete functionality.</li>
+                        <li>When a swipe to delete action is triggered, the removeMovie function is called with the indices of the items to be deleted. It then calls removeMovieData(documentID:) to remove each movie from Firestore.</li>
+                    </ul>
+                    <p>This should give you a "swipe to delete" functionality on each item in the list.</p>
+
+                    <h4>Step 5: Test the app by trying to delete some of the existing movies and check the documents got deleted in real time on the Firestore website: 🧪</h4>
+                    <img src="../assets/guide_imgs/firebase/app_swipe_to_delete_and_firestore_update.png" alt="App Swipe to Delete and Firestore Update" class="img-large">
+                    <p><strong>Hints:</strong> The full solution code is here: <a href="https://github.com/TomHuynhSG/Movie-List-Firestore-iOS-Firebase/tree/add-delete-feature" target="_blank">https://github.com/TomHuynhSG/Movie-List-Firestore-iOS-Firebase/tree/add-delete-feature</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="task5">
+            <h2 class="collapsible-header">
+                🧩 Task 5: Combine Two Apps into One
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <h3>Objective</h3>
+                    <p>Given these two Github repo so far which each uses different Firebase services like Authentication (sign-up and sign-in) and Cloud Firestore (NoSQL Real-time Database), please figure out a way to combine two these example apps together into one single app!</p>
+                    <ul>
+                        <li><a href="https://github.com/TomHuynhSG/Movie-List-Firestore-iOS-Firebase" target="_blank">https://github.com/TomHuynhSG/Movie-List-Firestore-iOS-Firebase</a></li>
+                        <li><a href="https://github.com/TomHuynhSG/User-Authentication-iOS-Firebase" target="_blank">https://github.com/TomHuynhSG/User-Authentication-iOS-Firebase</a></li>
+                    </ul>
+                    <p>Indeed, when users open the app, instead of going straight into the Movie List view, users are welcomed with a sign-in view and have the option to sign-up if they have not had any account yet. Once they sign up and sign in successfully then they can navigate to the Movie List view where users can add movies or browse a list of movies.</p>
+                    <ul>
+                        <li>Before login, users can sign up and sign in:</li>
+                    </ul>
+                    <img src="../assets/guide_imgs/firebase/app_auth_flow_combined.png" alt="App Auth Flow Combined" class="img-large">
+                    <ul>
+                        <li>After signing in, users now can add movies, browse movies or delete movies.</li>
+                    </ul>
+                    <img src="../assets/guide_imgs/firebase/app_movie_list_features.png" alt="App Movie List Features" class="img-large">
+                    <p>Note, the nice thing is that many users on their own devices (iPhones) can sign up, sign in, add movies and browse movies at the same time! Also, the movie list is somewhat synchronized between different users.</p>
+
+                    <h4>Here are the general steps:</h4>
+                    <ol>
+                        <li>Go to the Firebase Console and create a new project.</li>
+                        <li>Inside your project, add a new iOS app. Follow the on-screen instructions.</li>
+                        <li>Download the GoogleService-Info.plist file and drag it into the root of each Xcode project.</li>
+                        <li>In the Firebase Console, go to the Authentication section, click "Sign-in method," and enable the Email/Password provider.</li>
+                        <li>In the Firebase Console, go to the Firestore Database section and click "Create database." Start in Test Mode for now (this allows anyone to read/write, which is fine for learning).</li>
+                        <li>Run the projects in Xcode. They should now connect to your Firebase backend, and you can start signing up users and adding movies.</li>
+                    </ol>
+
+                    <h4>Hints: 💡</h4>
+                    <ol>
+                        <li>After a user logs in with Firebase Authentication, you can get their unique user ID: <code>let uid = Auth.auth().currentUser?.uid</code>.</li>
+                        <li>When you save data to Firestore, you would change the path to include that user's ID. Instead of saving to a general "movies" collection, you would save to a user-specific one:
+                            <pre><code><span class="comment">// A common and excellent pattern</span>
+<span class="keyword">if</span> <span class="keyword">let</span> uid = <span class="type">Auth</span>.<span class="function">auth</span>().currentUser?.uid {
+    db.<span class="function">collection</span>(<span class="string">"users"</span>).<span class="function">document</span>(uid).<span class="function">collection</span>(<span class="string">"movies"</span>).<span class="function">addDocument</span>(data: [<span class="string">"name"</span>: <span class="string">"My Favorite Movie"</span>])
+}</code></pre>
+                            This creates a structure where each user has their own private "movies" collection nested under their unique ID. This is a fundamental concept in multi-user app design. It ensures data privacy (users can only access their own movies) and makes your database queries more efficient, as you only ever need to fetch data for the currently logged-in user.
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="bonus-challenge">
+            <h2 class="collapsible-header">
+                🏆 Bonus Challenge: Build a Coffee Order App ☕
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <h3>Objective</h3>
+                    <p>For today's lab, you will build a coffee app to order coffee. The data of the order must be persistent which means the data will be intact even if you close the app and launch it again!</p>
+                    <p>For the data persistence, you need to use either UserDefaults, or Firebase; or the combination of two of them.</p>
+
+                    <h4>Your task:</h4>
+                    <p>You need to build the following coffee order app as following:</p>
+                    <img src="../assets/guide_imgs/firebase/coffee_app_screenshots.png" alt="Coffee App Screenshots" class="img-large">
+
+                    <h4>Features:</h4>
+                    <ul>
+                        <li>Minimum three views: one for displaying the list of coffee orders, one for adding a new coffee order, and one for displaying the detailed information of an order.</li>
+                        <li>Each type of coffee has its own distinct image showing on the coffee order list.</li>
+                        <li>Also, you can delete an order by swiping left on the order you want to delete and press delete.</li>
+                        <li>The design of your app could be different from the sample screenshots so feel free to be creative and make something different!</li>
+                    </ul>
+
+                    <h4>Requirements:</h4>
+                    <ul>
+                        <li>Build this coffee app using appropriate different ways of data persistence to store the coffee order details:
+                            <ul>
+                                <li>UserDefaults</li>
+                                <li>Firebase</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>Note: for Firebase, you need to use your own personal gmail account as it is not possible to use the RMIT account to use Firebase service.</p>
+
+                    <h4>Helpful Materials:</h4>
+                    <ul>
+                        <li>An example of using Firestore of Firebase: <a href="https://github.com/TomHuynhSG/movie-list-firestore-ios-firebase" target="_blank">https://github.com/TomHuynhSG/movie-list-firestore-ios-firebase</a></li>
+                        <li>An example of using Firebase authentication: <a href="https://github.com/TomHuynhSG/user-authentication-ios-firebase" target="_blank">https://github.com/TomHuynhSG/user-authentication-ios-firebase</a></li>
+                        <li>An example of using UserDefaults: <a href="https://github.com/TomHuynhSG/RMIT-casino" target="_blank">https://github.com/TomHuynhSG/RMIT-casino</a></li>
+                        <li>Firebase documentation for iOS: <a href="https://firebase.google.com/docs/ios/setup" target="_blank">https://firebase.google.com/docs/ios/setup</a></li>
+                        <li>Firebase iOS SDK: <a href="https://github.com/firebase/firebase-ios-sdk" target="_blank">https://github.com/firebase/firebase-ios-sdk</a></li>
+                        <li>UserDefault guide: Lecture 8 - RMIT Casino part 2</li>
+                        <li>Firebase guide: Lecture 10 - Data Persistence with Firebase</li>
+                        <li>Picker view component:
+                            <ul>
+                                <li><a href="https://developer.apple.com/documentation/swiftui/picker" target="_blank">https://developer.apple.com/documentation/swiftui/picker</a></li>
+                                <li><a href="https://developer.apple.com/documentation/swiftui/pickerstyle" target="_blank">https://developer.apple.com/documentation/swiftui/pickerstyle</a></li>
+                                <li><a href="https://www.hackingwithswift.com/quick-start/swiftui/pickers-in-forms" target="_blank">https://www.hackingwithswift.com/quick-start/swiftui/pickers-in-forms</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Created by Tom Huynh with love ❤️</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

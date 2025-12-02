@@ -1,0 +1,55 @@
+/* Collapsible Section Styles */
+.collapsible-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.collapse-icon {
+    transition: transform 0.3s ease;
+    font-weight: bold;
+    font-size: 1.5em;
+    line-height: 1;
+    padding: 0 10px;
+}
+
+.collapse-icon::before {
+    content: '−'; /* Minus sign for open state */
+}
+
+.collapsible-header.collapsed .collapse-icon {
+    transform: rotate(-180deg); /* Rotate for visual cue */
+}
+
+.collapsible-header.collapsed .collapse-icon::before {
+    content: '+'; /* Plus sign for collapsed state */
+}
+
+.collapsible-content {
+    max-height: 20000px; /* Large value to allow content to show, can be adjusted per page if needed */
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 1;
+    margin-top: 15px; /* Default space when content is visible */
+}
+
+.collapsible-content.collapsed {
+    max-height: 0;
+    margin-top: 0 !important; /* Ensure no margin when collapsed */
+    opacity: 0;
+}
+
+/* Styling for the main title of a collapsible section (often an h2) */
+/* This can be used by .cheatsheet-section > h2 or similar selectors on individual pages */
+/* For example:
+.cheatsheet-section > h2.collapsible-header {
+    font-size: 1.8rem;
+    color: var(--heading-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 600;
+}
+*/

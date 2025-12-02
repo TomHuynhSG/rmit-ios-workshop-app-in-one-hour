@@ -1,0 +1,178 @@
+/* Basic Reset & Font Setup */
+:root {
+    --bg-color: #f4f7f9;
+    --card-bg-color: #ffffff;
+    --text-color: #2c3e50;
+    --heading-color: #1a2533;
+    --accent-color: #e67e22; /* Default orange */
+    --border-color: #e0e6ed;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1a202c;
+        --card-bg-color: #2d3748;
+        --text-color: #e2e8f0;
+        --heading-color: #ffffff;
+        --accent-color: #f0984a; /* Lighter orange for dark mode */
+        --border-color: #4a5568;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Layout */
+.container {
+    max-width: 1500px; /* Default, can be overridden */
+    margin: 0 auto;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+header {
+    text-align: center;
+    padding: 30px 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.2rem; /* Base size, can be overridden */
+    color: var(--heading-color);
+    font-weight: 300;
+}
+
+header h1 span {
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+main {
+    padding: 20px 0;
+}
+
+.grid-container {
+    display: grid;
+    gap: 25px; /* Default gap, can be overridden */
+    /* grid-template-columns should be defined by specific page/component needs */
+}
+
+.card {
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    padding: 25px; /* Default padding, can be overridden */
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none; /* For cards used as links */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px var(--shadow-color);
+}
+
+.card h3 {
+    font-size: 1.35rem; /* Default card heading size */
+    color: var(--heading-color);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.card p {
+    margin-bottom: 15px;
+    flex-grow: 1;
+    color: var(--text-color);
+    font-size: 0.95rem; /* Default card paragraph size */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+/* Styles for the Back to Home button container */
+.back-to-home-container {
+    padding: 10px 0;      /* Adjust vertical padding as needed */
+    margin-bottom: 15px;  /* Space below the button */
+    text-align: left;     /* Align button to the left */
+}
+
+/* Styles for the button itself */
+.back-to-home-button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: var(--accent-color);
+    color: var(--card-bg-color); /* Ensuring contrast with accent color */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.back-to-home-button:hover {
+    background-color: var(--heading-color); /* Darker color on hover */
+    color: var(--card-bg-color);
+}
+
+/* Scroll-to-Top Button */
+.scroll-to-top-button {
+    display: none; /* Hidden by default, JS will show it */
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99; /* Ensure it's on top of other content */
+    border: none;
+    outline: none;
+    background-color: var(--accent-color);
+    color: white; /* Emoji color might not be affected, but text color if emoji fails */
+    cursor: pointer;
+    padding: 10px 12px; /* Adjust padding for a good size */
+    border-radius: 50%; /* Make it circular */
+    font-size: 18px; /* Adjust emoji size */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+.scroll-to-top-button:hover {
+    background-color: var(--heading-color); /* Darken on hover */
+}
+
+.card-img {
+    width: 100%;
+    max-width: 60%;
+    margin: 15px auto;
+    display: block;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

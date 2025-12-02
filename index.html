@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSC3062 - iPhone Software Engineering</title>
+    <link rel="icon" href="assets/images/rmit-logo.png" type="image/png">
+    <link rel="stylesheet" href="css/base-theme.css">
+    <link rel="stylesheet" href="css/extended-header.css">
+    <link rel="stylesheet" href="css/collapsible.css">
+    <link rel="stylesheet" href="css/shared-styles.css">
+    <style>
+        /* Page-specific styles for index.html */
+        .container {
+            /* max-width: 900px; Provided by base-theme.css */
+        }
+
+        header h1 {
+            /* font-size: 2.5rem; Provided by extended-header.css */
+        }
+
+        .grid-container { /* Main page grid */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        
+        .card .go-to-link {
+            display: inline-block;
+            margin-top: auto; /* Pushes link to bottom if card heights vary */
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 10px 0; /* Padding for larger click area */
+        }
+        .card .go-to-link::after {
+            content: ' →';
+        }
+        
+        /* Ensure cards within the new section use the global card styling but adjust grid if needed */
+        .cheatsheet-section .grid-container {
+             grid-template-columns: 1fr; /* Override for single column layout within this section */
+             gap: 15px; /* Smaller gap for nested cards */
+        }
+        .cheatsheet-section .card {
+            padding: 15px; /* Slightly less padding for nested cards */
+        }
+        .cheatsheet-section .card h3 {
+            font-size: 1.15rem; /* Slightly smaller heading for nested cards */
+        }
+
+        /* Change visited link text to white on the homepage */
+        /* For .go-to-link spans within visited card links */
+        a.card:visited .go-to-link {
+            color: #ffffff;
+        }
+
+        /* For other direct <a> links within cards (e.g., Google Drive link) */
+        .card a:visited {
+            color: #ffffff;
+        }
+
+        .card img {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="university-branding">
+                <img src="https://sites.rmit.edu.au/artschoolgraduates/files/2022/10/rmit-logo-red.png" alt="RMIT University Logo" class="logo">
+                <span class="university-name">RMIT University</span>
+            </div>
+            <h1>COSC3062 <span>iPhone Software Engineering</span>📱</h1>
+            <p class="intro">Welcome to COSC3062 - iPhone Software Engineering! This comprehensive guide provides step-by-step tutorials, Swift & SwiftUI references, project materials, and essential resources for iOS development.<br><br><strong>Course Coordinator:</strong> Mr Tom Huynh (tom.huynh@rmit.edu.vn)<br><strong>TA in Hanoi:</strong> Mr Hai Dung Nguyen (dung.nguyen144@rmit.edu.vn)</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="main-section-header">
+            <h2>Course Information</h2>
+        </div>
+        <section class="cheatsheet-section" id="course-schedule">
+            <h2 class="collapsible-header">
+                Course Schedule & Lab Information
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <h3>COSC3062 | COSC3063 iPhone Software Engineering</h3>
+                    <p><strong>Lecture:</strong> Tuesday, 2:30pm to 4pm, online via Ms Teams Group (the link in Canvas or the first annoucement)</p>
+                    <p><strong>Tutorials:</strong></p>
+                    <ul style="list-style-type: disc; padding-left: 20px; margin-top: 5px;">
+                        <li><strong>Saigon Group 1:</strong> Friday, 8:30am to 10am, SGS/1.3.006 (Lab-Mac)</li>
+                        <li><strong>Saigon Group 2:</strong> Friday, 10:30am to 12pm, SGS/1.3.006 (Lab-Mac)</li>
+                        <li><strong>Hanoi Group 1:</strong> Thursday, 12:30pm to 2pm, HN/1.3.B006 (Lab-Mac)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="assessment-info">
+            <h2 class="collapsible-header">
+                Assessments
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <h3>Assessment Breakdown</h3>
+                    <ul style="list-style-type: disc; padding-left: 20px; margin-top: 5px;">
+                        <li><strong>Assignment 1 (Individual Project):</strong> 15%</li>
+                        <li><strong>Assignment 2 (Group Project):</strong> 35%</li>
+                        <li><strong>Assignment 3 (In-class Test):</strong> 50%</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+
+        <div class="main-section-header">
+            <h2>Weekly Guide</h2>
+        </div>
+        <div class="grid-container">
+            <a href="sub_pages/basic-swift.html" class="card">
+                <h3>Week 1: Basic Swift Guide</h3>
+                <p>An introduction to the Swift programming language, covering fundamental concepts such as variables, control flow, and functions through practical examples.</p>
+                <span class="go-to-link">View Guide</span>
+            </a>
+            <a href="sub_pages/intermediate-swift.html" class="card">
+                <h3>Week 2: Intermediate Swift Guide</h3>
+                <p>A guide to more advanced Swift topics, including switch statements, dictionaries, optionals, structures, classes, and more.</p>
+                <span class="go-to-link">View Guide</span>
+            </a>
+            <a href="sub_pages/magic-me-guide.html" class="card">
+                <h3>Week 3: Magic Me Step by Step Guide</h3>
+                <p>Complete tutorial for building the 'Magic Me' app. Includes Swift & SwiftUI code examples, UI building techniques, interactivity, and challenge projects.</p>
+                <span class="go-to-link">View Guide</span>
+            </a>
+            <a href="sub_pages/contact-list-app-part-1-guide.html" class="card">
+                <h3>Week 4: Contact List App Part 1 Guide</h3>
+                <p>A step-by-step guide to building the Contact List app, focusing on creating the user interface and setting up the basic data model.</p>
+                <span class="go-to-link">View Guide</span>
+            </a>
+            <a href="sub_pages/contact-list-app-part-2-guide.html" class="card">
+                <h3>Week 5: Contact List App Part 2 Guide</h3>
+                <p>Refactor the app to load data from a local JSON file, a key step for creating scalable and maintainable apps.</p>
+                <span class="go-to-link">View Guide</span>
+            </a>
+            <a href="sub_pages/rmit-casino-game-part-1-guide.html" class="card">
+                <h3>Week 6: RMIT Casino Game Part 1</h3>
+                <p>A step-by-step guide to building the RMIT Casino game, covering project setup, asset management, UI construction, and basic interactivity.</p>
+                <span class="go-to-link">View Guide</span>
+            </a>
+            <a href="sub_pages/rmit-casino-game-part-2-guide.html" class="card">
+                <h3>Week 8: RMIT Casino Game Part 2</h3>
+                <p>Continue building the RMIT Casino game by adding betting logic, calculating winnings, managing scores, and adding sound effects.</p>
+                <span class="go-to-link">View Guide</span>
+            </a>
+            <a href="sub_pages/data-flow-mvvm-observation-framework.html" class="card">
+                <h3>Week 9: Data Flow, MVVM & Observation Framework</h3>
+                <p>A guide to understanding data flow in SwiftUI, applying the MVVM architecture, and using the new Observation Framework.</p>
+                <span class="go-to-link">View Guide</span>
+            </a>
+            <a href="sub_pages/data-persistence-firebase.html" class="card">
+                <h3>Week 10: Data Persistence with Firebase</h3>
+                <p>A guide to setting up and using Firebase for data persistence in your iOS applications, covering Authentication and Cloud Firestore.</p>
+                <span class="go-to-link">View Guide</span>
+            </a>
+            <a href="sub_pages/data-persistence-swiftdata.html" class="card">
+                <h3>Week 11: Data Persistence with SwiftData</h3>
+                <p>A guide to setting up and using SwiftData for data persistence in your iOS applications.</p>
+                <span class="go-to-link">View Guide</span>
+            </a>
+        </div>
+
+        <div class="main-section-header">
+            <h2>Course Resources</h2>
+        </div>
+        <div class="grid-container">
+            <a href="sub_pages/asset-gallery.html" class="card">
+                <h3>Asset Gallery</h3>
+                <p>Browse and download avatars, logos, and other visual assets provided for iOS development projects.</p>
+                <span class="go-to-link">View Gallery</span>
+            </a>
+            <a href="sub_pages/swift-swiftui-cheatsheet.html" class="card">
+                <h3>Swift & SwiftUI Cheatsheet</h3>
+                <p>A detailed quick reference for Swift fundamentals and key SwiftUI elements like views, layouts, modifiers, and state management.</p>
+                <span class="go-to-link">View Cheatsheet</span>
+            </a>
+            <a href="sub_pages/useful-resources.html" class="card">
+                <h3>Useful Resources & Links</h3>
+                <p>Essential external tools and learning resources including design tools, color palettes, learning platforms, and AI assistance for iOS development.</p>
+                <span class="go-to-link">View Resources</span>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Created by Tom Huynh with love ❤️</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <button id="scrollToTopBtn" class="scroll-to-top-button" title="Go to top">⬆️</button>
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Swift Guide - COSC3062</title>
+    <link rel="icon" href="../assets/images/rmit-logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/base-theme.css">
+    <link rel="stylesheet" href="../css/extended-header.css">
+    <link rel="stylesheet" href="../css/collapsible.css">
+    <link rel="stylesheet" href="../css/code-styles.css">
+    <link rel="stylesheet" href="../css/shared-styles.css">
+    <style>
+        /* Page-specific styles for bootcamp-snippets.html */
+        .logo { /* Override from extended-header.css if needed */
+            height: 60px;
+        }
+        .university-name { /* Override from extended-header.css if needed */
+            font-size: 1.75rem;
+        }
+        header .intro { /* Override from extended-header.css if needed */
+            max-width: 700px;
+        }
+
+        .cheatsheet-section > h2.collapsible-header { /* Style for the main collapsible header */
+            font-size: 2rem;
+            color: var(--heading-color);
+            margin-bottom: 20px; /* Applied when open */
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+        }
+        
+        .grid-container {
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+        }
+
+        .card { /* Override from base-theme.css if needed */
+            padding: 20px;
+        }
+        
+        pre { /* Override from code-styles.css if needed */
+            margin-bottom: 10px; /* Reduced margin for snippets */
+        }
+
+        .challenge-criteria li {
+            margin-bottom: 10px;
+        }
+
+        .instruction-step.card {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="back-to-home-container">
+                <a href="../index.html" class="back-to-home-button">&larr; Back to Home</a>
+            </div>
+            <div class="university-branding">
+                <img src="https://sites.rmit.edu.au/artschoolgraduates/files/2022/10/rmit-logo-red.png" alt="RMIT University Logo" class="logo">
+                <span class="university-name">RMIT University</span>
+            </div>
+            <h1>Basic Swift <span>Step by Step Guide</span></h1>
+            <p class="intro">The goal of our first lab is to give you a sense of Swift, a new language you'll need to master. This one covers the basics, including variables and control flow, methods and properties, arrays and strings, but keep in mind that Swift handles some of the basics in a very powerful way which you will learn later.</p>
+            <p class="intro">Please read the section of the <a href="https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html" target="_blank">Swift Programming Language</a> document throughout the course! We encourage scrolling through the document to understand more about Swift during the course. You'll be reading the majority of the content in 11 ½ of the first 14 chapters listed <a href="https://swift.org/documentation/api-design-guidelines/" target="_blank">Swift API Guidelines</a>, for quick reference (The Basics through the first half of Initialization, excluding Subscripts or Inheritance). During the lecture, I went through <a href="https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html" target="_blank">A Swift Tour</a> with you guys! It is a good place to get familiar with the Swift language. As you get more practice, these questions will become easier, but you will still make mistakes here and there. Feel free to be wrong and try again!</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="cheatsheet-section" id="start-with-playgrounds">
+            <h2 class="collapsible-header">
+                🚀 Start with Playgrounds for Swift
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="grid-container" style="grid-template-columns: 1fr;">
+                    <div class="card instruction-step">
+                        <h3>Step 1: Create a New Playground</h3>
+                        <p><strong>Instruction:</strong> First, open the Swift Playgrounds application. From the top menu bar, click on "File" and then select "New Book" (or "New Playground") to create a new project. A new playground file, typically named "My Playground," will appear. Click on it to open and start coding.</p>
+                        <img src="../assets/intruction_imgs/Start with Playgrounds - Step 1.png" alt="Start with Playgrounds - Step 1" class="img-small">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 2: Write and Run Your Code</h3>
+                        <p><strong>Instruction:</strong> Once your new playground is open, you can begin entering your Swift code in the main editor window. To see the output of your code, click the "Run My Code" button. The results will be displayed in the console or preview area.</p>
+                        <img src="../assets/intruction_imgs/Start with Playgrounds - Step 2.png" alt="Start with Playgrounds - Step 2" class="img-small">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 3: Organize Your Work with Pages</h3>
+                        <p><strong>Instruction:</strong> To keep your code organized, especially when working on different problems or sections, you can create new pages. Click the sidebar icon to view your pages. You can add a new page for each new question or part of your project. This allows you to manage your code in a structured way.</p>
+                        <img src="../assets/intruction_imgs/Start with Playgrounds - Step 3.png" alt="Start with Playgrounds - Step 3" class="img-small">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 4: Navigate Between Playgrounds</h3>
+                        <p><strong>Instruction:</strong> If you need to go back to the main menu to see all of your Playground files, go to the "Window" tab in the top menu bar and select "My Playgrounds". This will take you back to the screen where all your saved playgrounds are listed.</p>
+                        <img src="../assets/intruction_imgs/Start with Playgrounds - Step 4.png" alt="Start with Playgrounds - Step 4" class="img-small">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 5: Share Your Playground</h3>
+                        <p><strong>Instruction:</strong> When you want to share your entire Swift Playground file, which includes all the pages and code you've created, navigate to the "My Playgrounds" main menu. Right-click (or control-click) on the playground file you wish to share, and from the context menu, select "Share". You can then choose your preferred method, such as AirDrop or Email.</p>
+                        <img src="../assets/intruction_imgs/Start with Playgrounds - Step 5.png" alt="Start with Playgrounds - Step 5" class="img-small">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section class="cheatsheet-section" id="troubleshoot-with-playgrounds">
+            <h2 class="collapsible-header">
+                Troubleshoot with Playgrounds
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="grid-container" style="grid-template-columns: 1fr;">
+                    <div class="card instruction-step">
+                        <h3>Step 1: Identify the Error</h3>
+                        <p><strong>Description:</strong> Sometimes, you may encounter an error that prevents the app preview from loading, such as being "Unable to delete the contents of ExecutionExtension's container."</p>
+                        <p><strong>Instruction:</strong> Click the red error icon in the top right of the code editor to see the specific error message.</p>
+                        <img src="../assets/intruction_imgs/Troubleshoot with Playgrounds - Step 1 .jpg" alt="Troubleshoot with Playgrounds - Step 1" class="img-large">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 2: Quit Swift Playgrounds</h3>
+                        <p><strong>Description:</strong> To begin troubleshooting, you must first completely close the application.</p>
+                        <p><strong>Instruction:</strong> Right-click on the Swift Playgrounds icon in your Mac's Dock and select Quit.</p>
+                        <img src="../assets/intruction_imgs/Troubleshoot with Playgrounds - Step 2.jpg" alt="Troubleshoot with Playgrounds - Step 2">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 3: Open Self Service</h3>
+                        <p><strong>Description:</strong> You will use a utility called Self Service, provided by RMIT ITS, to run a troubleshooting script.</p>
+                        <p><strong>Instruction:</strong> Click the RMIT icon in the top menu bar, then click the Self Service button to launch the application.</p>
+                        <img src="../assets/intruction_imgs/Troubleshoot with Playgrounds - Step 3.jpg" alt="Troubleshoot with Playgrounds - Step 3">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 4: Clear the Swift Playground Cache</h3>
+                        <p><strong>Description:</strong> A common fix for this specific error is to clear the application's cached data, which can become corrupted.</p>
+                        <p><strong>Instruction:</strong> In Self Service, click Browse and then All. Find the "Delete Swift Playground Cache" option and click the Run button.</p>
+                        <img src="../assets/intruction_imgs/Troubleshoot with Playgrounds - Step 4.jpg" alt="Troubleshoot with Playgrounds - Step 4" class="img-large">
+                    </div>
+                    <div class="card instruction-step">
+                        <h3>Step 5: Verify the Fix</h3>
+                        <p><strong>Description:</strong> After the cache has been cleared, you can reopen your project to confirm that the issue is resolved.</p>
+                        <p><strong>Instruction:</strong> Launch Swift Playgrounds again and open your app. The app should now build successfully and display correctly in the live preview.</p>
+                        <img src="../assets/intruction_imgs/Troubleshoot with Playgrounds - Step 5.png" alt="Troubleshoot with Playgrounds - Step 5" class="img-large">
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header start-open">
+                📝 Question 0. String Interpolation
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/basic_swift/Question0a.png" alt="Question 0a" class="card-img">
+                    <h3>Description</h3>
+                    <p>For this first question, you only need to learn how to combine strings together and prints it out to the screen:</p>
+                    <pre><code><span class="keyword">let</span> myName <span class="operator">=</span> <span class="string">"Jerry"</span>  <span class="comment">// You can change it to your name</span>
+<span class="keyword">let</span> myAnimals <span class="operator">=</span> <span class="string">"Koala 🐨, Snail 🐌, Penguin 🐧"</span> <span class="comment">// You can change it</span>
+<span class="keyword">let</span> animalCount <span class="operator">=</span> <span class="number">3</span> <span class="comment">// You can change it</span>
+
+<span class="comment">//Complete your code so it will print you love these number of animals by</span>
+<span class="comment">//combining these constants into a string and display it</span></code></pre>
+                    <h3>Sample Outputs (yours can be different):</h3>
+                    <pre><code>Jerry loves all 3 of animals like Koala 🐨, Snail 🐌, Penguin 🐧</code></pre>
+                    <p>Btw, to use emoji keyboard on MacOS: Press the Control + Command + Spacebar keys on your keyboard at the same time then you should see this emoji keyboard. Have fun!</p>
+                    <img src="../assets/guide_imgs/basic_swift/Question0b.png" alt="Question 0b" class="card-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                🤔 Question 1. If Else conditionals
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/basic_swift/Question1.png" alt="Question 1" class="card-img">
+                    <h3>Description</h3>
+                    <p>Complete the function “checkDivisible” below to check if a given variable is a positive integer and checks to see if it can be divided by both 5 and 6 or simply one of them, neither, or both. When the user types a negative integer or 0, the code prints out “it is not a valid number".</p>
+                    <pre><code><span class="keyword">let</span> myNumber <span class="operator">=</span> <span class="number">4</span>
+
+<span class="keyword">func</span> <span class="function">checkDivisible</span>(aNumber: <span class="type">Int</span>) <span class="operator">-></span> <span class="type">String</span>{
+   <span class="comment">// Please complete the function body</span>
+
+
+}
+
+<span class="keyword">let</span> result <span class="operator">=</span> checkDivisible(aNumber: myNumber)
+print(result)</code></pre>
+                    <h3>Sample outputs (only 4 possible outcomes as following):</h3>
+                    <pre><code>30 is divisible by both 5 and 6.
+ 
+10 is divisible by 5 or 6, but not both.
+ 
+4 is neither divisible.
+ 
+-10 is not a valid number</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                🔄 Question 2. Loop
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/basic_swift/Question2.png" alt="Question 2" class="card-img">
+                    <h3>Description</h3>
+                    <p>Given the array of numbers. Create another array called computedNumbers. computedNumbers should multiply each element in the numbers array by the next element. The last element should be multiplied by the first.</p>
+                    <p>e.g. If numbers was equal to: <code>[3, 1, 4, 2]</code></p>
+                    <p>computedNumbers should equal <code>[3 x 1, 1 x 4, 4 x 2, 2 x 3]</code> which is: <code>[3, 4, 8, 6]</code></p>
+                    <p>Replace the comments with your code.</p>
+                    <pre><code><span class="keyword">let</span> numbers <span class="operator">=</span> [<span class="number">45</span>, <span class="number">73</span>, <span class="number">195</span>, <span class="number">53</span>]
+ 
+<span class="comment">//Write your code here (you can do it with or without a function)</span>
+ 
+ 
+ 
+<span class="keyword">let</span> computedNumbers <span class="operator">=</span> <span class="comment">//Replace this comment with your code.</span>
+ 
+print(computedNumbers)</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                🖼️ Question 3. Print & Loop
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/basic_swift/Question3.png" alt="Question 3" class="card-img">
+                    <h3>Description</h3>
+                    <p>Complete the function “drawRectangle” to print out a Rectangle which has a width and a height. A visualize method to display the rectangle using * symbol</p>
+                    <pre><code><span class="keyword">let</span> width <span class="operator">=</span> <span class="number">8</span>
+<span class="keyword">let</span> height <span class="operator">=</span> <span class="number">3</span>
+
+print(<span class="string">"Current width: \(width)"</span>);
+print(<span class="string">"Current height: \(height)"</span>);
+
+<span class="keyword">func</span> <span class="function">drawRectangle</span>(givenWidth: <span class="type">Int</span>, givenHeight: <span class="type">Int</span>) {
+   <span class="comment">// Complete the function body</span>
+
+   
+}
+
+drawRectangle(givenWidth: width, givenHeight: height)</code></pre>
+                    <h3>Sample Outputs</h3>
+                    <pre><code>Current width: 8
+Current height: 3
+********
+********
+********
+
+Current width: 2
+Current height: 2
+**
+**
+
+Current width: 1
+Current height: 3
+*
+*
+*</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                🧮 Question 4. Function
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/basic_swift/Question4.png" alt="Question 4" class="card-img">
+                    <h3>Description</h3>
+                    <p>You're going to make a simple calculator. You'll need to write 4 functions such that a and b are added, subtracted, multiplied, and divided by each other when the code is run. It will request certain input values from you. The values must be numbers, and they will be substituted as variables a and b in your code. Separate lines will be required for the numbers.</p>
+                    <p>If a = 3 and b = 4, This is what you would expect to be printed from the calculator:</p>
+                    <pre><code>7
+-1
+12
+0.75</code></pre>
+                    <p>Because: 3 + 4 = 7, 3 - 4 = -1, 3 x 4 = 12, 3 ÷ 4 = 0.75</p>
+                    <pre><code><span class="keyword">let</span> a <span class="operator">=</span> <span class="number">5.0</span>
+<span class="keyword">let</span> b <span class="operator">=</span> <span class="number">6.0</span>
+
+<span class="comment">// Write your code here to define 4 functions as requested</span>
+
+
+
+<span class="comment">//To make the function calls below work, please write 4 functions above</span>
+print(add(n1: a, n2: b))
+print(subtract(n1: a, n2: b))
+print(multiply(n1: a, n2: b))
+print(divide(n1: a, n2: b))</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                🔺 Question 5. Array
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/basic_swift/Question5a.png" alt="Question 5a" class="card-img">
+                    <h3>Description</h3>
+                    <p>Write your code to have 3 side lengths of a triangle in an array and print out the type of the triangle which has 4 possibilities: Not Triangle, Equilateral, Isosceles or Scalene. Hint:</p>
+                    <img src="../assets/guide_imgs/basic_swift/Question5b.png" alt="Question 5b" class="card-img">
+                    <ul style="list-style-type: disc; padding-left: 20px; margin-top: 5px;">
+                        <li>To check if lengths of three sides to make a triangle: <a href="https://www.wikihow.com/Determine-if-Three-Side-Lengths-Are-a-Triangle" target="_blank">WikiHow Link</a></li>
+                        <li>Equilateral Triangle: has three sides of the same length</li>
+                        <li>Isosceles Triangle: has two sides of equal length</li>
+                        <li>Scalene Triangle: has all its sides of different lengths.</li>
+                    </ul>
+                    <pre><code><span class="keyword">let</span> sizes <span class="operator">=</span> [<span class="number">3</span>, <span class="number">6</span>, <span class="number">100</span>]
+ 
+<span class="comment">// Complete your code below (print out sizes and classify the triangle)</span></code></pre>
+                    <h3>Sample Outputs</h3>
+                    <pre><code>The three sizes of the triangle are: 3, 6, 100
+It is not a Triangle
+
+The three sizes of the triangle are: 6, 6, 9
+It is an Isosceles Triangle
+
+The three sizes of the triangle are: 25, 25, 25
+It is an Equilateral Triangle
+
+The three sizes of the triangle are: 3, 4, 5
+It is a Scalene Triangle</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                🎲 Question 6. For big and small Dice Game (tai sai/dai siu/high low)
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/basic_swift/Question6a.png" alt="Question 6a" class="card-img">
+                    <h3>Description</h3>
+                    <p>During Tet holiday, big and small is a very popular dice game to play. It’s a game of pure chance that moves quickly. There’s no strategy or skill involved. Also, this kind of game is played all over the world. You will try to implement the simple version of the dai siu game.</p>
+                    <p>A normal dice got 6 numbers from 1 to 6. So there are two parties: the house (nhà cái - Tom) and the player (you). At the beginning of any round, you will put what you want to bet. The house will roll 3 dice at the same time. The result will be hidden from you until you pick your choice. The player will pick either Big (Tài) or Small (Xỉu).</p>
+                    <ul style="list-style-type: disc; padding-left: 20px; margin-top: 5px;">
+                        <li><b>Scenario 1:</b> The sum of 3 dice being from 4 to 10: You will win the amount you have bet if you choose Small. Otherwise, you will lose, the house will take your bet.</li>
+                        <li><b>Scenario 2:</b> The sum of 3 dice being from 11 to 17: You will win the amount you have bet if you choose Big. Otherwise, you will lose, the house will take your bet.</li>
+                        <li><b>Scenario 3:</b> If all numbers of each dice are the same like (1, 1, 1) or (4, 4, 4) then you will lose regardless of what you pick, Big or Small.</li>
+                    </ul>
+                    <p>Two parties can start with any money (usually you have much less). The player can keep playing until either the house or the player runs out of money. Please try your luck to win all the money for the house.</p>
+                    <img src="../assets/guide_imgs/basic_swift/Question6b.png" alt="Question 6b" class="card-img">
+                    <h3>Sample Outputs (yours can be different):</h3>
+                    <pre><code>The house has $1000
+The player has $100
+Try your luck to win all money of the house!
+Round 1:
+How much do you want to bet?
+<span class="user-input">40</span>
+You have bet $40!
+Do you want to bet big or small?(big/small)
+<span class="user-input">big</span>
+The dices are: 5 4 3
+The sum of 3 dices is 12!
+You Won $40!
+The house has $960
+The player has $140
+Do you still want to continue to play?(true/false)
+<span class="user-input">true</span>
+Round 2:
+How much do you want to bet?
+<span class="user-input">200</span>
+You bet more than what in your wallet! Try again!
+How much do you want to bet?
+<span class="user-input">120</span>
+You have bet $120!
+Do you want to bet big or small?(big/small)
+<span class="user-input">small</span>
+The dices are: 5 3 6
+The sum of 3 dices is 14!
+You Lost $120!
+The house has $1080
+The player has $20
+Do you still want to continue to play?(true/false)
+<span class="user-input">true</span>
+Round 3:
+How much do you want to bet?
+<span class="user-input">20</span>
+You have bet $20!
+Do you want to bet big or small?(big/small)
+<span class="user-input">big</span>
+The dices are: 6 1 5
+The sum of 3 dices is 12!
+You Won $20!
+The house has $1060
+The player has $40
+Do you still want to continue to play?(true/false)
+<span class="user-input">true</span>
+Round 4:
+How much do you want to bet?
+<span class="user-input">40</span>
+You have bet $40!
+Do you want to bet big or small?(big/small)
+<span class="user-input">small</span>
+The dices are: 2 4 1
+The sum of 3 dices is 7!
+You Won $40!
+The house has $1020
+The player has $80
+Do you still want to continue to play?(true/false)
+<span class="user-input">true</span>
+Round 5:
+How much do you want to bet?
+<span class="user-input">80</span>
+You have bet $80!
+Do you want to bet big or small?(big/small)
+<span class="user-input">big</span>
+The dices are: 1 5 2
+The sum of 3 dices is 8!
+You Lost $80!
+The house has $1100
+The player has $0
+You are out of money! Bye!</code></pre>
+                    <h3>Hints:</h3>
+                    <p>For this question, you need to use Xcode instead of Swift Playgrounds to read input from users so you must open Xcode to do this question.</p>
+
+                    <h3 class="collapsible-header subsection-title" style="font-size: 1.2rem; border-left: none; padding-left: 0; color: var(--accent-color);">
+                        Steps to Start a New Swift Project in Xcode (Click Me to Expand)
+                        <span class="collapse-icon"></span>
+                    </h3>
+                    <div class="collapsible-content">
+                        <div class="grid-container" style="grid-template-columns: 1fr;">
+                            <div class="card instruction-step">
+                                <h3>Step 1: Create a New Project</h3>
+                                <p>Open Xcode. When the "Welcome to Xcode" window appears, click on "Create a new Xcode project".</p>
+                                <img src="../assets/intruction_imgs/Start With Xcode for Swift - Step 1.png" alt="Create a New Project in Xcode" class="img-small">
+                            </div>
+                            <div class="card instruction-step">
+                                <h3>Step 2: Choose a Template</h3>
+                                <p>In the template selection window, first select the "macOS" tab. Then, choose the "Command Line Tool" template from the available options and click "Next".</p>
+                                <img src="../assets/intruction_imgs/Start With Xcode for Swift - Step 2.png" alt="Choose a Template in Xcode" class="img-small">
+                            </div>
+                            <div class="card instruction-step">
+                                <h3>Step 3: Configure Project Options</h3>
+                                <p>On the next screen, fill in your project details. Enter a "Product Name" (for example, TaiXiu) and provide an "Organization Identifier" if needed. Make sure the "Language" is set to "Swift", then click "Next".</p>
+                                <img src="../assets/intruction_imgs/Start With Xcode for Swift - Step 3.png" alt="Configure Project Options in Xcode" class="img-small">
+                            </div>
+                            <div class="card instruction-step">
+                                <h3>Step 4: Save the Project</h3>
+                                <p>Choose a location to save your new project, such as the "Developer" folder. Make sure to untick the checkbox labeled "Create Git repository on my Mac", and then click the "Create" button.</p>
+                                <img src="../assets/intruction_imgs/Start With Xcode for Swift - Step 4.png" alt="Save the Project in Xcode" class="img-small">
+                            </div>
+                            <div class="card instruction-step">
+                                <h3>Step 5: Write and Run Your Code</h3>
+                                <p>In the left-hand navigation pane, select the main Swift file, usually named main.swift. Enter your Swift code in the central editor pane. To run your code, click the "Run" button (the play icon) located at the top of the window. You’ll see the output in the console area at the bottom of the Xcode interface.</p>
+                                <img src="../assets/intruction_imgs/Start With Xcode for Swift - Step 5.png" alt="Write and Run Your Code in Xcode" class="img-small">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p>Generate a random number (we will talk more about this in the next lecture): 
+                    <a href="https://developer.apple.com/documentation/swift/int/random(in:)-9mjpw" target="_blank">https://developer.apple.com/documentation/swift/int/random(in:)-9mjpw</a></p>
+                    <p>Read an input from a user via keyboard (we will talk more about this in the next lecture):
+                    <a href="https://www.journaldev.com/19612/swift-readline-swift-print" target="_blank">https://www.journaldev.com/19612/swift-readline-swift-print</a></p>
+                    <p>Also, you need to figure out how to parse multiple numbers from a input string, like “1 23 45" to be [1, 23, 45]:
+                    <a href="https://stackoverflow.com/questions/42451363/swift-3-split-string-into-array-of-int" target="_blank">https://stackoverflow.com/questions/42451363/swift-3-split-string-into-array-of-int</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section">
+            <h2 class="collapsible-header">
+                🐇 Question 7. Rabbit Family
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card">
+                    <img src="../assets/guide_imgs/basic_swift/Question7a.png" alt="Question 7a" class="card-img">
+                    <h3>Description</h3>
+                    <p>A pair of rabbits (one male and one female) do not give birth until they are 2 months old. After 2 months old, each pair of rabbits gives birth to a pair of baby rabbits (including a male rabbit and a female rabbit) every month. How many pairs of rabbits are there after n months, and in the first month there is a pair of newborn rabbits?</p>
+                    <img src="../assets/guide_imgs/basic_swift/Question7b.png" alt="Question 7b" class="card-img">
+                    <p>In the above figure, we assume:</p>
+                    <ul style="list-style-type: disc; padding-left: 20px; margin-top: 5px;">
+                        <li>A pair of brown rabbits is a pair of rabbits with an age of 1 month. (not ready to give birth)</li>
+                        <li>The highlighted rabbit pair (red and blue) is a fertile pair (ready to give birth).</li>
+                    </ul>
+                    <p>Looking at the figure above we see:</p>
+                    <ul style="list-style-type: disc; padding-left: 20px; margin-top: 5px;">
+                        <li>1st and 2nd month: Only 1 pair of rabbits.</li>
+                        <li>The 3rd month: this pair of rabbits will give birth to a pair of baby rabbits, so this month there will be 2 pairs of rabbits.</li>
+                        <li>The 4th month: only the first pair of rabbits gave birth, so at this point there are 3 pairs of rabbits.</li>
+                        <li>5th month: there are two pairs of rabbits (the first pair and the rabbits are born in the third month) give birth together, so this month there are 2 + 3 = 5 pairs of rabbits.</li>
+                        <li>6th month: there are three pairs of rabbits (2 pairs of rabbits first and a pair of rabbits born in the fourth month)</li>
+                        <li>Both gave birth at this time, so here there are 3 + 5 = 8 pairs of rabbits.</li>
+                    </ul>
+                    <h3>Input</h3>
+                    <p>A positive integer n.</p>
+                    <h3>Output</h3>
+                    <p>Number of pairs of rabbits at month n</p>
+                    <h3>Example:</h3>
+                    <pre><code>numberOfRabbit(6)</code></pre>
+                    <p>The output will be “The total number of pairs of rabbits at the month 6 is 8.”</p>
+                    <h3>Fun fact about Australia 🇦🇺</h3>
+                    <p>This question is inspired by the real "rabbit disaster" in Australia, which caused the largest biological invasion in history. In 1859, Thomas Austin brought 24 wild rabbits to his estate in Victoria, Australia from the UK. However, rabbits are highly efficient breeders, with a single female capable of producing dozens of children in a year. By the 1920s, there were more than 10,000,000,000 (10 billion) rabbits across Australia in all states. That is how fast a rabbit can give birth! With this large number of rabbits, they cause significant damage to crops, pastures, and natural ecosystems in Australia.</p>
+                    <img src="../assets/guide_imgs/basic_swift/Question7c.png" alt="Question 7c" class="card-img">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Created by Tom Huynh with love ❤️</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <button id="scrollToTopBtn" class="scroll-to-top-button" title="Go to top">⬆️</button>
+</body>
+</html>

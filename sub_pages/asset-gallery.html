@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery - COSC3062</title>
+    <link rel="icon" href="../assets/images/rmit-logo.png" type="image/png">
+    <link rel="stylesheet" href="../css/base-theme.css">
+    <link rel="stylesheet" href="../css/shared-styles.css">
+    <style>
+        /* Page-specific styles for materials/images/index.html */
+        .container {
+            max-width: 1200px; /* Adjusted for image gallery */
+        }
+
+        /* header h1 is covered by base-theme.css */
+        /* header h1 span is covered by base-theme.css */
+
+        /* Rainbow animation for Divine cards */
+        @keyframes rainbow-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes divine-glow {
+            0% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); }
+            50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
+            100% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); }
+        }
+
+        /* Enhanced text styling for all Mystery Blind Box cards */
+        .image-gallery-section .card .filename,
+        .image-gallery-section .card p {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 5px 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Special styling for rarity text in all Mystery Blind Box cards */
+        .image-gallery-section .card p strong {
+            font-weight: bold;
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Enhanced download button for all Mystery Blind Box cards */
+        .image-gallery-section .card .download-link {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid !important;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Common rarity styling */
+        .card[style*="ffeaa7"] strong {
+            color: #e17055;
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.9), 0 0 10px rgba(225, 112, 85, 0.5);
+        }
+        .card[style*="ffeaa7"] .download-link {
+            border-color: #e17055 !important;
+            color: #e17055 !important;
+        }
+        .card[style*="ffeaa7"] .download-link:hover {
+            background-color: #e17055;
+            color: white !important;
+            transform: scale(1.05);
+        }
+        .card[style*="ffeaa7"]:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(225, 112, 85, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Rare rarity styling */
+        .card[style*="81ecec"] strong {
+            color: #0984e3;
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.9), 0 0 10px rgba(9, 132, 227, 0.5);
+        }
+        .card[style*="81ecec"] .download-link {
+            border-color: #0984e3 !important;
+            color: #0984e3 !important;
+        }
+        .card[style*="81ecec"] .download-link:hover {
+            background-color: #0984e3;
+            color: white !important;
+            transform: scale(1.05);
+        }
+        .card[style*="81ecec"]:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(9, 132, 227, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Epic rarity styling */
+        .card[style*="a29bfe"] strong {
+            color: #6c5ce7;
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.9), 0 0 10px rgba(108, 92, 231, 0.5);
+        }
+        .card[style*="a29bfe"] .download-link {
+            border-color: #6c5ce7 !important;
+            color: #6c5ce7 !important;
+        }
+        .card[style*="a29bfe"] .download-link:hover {
+            background-color: #6c5ce7;
+            color: white !important;
+            transform: scale(1.05);
+        }
+        .card[style*="a29bfe"]:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Legendary rarity styling */
+        .card[style*="fd79a8"] strong {
+            color: #e84393;
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.9), 0 0 10px rgba(232, 67, 147, 0.5);
+        }
+        .card[style*="fd79a8"] .download-link {
+            border-color: #e84393 !important;
+            color: #e84393 !important;
+        }
+        .card[style*="fd79a8"] .download-link:hover {
+            background-color: #e84393;
+            color: white !important;
+            transform: scale(1.05);
+        }
+        .card[style*="fd79a8"]:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(232, 67, 147, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Ultra Rare rarity styling */
+        .card[style*="ffd32a"] strong {
+            color: #ff9f1a;
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 159, 26, 0.5);
+        }
+        .card[style*="ffd32a"] .download-link {
+            border-color: #ff9f1a !important;
+            color: #ff9f1a !important;
+        }
+        .card[style*="ffd32a"] .download-link:hover {
+            background-color: #ff9f1a;
+            color: white !important;
+            transform: scale(1.05);
+        }
+        .card[style*="ffd32a"]:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 159, 26, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        /* Mythic rarity styling */
+        .card[style*="55efc4"] strong {
+            color: #00b894;
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 184, 148, 0.5);
+        }
+        .card[style*="55efc4"] .download-link {
+            border-color: #00b894 !important;
+            color: #00b894 !important;
+        }
+        .card[style*="55efc4"] .download-link:hover {
+            background-color: #00b894;
+            color: white !important;
+            transform: scale(1.05);
+        }
+        .card[style*="55efc4"]:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 184, 148, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .divine-card {
+            background: linear-gradient(45deg, 
+                #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+            background-size: 400% 400%;
+            animation: rainbow-bg 8s ease infinite, divine-glow 3s infinite;
+            border: 2px solid gold !important;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .divine-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .divine-card::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: inherit;
+            background-size: 400% 400%;
+            filter: blur(10px);
+            opacity: 0.7;
+            z-index: -1;
+            animation: rainbow-bg 8s ease infinite;
+        }
+
+        /* Add a semi-transparent background behind text for better readability */
+        .divine-card .filename,
+        .divine-card p {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 5px 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Special styling for the Divine rarity text */
+        .divine-card strong {
+            color: gold;
+            font-weight: bold;
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .divine-card .download-link {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid gold !important;
+            color: gold !important;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .divine-card .download-link:hover {
+            background-color: gold;
+            color: black !important;
+            text-shadow: none;
+            transform: scale(1.05);
+        }
+
+        .image-gallery-section {
+            margin-top: 40px; /* Add margin top to each gallery section */
+        }
+        
+        .image-gallery-section:first-of-type {
+            margin-top: 0; /* Remove margin from the first section */
+        }
+
+        .image-gallery-section > h2 {
+            font-size: 1.8rem;
+            color: var(--heading-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+        }
+
+        /* Making the selector more specific to override potential base-theme.css styles */
+        main.container .image-gallery-section .grid-container {
+            display: grid !important; /* Ensure grid display takes precedence */
+            grid-template-columns: repeat(3, minmax(0, 1fr)); /* Robust 3-column grid */
+            gap: 20px; /* Specific gap for this grid */
+        }
+
+        .card { /* Override from base-theme.css */
+            padding: 15px;
+            border: 1px solid var(--border-color, #ddd); /* Added border for visual grid */
+            align-items: center; /* Center image and text */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .card img {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px; /* Limit image preview height */
+            border-radius: 4px;
+            margin-bottom: 10px;
+            object-fit: contain; /* Ensure image aspect ratio is maintained */
+        }
+
+        .card .filename {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            word-break: break-all; /* Prevent long filenames from breaking layout */
+            flex-grow: 1; /* Allow filename to take space if needed */
+        }
+        
+        .card .download-link {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            transition: background-color 0.2s, color 0.2s;
+            margin-top: auto; /* Push download link to bottom if card heights vary */
+        }
+
+        .card .download-link:hover {
+            background-color: var(--accent-color);
+            color: var(--card-bg-color); /* Ensure text is readable on hover */
+        }
+
+        .image-gallery-section > h3 {
+            font-size: 1.5rem; /* Slightly smaller than h2 */
+            color: var(--heading-color);
+            margin-top: 30px; /* Space above sub-category */
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--border-color); /* Dashed border to differentiate from h2 */
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="back-to-home-container">
+                <a href="../index.html" class="back-to-home-button">&larr; Back to Home</a>
+            </div>
+            <h1>Asset <span>Gallery</span></h1>
+            <p class="intro">Explore and download a rich collection of assets for your iOS development projects. This gallery provides easy access to a wide range of visual and audio resources, including avatars, logos, sound effects, and more, perfect for COSC3062 coursework and personal projects.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="image-gallery-section">
+            <h2>RMIT Logos</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/rmit-logo-black.png" alt="Preview of rmit-logo-black.png">
+                    <p class="filename">rmit-logo-black.png</p>
+                    <a href="../assets/images/rmit-logo-black.png" download="rmit-logo-black.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/rmit-logo-white.png" alt="Preview of rmit-logo-white.png">
+                    <p class="filename">rmit-logo-white.png</p>
+                    <a href="../assets/images/rmit-logo-white.png" download="rmit-logo-white.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/rmit-logo.png" alt="Preview of rmit-logo.png">
+                    <p class="filename">rmit-logo.png</p>
+                    <a href="../assets/images/rmit-logo.png" download="rmit-logo.png" class="download-link">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-gallery-section">
+            <h2>RMIT Casino Logos</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/rmit-casino-logo.png" alt="Preview of rmit-casino-logo.png">
+                    <p class="filename">rmit-casino-logo.png</p>
+                    <a href="../assets/images/rmit-casino-logo.png" download="rmit-casino-logo.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/rmit-casino-logo-blue-bg.png" alt="Preview of rmit-casino-logo-blue-bg.png">
+                    <p class="filename">rmit-casino-logo-blue-bg.png</p>
+                    <a href="../assets/images/rmit-casino-logo-blue-bg.png" download="rmit-casino-logo-blue-bg.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/rmit-casino-small-logo.png" alt="Preview of rmit-casino-small-logo.png">
+                    <p class="filename">rmit-casino-small-logo.png</p>
+                    <a href="../assets/images/rmit-casino-small-logo.png" download="rmit-casino-small-logo.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/rmit-casino-welcome-logo.png" alt="Preview of rmit-casino-welcome-logo.png">
+                    <p class="filename">rmit-casino-welcome-logo.png</p>
+                    <a href="../assets/images/rmit-casino-welcome-logo.png" download="rmit-casino-welcome-logo.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/rmit-game-logo.png" alt="Preview of rmit-game-logo.png">
+                    <p class="filename">rmit-game-logo.png</p>
+                    <a href="../assets/images/rmit-game-logo.png" download="rmit-game-logo.png" class="download-link">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-gallery-section">
+            <h2>Casino & Slot Machine Assets</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/casino-chips.png" alt="Preview of casino-chips.png">
+                    <p class="filename">casino-chips.png</p>
+                    <a href="../assets/images/casino-chips.png" download="casino-chips.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/casino-chips.png" alt="Preview of casino-chips.png">
+                    <p class="filename">casino-chips.png</p>
+                    <a href="../assets/images/casino-chips.png" download="casino-chips.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/money.png" alt="Preview of money.png">
+                    <p class="filename">money.png</p>
+                    <a href="../assets/images/money.png" download="money.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/reel.png" alt="Preview of reel.png">
+                    <p class="filename">reel.png</p>
+                    <a href="../assets/images/reel.png" download="reel.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/spin.png" alt="Preview of spin.png">
+                    <p class="filename">spin.png</p>
+                    <a href="../assets/images/spin.png" download="spin.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/casino-table-background.jpg" alt="Preview of casino-table-background.jpg">
+                    <p class="filename">casino-table-background.jpg</p>
+                    <a href="../assets/images/casino-table-background.jpg" download="casino-table-background.jpg" class="download-link">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-gallery-section">
+            <h2>Dice Collection</h2>
+            
+            <h3>Blue Dice</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/dice-blue-1.png" alt="Preview of dice-blue-1.png">
+                    <p class="filename">dice-blue-1.png</p>
+                    <a href="../assets/images/dice-blue-1.png" download="dice-blue-1.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/dice-blue-2.png" alt="Preview of dice-blue-2.png">
+                    <p class="filename">dice-blue-2.png</p>
+                    <a href="../assets/images/dice-blue-2.png" download="dice-blue-2.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/dice-blue-3.png" alt="Preview of dice-blue-3.png">
+                    <p class="filename">dice-blue-3.png</p>
+                    <a href="../assets/images/dice-blue-3.png" download="dice-blue-3.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/dice-blue-4.png" alt="Preview of dice-blue-4.png">
+                    <p class="filename">dice-blue-4.png</p>
+                    <a href="../assets/images/dice-blue-4.png" download="dice-blue-4.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/dice-blue-5.png" alt="Preview of dice-blue-5.png">
+                    <p class="filename">dice-blue-5.png</p>
+                    <a href="../assets/images/dice-blue-5.png" download="dice-blue-5.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/dice-blue-6.png" alt="Preview of dice-blue-6.png">
+                    <p class="filename">dice-blue-6.png</p>
+                    <a href="../assets/images/dice-blue-6.png" download="dice-blue-6.png" class="download-link">Download</a>
+                </div>
+            </div>
+
+            <h3>Red Dice</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/dice-red-1.png" alt="Preview of dice-red-1.png">
+                    <p class="filename">dice-red-1.png</p>
+                    <a href="../assets/images/dice-red-1.png" download="dice-red-1.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/dice-red-2.png" alt="Preview of dice-red-2.png">
+                    <p class="filename">dice-red-2.png</p>
+                    <a href="../assets/images/dice-red-2.png" download="dice-red-2.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/dice-red-3.png" alt="Preview of dice-red-3.png">
+                    <p class="filename">dice-red-3.png</p>
+                    <a href="../assets/images/dice-red-3.png" download="dice-red-3.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/dice-red-4.png" alt="Preview of dice-red-4.png">
+                    <p class="filename">dice-red-4.png</p>
+                    <a href="../assets/images/dice-red-4.png" download="dice-red-4.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/dice-red-5.png" alt="Preview of dice-red-5.png">
+                    <p class="filename">dice-red-5.png</p>
+                    <a href="../assets/images/dice-red-5.png" download="dice-red-5.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/dice-red-6.png" alt="Preview of dice-red-6.png">
+                    <p class="filename">dice-red-6.png</p>
+                    <a href="../assets/images/dice-red-6.png" download="dice-red-6.png" class="download-link">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-gallery-section">
+            <h2>Magic Ball Collection</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/magic-ball-8.png" alt="Preview of magic-ball-8.png">
+                    <p class="filename">magic-ball-8.png</p>
+                    <a href="../assets/images/magic-ball-8.png" download="magic-ball-8.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/magic-ball-empty.png" alt="Preview of magic-ball-empty.png">
+                    <p class="filename">magic-ball-empty.png</p>
+                    <a href="../assets/images/magic-ball-empty.png" download="magic-ball-empty.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/cartoon-magic-ball-8-empty.png" alt="Preview of cartoon-magic-ball-8-empty.png">
+                    <p class="filename">cartoon-magic-ball-8-empty.png</p>
+                    <a href="../assets/images/cartoon-magic-ball-8-empty.png" download="cartoon-magic-ball-8-empty.png" class="download-link">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-gallery-section">
+            <h2>Diamond Collection</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/diamond.png" alt="Preview of diamond.png">
+                    <p class="filename">diamond.png</p>
+                    <a href="../assets/images/diamond.png" download="diamond.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/fancy-diamond.png" alt="Preview of fancy-diamond.png">
+                    <p class="filename">fancy-diamond.png</p>
+                    <a href="../assets/images/fancy-diamond.png" download="fancy-diamond.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/red-diamond.png" alt="Preview of red-diamond.png">
+                    <p class="filename">red-diamond.png</p>
+                    <a href="../assets/images/red-diamond.png" download="red-diamond.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/cartoon-diamond.png" alt="Preview of cartoon-diamond.png">
+                    <p class="filename">cartoon-diamond.png</p>
+                    <a href="../assets/images/cartoon-diamond.png" download="cartoon-diamond.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/realistic-red-diamond.png" alt="Preview of realistic-red-diamond.png">
+                    <p class="filename">realistic-red-diamond.png</p>
+                    <a href="../assets/images/realistic-red-diamond.png" download="realistic-red-diamond.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/red-diamond-with-shadow.png" alt="Preview of red-diamond-with-shadow.png">
+                    <p class="filename">red-diamond-with-shadow.png</p>
+                    <a href="../assets/images/red-diamond-with-shadow.png" download="red-diamond-with-shadow.png" class="download-link">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-gallery-section">
+            <h2>Game Symbols</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/apple.png" alt="Preview of apple.png">
+                    <p class="filename">apple.png</p>
+                    <a href="../assets/images/apple.png" download="apple.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/bar.png" alt="Preview of bar.png">
+                    <p class="filename">bar.png</p>
+                    <a href="../assets/images/bar.png" download="bar.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/bell.png" alt="Preview of bell.png">
+                    <p class="filename">bell.png</p>
+                    <a href="../assets/images/bell.png" download="bell.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/cherry.png" alt="Preview of cherry.png">
+                    <p class="filename">cherry.png</p>
+                    <a href="../assets/images/cherry.png" download="cherry.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/clover.png" alt="Preview of clover.png">
+                    <p class="filename">clover.png</p>
+                    <a href="../assets/images/clover.png" download="clover.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/grape.png" alt="Preview of grape.png">
+                    <p class="filename">grape.png</p>
+                    <a href="../assets/images/grape.png" download="grape.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/heart.png" alt="Preview of heart.png">
+                    <p class="filename">heart.png</p>
+                    <a href="../assets/images/heart.png" download="heart.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/horseshoe.png" alt="Preview of horseshoe.png">
+                    <p class="filename">horseshoe.png</p>
+                    <a href="../assets/images/horseshoe.png" download="horseshoe.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/lemon.png" alt="Preview of lemon.png">
+                    <p class="filename">lemon.png</p>
+                    <a href="../assets/images/lemon.png" download="lemon.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/melon.png" alt="Preview of melon.png">
+                    <p class="filename">melon.png</p>
+                    <a href="../assets/images/melon.png" download="melon.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/orange.png" alt="Preview of orange.png">
+                    <p class="filename">orange.png</p>
+                    <a href="../assets/images/orange.png" download="orange.png" class="download-link">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-gallery-section">
+            <h2>App Icons</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/contact-list-appicon-dark.png" alt="Preview of contact-list-appicon-dark.png">
+                    <p class="filename">contact-list-appicon-dark.png</p>
+                    <a href="../assets/images/contact-list-appicon-dark.png" download="contact-list-appicon-dark.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/contact-list-appicon-light.jpg" alt="Preview of contact-list-appicon-light.jpg">
+                    <p class="filename">contact-list-appicon-light.jpg</p>
+                    <a href="../assets/images/contact-list-appicon-light.jpg" download="contact-list-appicon-light.jpg" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/contact-list-appicon-tint.png" alt="Preview of contact-list-appicon-tint.png">
+                    <p class="filename">contact-list-appicon-tint.png</p>
+                    <a href="../assets/images/contact-list-appicon-tint.png" download="contact-list-appicon-tint.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/red-diamond-app-icon.jpg" alt="Preview of red-diamond-app-icon.jpg">
+                    <p class="filename">red-diamond-app-icon.jpg</p>
+                    <a href="../assets/images/red-diamond-app-icon.jpg" download="red-diamond-app-icon.jpg" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/magic-ball-8-app-icon.png" alt="Preview of magic-ball-8-app-icon.png">
+                    <p class="filename">magic-ball-8-app-icon.png</p>
+                    <a href="../assets/images/magic-ball-8-app-icon.png" download="magic-ball-8-app-icon.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/rmit-casino-appicon-dark.png" alt="Preview of rmit-casino-appicon-dark.png">
+                    <p class="filename">rmit-casino-appicon-dark.png</p>
+                    <a href="../assets/images/rmit-casino-appicon-dark.png" download="rmit-casino-appicon-dark.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/rmit-casino-appicon-light.png" alt="Preview of rmit-casino-appicon-light.png">
+                    <p class="filename">rmit-casino-appicon-light.png</p>
+                    <a href="../assets/images/rmit-casino-appicon-light.png" download="rmit-casino-appicon-light.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/rmit-casino-appicon-tint.png" alt="Preview of rmit-casino-appicon-tint.png">
+                    <p class="filename">rmit-casino-appicon-tint.png</p>
+                    <a href="../assets/images/rmit-casino-appicon-tint.png" download="rmit-casino-appicon-tint.png" class="download-link">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-gallery-section">
+            <h2>Generic Avatars</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/avatar-1.png" alt="Preview of avatar-1.png">
+                    <p class="filename">avatar-1.png</p>
+                    <a href="../assets/images/avatar-1.png" download="avatar-1.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-2.png" alt="Preview of avatar-2.png">
+                    <p class="filename">avatar-2.png</p>
+                    <a href="../assets/images/avatar-2.png" download="avatar-2.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-3.png" alt="Preview of avatar-3.png">
+                    <p class="filename">avatar-3.png</p>
+                    <a href="../assets/images/avatar-3.png" download="avatar-3.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-4.png" alt="Preview of avatar-4.png">
+                    <p class="filename">avatar-4.png</p>
+                    <a href="../assets/images/avatar-4.png" download="avatar-4.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-5.png" alt="Preview of avatar-5.png">
+                    <p class="filename">avatar-5.png</p>
+                    <a href="../assets/images/avatar-5.png" download="avatar-5.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-6.png" alt="Preview of avatar-6.png">
+                    <p class="filename">avatar-6.png</p>
+                    <a href="../assets/images/avatar-6.png" download="avatar-6.png" class="download-link">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-gallery-section">
+            <h2>Celebrity & Named Avatars</h2>
+
+            <h3>Vietnam Celebrities</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/avatar-bich-phuong.png" alt="Preview of avatar-bich-phuong.png">
+                    <p class="filename">avatar-bich-phuong.png</p>
+                    <a href="../assets/images/avatar-bich-phuong.png" download="avatar-bich-phuong.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-binz.png" alt="Preview of avatar-binz.png">
+                    <p class="filename">avatar-binz.png</p>
+                    <a href="../assets/images/avatar-binz.png" download="avatar-binz.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-chau-bui.png" alt="Preview of avatar-chau-bui.png">
+                    <p class="filename">avatar-chau-bui.png</p>
+                    <a href="../assets/images/avatar-chau-bui.png" download="avatar-chau-bui.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-chi-pu.png" alt="Preview of avatar-chi-pu.png">
+                    <p class="filename">avatar-chi-pu.png</p>
+                    <a href="../assets/images/avatar-chi-pu.png" download="avatar-chi-pu.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-den-vau.png" alt="Preview of avatar-den-vau.png">
+                    <p class="filename">avatar-den-vau.png</p>
+                    <a href="../assets/images/avatar-den-vau.png" download="avatar-den-vau.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-dong-nhi.png" alt="Preview of avatar-dong-nhi.png">
+                    <p class="filename">avatar-dong-nhi.png</p>
+                    <a href="../assets/images/avatar-dong-nhi.png" download="avatar-dong-nhi.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-hieu-thu-hai.png" alt="Preview of avatar-hieu-thu-hai.png">
+                    <p class="filename">avatar-hieu-thu-hai.png</p>
+                    <a href="../assets/images/avatar-hieu-thu-hai.png" download="avatar-hieu-thu-hai.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-j97.png" alt="Preview of avatar-j97.png">
+                    <p class="filename">avatar-j97.png</p>
+                    <a href="../assets/images/avatar-j97.png" download="avatar-j97.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-miu-le.png" alt="Preview of avatar-miu-le.png">
+                    <p class="filename">avatar-miu-le.png</p>
+                    <a href="../assets/images/avatar-miu-le.png" download="avatar-miu-le.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-son-tung.png" alt="Preview of avatar-son-tung.png">
+                    <p class="filename">avatar-son-tung.png</p>
+                    <a href="../assets/images/avatar-son-tung.png" download="avatar-son-tung.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-suboi.png" alt="Preview of avatar-suboi.png">
+                    <p class="filename">avatar-suboi.png</p>
+                    <a href="../assets/images/avatar-suboi.png" download="avatar-suboi.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-thinh-suy.png" alt="Preview of avatar-thinh-suy.png">
+                    <p class="filename">avatar-thinh-suy.png</p>
+                    <a href="../assets/images/avatar-thinh-suy.png" download="avatar-thinh-suy.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-wren-evans.png" alt="Preview of avatar-wren-evans.png">
+                    <p class="filename">avatar-wren-evans.png</p>
+                    <a href="../assets/images/avatar-wren-evans.png" download="avatar-wren-evans.png" class="download-link">Download</a>
+                </div>
+            </div>
+
+            <h3>International Celebrities (Singers/Actors)</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/avatar-adele.png" alt="Preview of avatar-adele.png">
+                    <p class="filename">avatar-adele.png</p>
+                    <a href="../assets/images/avatar-adele.png" download="avatar-adele.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-ariana-grande.png" alt="Preview of avatar-ariana-grande.png">
+                    <p class="filename">avatar-ariana-grande.png</p>
+                    <a href="../assets/images/avatar-ariana-grande.png" download="avatar-ariana-grande.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-justin-bieber.png" alt="Preview of avatar-justin-bieber.png">
+                    <p class="filename">avatar-justin-bieber.png</p>
+                    <a href="../assets/images/avatar-justin-bieber.png" download="avatar-justin-bieber.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-rihanna.png" alt="Preview of avatar-rihanna.png">
+                    <p class="filename">avatar-rihanna.png</p>
+                    <a href="../assets/images/avatar-rihanna.png" download="avatar-rihanna.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-selena-gomez.png" alt="Preview of avatar-selena-gomez.png">
+                    <p class="filename">avatar-selena-gomez.png</p>
+                    <a href="../assets/images/avatar-selena-gomez.png" download="avatar-selena-gomez.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-taylor-swift.png" alt="Preview of avatar-taylor-swift.png">
+                    <p class="filename">avatar-taylor-swift.png</p>
+                    <a href="../assets/images/avatar-taylor-swift.png" download="avatar-taylor-swift.png" class="download-link">Download</a>
+                </div>
+            </div>
+
+            <h3>Football Players</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/avatar-cristiano-ronaldo.png" alt="Preview of avatar-cristiano-ronaldo.png">
+                    <p class="filename">avatar-cristiano-ronaldo.png</p>
+                    <a href="../assets/images/avatar-cristiano-ronaldo.png" download="avatar-cristiano-ronaldo.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-lionel-messi.png" alt="Preview of avatar-lionel-messi.png">
+                    <p class="filename">avatar-lionel-messi.png</p>
+                    <a href="../assets/images/avatar-lionel-messi.png" download="avatar-lionel-messi.png" class="download-link">Download</a>
+                </div>
+            </div>
+
+            <h3>Notable Public Figures</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <img src="../assets/images/avatar-elon-musk.png" alt="Preview of avatar-elon-musk.png">
+                    <p class="filename">avatar-elon-musk.png</p>
+                    <a href="../assets/images/avatar-elon-musk.png" download="avatar-elon-musk.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-jeff-bezos.png" alt="Preview of avatar-jeff-bezos.png">
+                    <p class="filename">avatar-jeff-bezos.png</p>
+                    <a href="../assets/images/avatar-jeff-bezos.png" download="avatar-jeff-bezos.png" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <img src="../assets/images/avatar-donal-trump.png" alt="Preview of avatar-donal-trump.png">
+                    <p class="filename">avatar-donal-trump.png</p>
+                    <a href="../assets/images/avatar-donal-trump.png" download="avatar-donal-trump.png" class="download-link">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-gallery-section">
+            <h2>🎁 Mystery Blind Box Avatars 🎁</h2>
+            <p class="intro" style="font-style: italic; color: #ff6b6b; margin-bottom: 20px;">Unlock the excitement of our exclusive limited-edition mystery avatars! Each avatar is a rare find with its own unique personality. Collect them all to complete your ultra-rare set! No refunds on digital unboxing - what you get is what you keep! 😜</p>
+            <div class="grid-container">
+                <div class="card" style="background: linear-gradient(to bottom right, #ffeaa7, #fab1a0); border: 2px dashed #e17055;">
+                    <img src="../assets/images/avatar-secret-1.png" alt="Preview of avatar-secret-1.png">
+                    <p class="filename">avatar-secret-1.png</p>
+                    <p style="font-size: 0.8rem; color: #d63031; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐ Common</p>
+                    <a href="../assets/images/avatar-secret-1.png" download="avatar-secret-1.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card" style="background: linear-gradient(to bottom right, #ffeaa7, #fab1a0); border: 2px dashed #e17055;">
+                    <img src="../assets/images/avatar-secret-2.png" alt="Preview of avatar-secret-2.png">
+                    <p class="filename">avatar-secret-2.png</p>
+                    <p style="font-size: 0.8rem; color: #d63031; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐ Common</p>
+                    <a href="../assets/images/avatar-secret-2.png" download="avatar-secret-2.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card" style="background: linear-gradient(to bottom right, #81ecec, #74b9ff); border: 2px dashed #0984e3;">
+                    <img src="../assets/images/avatar-secret-3.png" alt="Preview of avatar-secret-3.png">
+                    <p class="filename">avatar-secret-3.png</p>
+                    <p style="font-size: 0.8rem; color: #0984e3; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐ Rare</p>
+                    <a href="../assets/images/avatar-secret-3.png" download="avatar-secret-3.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card" style="background: linear-gradient(to bottom right, #81ecec, #74b9ff); border: 2px dashed #0984e3;">
+                    <img src="../assets/images/avatar-secret-4.png" alt="Preview of avatar-secret-4.png">
+                    <p class="filename">avatar-secret-4.png</p>
+                    <p style="font-size: 0.8rem; color: #0984e3; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐ Rare</p>
+                    <a href="../assets/images/avatar-secret-4.png" download="avatar-secret-4.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card" style="background: linear-gradient(to bottom right, #a29bfe, #6c5ce7); border: 2px dashed #6c5ce7;">
+                    <img src="../assets/images/avatar-secret-5.png" alt="Preview of avatar-secret-5.png">
+                    <p class="filename">avatar-secret-5.png</p>
+                    <p style="font-size: 0.8rem; color: #6c5ce7; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐⭐ Epic</p>
+                    <a href="../assets/images/avatar-secret-5.png" download="avatar-secret-5.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card" style="background: linear-gradient(to bottom right, #a29bfe, #6c5ce7); border: 2px dashed #6c5ce7;">
+                    <img src="../assets/images/avatar-secret-6.png" alt="Preview of avatar-secret-6.png">
+                    <p class="filename">avatar-secret-6.png</p>
+                    <p style="font-size: 0.8rem; color: #6c5ce7; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐⭐ Epic</p>
+                    <a href="../assets/images/avatar-secret-6.png" download="avatar-secret-6.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card" style="background: linear-gradient(to bottom right, #fd79a8, #e84393); border: 2px dashed #e84393;">
+                    <img src="../assets/images/avatar-secret-7.png" alt="Preview of avatar-secret-7.png">
+                    <p class="filename">avatar-secret-7.png</p>
+                    <p style="font-size: 0.8rem; color: #e84393; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐⭐⭐ Legendary</p>
+                    <a href="../assets/images/avatar-secret-7.png" download="avatar-secret-7.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card" style="background: linear-gradient(to bottom right, #fd79a8, #e84393); border: 2px dashed #e84393;">
+                    <img src="../assets/images/avatar-secret-8.png" alt="Preview of avatar-secret-8.png">
+                    <p class="filename">avatar-secret-8.png</p>
+                    <p style="font-size: 0.8rem; color: #e84393; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐⭐⭐ Legendary</p>
+                    <a href="../assets/images/avatar-secret-8.png" download="avatar-secret-8.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card" style="background: linear-gradient(to bottom right, #ffd32a, #ff9f1a); border: 2px solid #ff9f1a; box-shadow: 0 0 15px #ffd32a;">
+                    <img src="../assets/images/avatar-secret-9.png" alt="Preview of avatar-secret-9.png">
+                    <p class="filename">avatar-secret-9.png</p>
+                    <p style="font-size: 0.8rem; color: #ff9f1a; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐⭐⭐⭐ Ultra Rare</p>
+                    <a href="../assets/images/avatar-secret-9.png" download="avatar-secret-9.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card" style="background: linear-gradient(to bottom right, #ffd32a, #ff9f1a); border: 2px solid #ff9f1a; box-shadow: 0 0 15px #ffd32a;">
+                    <img src="../assets/images/avatar-secret-10.png" alt="Preview of avatar-secret-10.png">
+                    <p class="filename">avatar-secret-10.png</p>
+                    <p style="font-size: 0.8rem; color: #ff9f1a; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐⭐⭐⭐ Ultra Rare</p>
+                    <a href="../assets/images/avatar-secret-10.png" download="avatar-secret-10.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card" style="background: linear-gradient(to bottom right, #55efc4, #00b894); border: 2px solid #00b894; box-shadow: 0 0 20px #55efc4;">
+                    <img src="../assets/images/avatar-secret-11.png" alt="Preview of avatar-secret-11.png">
+                    <p class="filename">avatar-secret-11.png</p>
+                    <p style="font-size: 0.8rem; color: #00b894; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐⭐⭐⭐⭐ Mythic</p>
+                    <a href="../assets/images/avatar-secret-11.png" download="avatar-secret-11.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card" style="background: linear-gradient(to bottom right, #55efc4, #00b894); border: 2px solid #00b894; box-shadow: 0 0 20px #55efc4;">
+                    <img src="../assets/images/avatar-secret-12.png" alt="Preview of avatar-secret-12.png">
+                    <p class="filename">avatar-secret-12.png</p>
+                    <p style="font-size: 0.8rem; color: #00b894; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐⭐⭐⭐⭐ Mythic</p>
+                    <a href="../assets/images/avatar-secret-12.png" download="avatar-secret-12.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card divine-card">
+                    <img src="../assets/images/avatar-secret-13.png" alt="Preview of avatar-secret-13.png">
+                    <p class="filename">avatar-secret-13.png</p>
+                    <p style="font-size: 0.8rem; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐⭐⭐⭐⭐⭐ Divine</p>
+                    <a href="../assets/images/avatar-secret-13.png" download="avatar-secret-13.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card divine-card">
+                    <img src="../assets/images/avatar-secret-14.png" alt="Preview of avatar-secret-14.png">
+                    <p class="filename">avatar-secret-14.png</p>
+                    <p style="font-size: 0.8rem; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐⭐⭐⭐⭐⭐ Divine</p>
+                    <a href="../assets/images/avatar-secret-14.png" download="avatar-secret-14.png" class="download-link">Unbox Now!</a>
+                </div>
+                <div class="card divine-card">
+                    <img src="../assets/images/avatar-secret-15.png" alt="Preview of avatar-secret-15.png">
+                    <p class="filename">avatar-secret-15.png</p>
+                    <p style="font-size: 0.8rem; margin: 5px 0;"><strong>Rarity:</strong> ⭐⭐⭐⭐⭐⭐⭐⭐⭐ Divine</p>
+                    <a href="../assets/images/avatar-secret-15.png" download="avatar-secret-15.png" class="download-link">Unbox Now!</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-gallery-section">
+            <h2>🎵 Sound Effects</h2>
+            <p class="intro" style="font-style: italic; color: #6c5ce7; margin-bottom: 20px;">High-quality audio assets for your iOS games and applications. Click the play button to preview each sound effect before downloading.</p>
+            
+            <h3>General Sound Effects</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">bet-chip.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/bet-chip.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/bet-chip.mp3" download="bet-chip.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">blink.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/blink.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/blink.mp3" download="blink.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">drum-music.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/drum-music.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/drum-music.mp3" download="drum-music.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">gameover.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/gameover.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/gameover.mp3" download="gameover.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">highscore.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/highscore.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/highscore.mp3" download="highscore.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">ring-up.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/ring-up.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/ring-up.mp3" download="ring-up.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">spin.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/spin.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/spin.mp3" download="spin.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">winning.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/winning.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/winning.mp3" download="winning.mp3" class="download-link">Download</a>
+                </div>
+            </div>
+
+            <h3>Mario Sound Effects</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">mario-coin.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/mario-coin.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/mario-coin.mp3" download="mario-coin.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">mario-invincibility.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/mario-invincibility.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/mario-invincibility.mp3" download="mario-invincibility.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">mario-die.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/mario-die.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/mario-die.mp3" download="mario-die.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">mario-gameover.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/mario-gameover.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/mario-gameover.mp3" download="mario-gameover.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">mario-theme-song.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/mario-theme-song.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/mario-theme-song.mp3" download="mario-theme-song.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">mario-save-princess.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/mario-save-princess.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/mario-save-princess.mp3" download="mario-save-princess.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">mario-castle-complete.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/mario-castle-complete.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/mario-castle-complete.mp3" download="mario-castle-complete.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">mario-stage-win.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/mario-stage-win.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/mario-stage-win.mp3" download="mario-stage-win.mp3" class="download-link">Download</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎵</div>
+                    <p class="filename">mario-its-me-mario.mp3</p>
+                    <audio controls style="width: 100%; margin: 10px 0;">
+                        <source src="../assets/sound_effects/mario-its-me-mario.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="../assets/sound_effects/mario-its-me-mario.mp3" download="mario-its-me-mario.mp3" class="download-link">Download</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Created by Tom Huynh with love ❤️</p>
+    </footer>
+    <button id="scrollToTopBtn" class="scroll-to-top-button" title="Go to top">⬆️</button>
+</body>
+</html>

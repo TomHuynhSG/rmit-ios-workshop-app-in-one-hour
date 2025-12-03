@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swift & SwiftUI Cheat Sheet - COSC3062</title>
+    <title>Swift & SwiftUI Cheat Sheet</title>
     <link rel="icon" href="../assets/images/rmit-logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../css/base-theme.css">
@@ -14,30 +15,38 @@
     <style>
         /* Page-specific styles for swift-swiftui-cheatsheet.html */
         .container {
-            max-width: 1500px; 
+            max-width: 1500px;
         }
-        .logo { /* Override from extended-header.css if needed */
+
+        .logo {
+            /* Override from extended-header.css if needed */
             height: 60px;
         }
-        .university-name { /* Override from extended-header.css if needed */
+
+        .university-name {
+            /* Override from extended-header.css if needed */
             font-size: 1.75rem;
         }
-        header .intro { /* Override from extended-header.css if needed */
+
+        header .intro {
+            /* Override from extended-header.css if needed */
             /* max-width: 600px; from extended-header.css */
         }
 
-        .cheatsheet-section > h2.collapsible-header {
+        .cheatsheet-section>h2.collapsible-header {
             font-size: 2rem;
             color: var(--heading-color);
-            margin-bottom: 20px; /* Applied when open */
+            margin-bottom: 20px;
+            /* Applied when open */
             padding-bottom: 10px;
             border-bottom: 1px solid var(--border-color);
             font-weight: 600;
         }
-         .cheatsheet-section > h2.collapsible-header.collapsed {
+
+        .cheatsheet-section>h2.collapsible-header.collapsed {
             margin-bottom: 0;
         }
-        
+
         .subsection-title {
             font-size: 1.5rem;
             color: var(--heading-color);
@@ -52,14 +61,16 @@
             gap: 20px;
         }
 
-        .card { /* Override from base-theme.css if needed */
+        .card {
+            /* Override from base-theme.css if needed */
             padding: 20px;
         }
 
-        .card h3 { /* Override from base-theme.css if needed */
+        .card h3 {
+            /* Override from base-theme.css if needed */
             font-size: 1.25rem;
         }
-        
+
         .card ul {
             list-style-position: inside;
             margin-bottom: 15px;
@@ -69,36 +80,49 @@
         .output-box .sf-symbol {
             width: 32px;
             height: 32px;
-            fill: currentColor; /* Inherits color from parent, useful for icons */
+            fill: currentColor;
+            /* Inherits color from parent, useful for icons */
         }
-        .output-box .styled-text, .output-box .interactive-button {
-            font-family: 'Helvetica Neue', sans-serif; /* Specific font for these elements */
+
+        .output-box .styled-text,
+        .output-box .interactive-button {
+            font-family: 'Helvetica Neue', sans-serif;
+            /* Specific font for these elements */
             padding: 8px 12px;
             border-radius: 8px;
-            color: white; /* Default text color for these elements */
-            background-color: #007AFF; /* Default Apple blue */
+            color: white;
+            /* Default text color for these elements */
+            background-color: #007AFF;
+            /* Default Apple blue */
         }
+
         .output-box .interactive-button {
             cursor: pointer;
             user-select: none;
             transition: background-color 0.2s;
         }
+
         .output-box .interactive-button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #0056b3;
+            /* Darker blue on hover */
         }
+
         .output-box .image-placeholder {
             border-radius: 50%;
             width: 80px;
             height: 80px;
-            background-color: #ccc; /* Neutral placeholder color */
+            background-color: #ccc;
+            /* Neutral placeholder color */
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #555; /* Darker text for placeholder */
+            color: #555;
+            /* Darker text for placeholder */
             font-size: 0.8rem;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .output-box .gradient-bg {
             width: 100%;
             height: 80px;
@@ -109,24 +133,31 @@
             color: white;
             font-weight: bold;
         }
+
         .output-box .nav-bar {
             width: 100%;
             padding: 10px;
-            background-color: #f8f8f8; /* Light gray for light mode nav bar */
+            background-color: #f8f8f8;
+            /* Light gray for light mode nav bar */
             border-bottom: 1px solid #ddd;
             font-weight: bold;
             text-align: center;
-            color: var(--heading-color); /* Ensure text is readable */
+            color: var(--heading-color);
+            /* Ensure text is readable */
         }
+
         @media (prefers-color-scheme: dark) {
             .output-box .nav-bar {
-                background-color: #3a3a3c; /* Darker gray for dark mode nav bar */
+                background-color: #3a3a3c;
+                /* Darker gray for dark mode nav bar */
                 border-bottom: 1px solid #555;
-                color: var(--heading-color); /* Ensure text is readable */
+                color: var(--heading-color);
+                /* Ensure text is readable */
             }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -135,11 +166,14 @@
                 <a href="../index.html" class="back-to-home-button">&larr; Back to Home</a>
             </div>
             <div class="university-branding">
-                <img src="https://sites.rmit.edu.au/artschoolgraduates/files/2022/10/rmit-logo-red.png" alt="RMIT University Logo" class="logo">
+                <img src="https://sites.rmit.edu.au/artschoolgraduates/files/2022/10/rmit-logo-red.png"
+                    alt="RMIT University Logo" class="logo">
                 <span class="university-name">RMIT University</span>
             </div>
             <h1>Swift & SwiftUI <span>Cheatsheet</span></h1>
-            <p class="intro">Your comprehensive quick reference for Swift and SwiftUI. This cheatsheet covers essential Swift language fundamentals (variables, control flow, collections) and key SwiftUI concepts including views, layouts, modifiers, state management, interactivity, and navigation.</p>
+            <p class="intro">Your comprehensive quick reference for the One App in One Hour workshop. This cheatsheet
+                covers essential Swift language fundamentals (variables, control flow, collections) and key SwiftUI
+                concepts including views, layouts, modifiers, state management, interactivity, and navigation.</p>
         </div>
     </header>
 
@@ -154,7 +188,8 @@
                 <div class="grid-container">
                     <div class="card">
                         <h3>Comments</h3>
-                        <p>Comments are notes for developers and are ignored by the compiler. Use <code>//</code> for single-line comments and <code>/* ... */</code> for multi-line comments.</p>
+                        <p>Comments are notes for developers and are ignored by the compiler. Use <code>//</code> for
+                            single-line comments and <code>/* ... */</code> for multi-line comments.</p>
                         <pre><code><span class="comment">// This is a single-line comment.</span>
 <span class="comment">// It's useful for short explanations.</span>
 
@@ -168,14 +203,20 @@
                         <div class="output-container">
                             <h4>Output</h4>
                             <div class="output-box" style="align-items: flex-start;">
-                                Comments do not produce any visible output in your app but are crucial for code readability.
+                                Comments do not produce any visible output in your app but are crucial for code
+                                readability.
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <h3>Variable & Constant</h3>
-                        <p>Use <code>var</code> for data that can change (like a user's score) and <code>let</code> for data that is set once and never changes (like a birth date).</p>
-                        <p style="font-size: 0.9em; color: var(--accent-color);"><strong>Best Practice:</strong> Prefer <code>let</code> over <code>var</code>. This makes your code safer and easier to understand because it prevents accidental changes. Use <code>var</code> only when you explicitly need to modify the value later.</p>
+                        <p>Use <code>var</code> for data that can change (like a user's score) and <code>let</code> for
+                            data that is set once and never changes (like a birth date).</p>
+                        <p style="font-size: 0.9em; color: var(--accent-color);"><strong>Best Practice:</strong> Prefer
+                            <code>let</code> over <code>var</code>. This makes your code safer and easier to understand
+                            because it prevents accidental changes. Use <code>var</code> only when you explicitly need
+                            to modify the value later.
+                        </p>
                         <pre><code><span class="keyword">var</span> score <span class="operator">=</span> <span class="number">0</span>  <span class="comment">// Variable (mutable)</span>
 <span class="keyword">let</span> pi <span class="operator">=</span> <span class="number">3.14</span>  <span class="comment">// Constant (immutable)</span>
 
@@ -194,9 +235,15 @@ print(<span class="string">"Pi value: <span class="operator">\(</span>pi<span cl
                     </div>
                     <div class="card">
                         <h3>Basic Data Types</h3>
-                        <p>Swift needs to know the "type" of data you are storing. Common types include text (<code>String</code>), whole numbers (<code>Int</code>), decimals (<code>Double</code>), true/false (<code>Bool</code>), and collections like arrays (<code>[String]</code>, <code>[Int]</code>).</p>
+                        <p>Swift needs to know the "type" of data you are storing. Common types include text
+                            (<code>String</code>), whole numbers (<code>Int</code>), decimals (<code>Double</code>),
+                            true/false (<code>Bool</code>), and collections like arrays (<code>[String]</code>,
+                            <code>[Int]</code>).
+                        </p>
                         <!-- MODIFIED: Added note about type inference -->
-                        <p style="font-size: 0.9em; color: var(--accent-color);"><em>Note: Swift has powerful type inference, so you often don't need to write the type explicitly. <code>var name = "Alex"</code> works just fine!</em></p>
+                        <p style="font-size: 0.9em; color: var(--accent-color);"><em>Note: Swift has powerful type
+                                inference, so you often don't need to write the type explicitly.
+                                <code>var name = "Alex"</code> works just fine!</em></p>
                         <pre><code><span class="keyword">var</span> name: <span class="type">String</span> <span class="operator">=</span> <span class="string">"Alex"</span>
 <span class="keyword">var</span> age: <span class="type">Int</span> <span class="operator">=</span> <span class="number">16</span>
 <span class="keyword">var</span> height: <span class="type">Double</span> <span class="operator">=</span> <span class="number">1.75</span>
@@ -227,7 +274,10 @@ print(<span class="string">"Scores: <span class="operator">\(</span>scores<span 
                     </div>
                     <div class="card">
                         <h3>String Interpolation</h3>
-                        <p>To mix text with variables or constants in Swift, use a backslash with parentheses: <code><span class="operator">\(</span>yourVariable<span class="operator">)</span></code>. This works in strings for print statements and SwiftUI Text views.</p>
+                        <p>To mix text with variables or constants in Swift, use a backslash with parentheses:
+                            <code><span class="operator">\(</span>yourVariable<span class="operator">)</span></code>.
+                            This works in strings for print statements and SwiftUI Text views.
+                        </p>
                         <pre><code><span class="keyword">let</span> name <span class="operator">=</span> <span class="string">"Alex"</span>
 <span class="keyword">let</span> age <span class="operator">=</span> <span class="number">16</span>
 <span class="keyword">let</span> score <span class="operator">=</span> <span class="number">95</span>
@@ -246,7 +296,8 @@ print(<span class="string">"<span class="operator">\(</span>name<span class="ope
                     </div>
                     <div class="card">
                         <h3>If/Else Statements</h3>
-                        <p>Use <code>if</code>, <code>else if</code>, and <code>else</code> to make decisions in your code based on certain conditions.</p>
+                        <p>Use <code>if</code>, <code>else if</code>, and <code>else</code> to make decisions in your
+                            code based on certain conditions.</p>
                         <pre><code><span class="keyword">let</span> temperature <span class="operator">=</span> <span class="number">25</span>
 <span class="keyword">if</span> temperature <span class="operator">></span> <span class="number">30</span> {
     print(<span class="string">"It's a hot day!"</span>)
@@ -264,7 +315,8 @@ print(<span class="string">"<span class="operator">\(</span>name<span class="ope
                     </div>
                     <div class="card">
                         <h3>For Loops</h3>
-                        <p><code>for-in</code> loops allow you to repeat a block of code for each item in a sequence, like an array or a range of numbers.</p>
+                        <p><code>for-in</code> loops allow you to repeat a block of code for each item in a sequence,
+                            like an array or a range of numbers.</p>
                         <pre><code><span class="comment">// Looping through an array</span>
 <span class="keyword">let</span> names <span class="operator">=</span> [<span class="string">"Anna"</span>, <span class="string">"Alex"</span>, <span class="string">"Brian"</span>]
 <span class="keyword">for</span> name <span class="keyword">in</span> names {
@@ -289,7 +341,9 @@ print(<span class="string">"<span class="operator">\(</span>name<span class="ope
                     </div>
                     <div class="card">
                         <h3>Random Numbers & Elements</h3>
-                        <p>Swift makes it easy to get random values, whether from a numerical range or from a collection like an array. Use <code>.randomElement() ?? defaultValue</code> to safely pick from an array.</p>
+                        <p>Swift makes it easy to get random values, whether from a numerical range or from a collection
+                            like an array. Use <code>.randomElement() ?? defaultValue</code> to safely pick from an
+                            array.</p>
                         <pre><code><span class="comment">// Random number in a range (e.g., 1 to 100)</span>
 <span class="keyword">let</span> randomNumber <span class="operator">=</span> <span class="type">Int</span>.random(in: <span class="number">1</span><span class="operator">...</span><span class="number">100</span>)
 print(<span class="string">"Random number: <span class="operator">\(</span>randomNumber<span class="operator">)</span>"</span>)
@@ -304,7 +358,8 @@ print(<span class="string">"Random fruit: <span class="operator">\(</span>random
 print(<span class="string">"From empty: <span class="operator">\(</span>randomFromEmpty<span class="operator">)</span>"</span>)</code></pre>
                         <div class="output-container">
                             <h4>Example Output</h4>
-                            <div class="output-box" id="random-output-combined" style="font-family: monospace; align-items: flex-start;">
+                            <div class="output-box" id="random-output-combined"
+                                style="font-family: monospace; align-items: flex-start;">
                                 Random number: [some number 1-100]<br>
                                 Random fruit: Apple (or Banana, Cherry)<br>
                                 From empty: Default Value
@@ -314,8 +369,13 @@ print(<span class="string">"From empty: <span class="operator">\(</span>randomFr
                     <!-- String Interpolation card was moved here, so this is the original Random Item from Array card which is now removed -->
                     <div class="card">
                         <h3>Functions</h3>
-                        <p>Functions are reusable blocks of code that perform a specific task. They can take inputs (parameters) and produce an output (return value).</p>
-                        <p style="font-size: 0.9em; color: var(--accent-color);"><strong>Note:</strong> When calling a function, you use an <strong>argument label</strong> (like <code>a:</code> and <code>b:</code> below). Inside the function, you use the <strong>parameter name</strong> (like <code>a</code> and <code>b</code>).</p>
+                        <p>Functions are reusable blocks of code that perform a specific task. They can take inputs
+                            (parameters) and produce an output (return value).</p>
+                        <p style="font-size: 0.9em; color: var(--accent-color);"><strong>Note:</strong> When calling a
+                            function, you use an <strong>argument label</strong> (like <code>a:</code> and
+                            <code>b:</code> below). Inside the function, you use the <strong>parameter name</strong>
+                            (like <code>a</code> and <code>b</code>).
+                        </p>
                         <pre><code><span class="comment">// Function with no parameters and no return value</span>
 <span class="keyword">func</span> <span class="function-name">sayHello</span>() {
     print(<span class="string">"Hello, World!"</span>)
@@ -338,7 +398,8 @@ print(<span class="string">"Sum: <span class="operator">\(</span>sum<span class=
                     </div>
                     <div class="card">
                         <h3>Switch Statements</h3>
-                        <p>A <code>switch</code> statement considers a value and compares it against several possible matching patterns. It's a powerful alternative to long <code>if-else if</code> chains.</p>
+                        <p>A <code>switch</code> statement considers a value and compares it against several possible
+                            matching patterns. It's a powerful alternative to long <code>if-else if</code> chains.</p>
                         <pre><code><span class="keyword">let</span> dayOfWeek <span class="operator">=</span> <span class="number">4</span>
 <span class="keyword">var</span> dayName: <span class="type">String</span>
 <span class="keyword">switch</span> dayOfWeek {
@@ -363,7 +424,8 @@ print(<span class="string">"Day <span class="operator">\(</span>dayOfWeek<span c
                     </div>
                     <div class="card">
                         <h3>Dictionaries</h3>
-                        <p>A dictionary stores associations between keys of the same type and values of the same type in a collection with no defined ordering.</p>
+                        <p>A dictionary stores associations between keys of the same type and values of the same type in
+                            a collection with no defined ordering.</p>
                         <pre><code><span class="comment">// Creating and accessing a dictionary</span>
 <span class="keyword">var</span> occupations <span class="operator">=</span> [
     <span class="string">"Malcolm"</span>: <span class="string">"Captain"</span>,
@@ -389,8 +451,14 @@ print(occupations[<span class="string">"Kaylee"</span>] ?? <span class="string">
                     </div>
                     <div class="card">
                         <h3>Optionals</h3>
-                        <p>Optionals handle the absence of a value. An optional says either "there is a value, and it equals x" or "there isn’t a value at all" (<code>nil</code>). This prevents crashes from using <code>nil</code> values.</p>
-                        <p style="font-size: 0.9em; color: var(--accent-color);"><strong>Recommendation:</strong> Use optional binding (<code>if let</code>) to safely unwrap and use a value. Use the nil-coalescing operator (<code>??</code>) to provide a default value if the optional is <code>nil</code>.</p>
+                        <p>Optionals handle the absence of a value. An optional says either "there is a value, and it
+                            equals x" or "there isn’t a value at all" (<code>nil</code>). This prevents crashes from
+                            using <code>nil</code> values.</p>
+                        <p style="font-size: 0.9em; color: var(--accent-color);"><strong>Recommendation:</strong> Use
+                            optional binding (<code>if let</code>) to safely unwrap and use a value. Use the
+                            nil-coalescing operator (<code>??</code>) to provide a default value if the optional is
+                            <code>nil</code>.
+                        </p>
                         <pre><code><span class="keyword">var</span> optionalName: <span class="type">String</span>? <span class="operator">=</span> <span class="string">"John Appleseed"</span>
 <span class="comment">// optionalName = nil // It can also be nil</span>
 
@@ -414,8 +482,14 @@ print(greeting)</code></pre>
                     </div>
                     <div class="card">
                         <h3>Structs vs. Classes</h3>
-                        <p>Both are blueprints for objects, but they have a key difference: <code>Struct</code>s are <strong>value types</strong> (copies are made), while <code>Class</code>es are <strong>reference types</strong> (pointers to a shared instance).</p>
-                        <p style="font-size: 0.9em; color: var(--accent-color);"><strong>Recommendation:</strong> Start with <code>struct</code>s for your data models. Use a <code>class</code> only when you need features like inheritance or when multiple parts of your app must share and modify a single instance of that data.</p>
+                        <p>Both are blueprints for objects, but they have a key difference: <code>Struct</code>s are
+                            <strong>value types</strong> (copies are made), while <code>Class</code>es are
+                            <strong>reference types</strong> (pointers to a shared instance).
+                        </p>
+                        <p style="font-size: 0.9em; color: var(--accent-color);"><strong>Recommendation:</strong> Start
+                            with <code>struct</code>s for your data models. Use a <code>class</code> only when you need
+                            features like inheritance or when multiple parts of your app must share and modify a single
+                            instance of that data.</p>
                         <pre><code><span class="comment">// Struct (Value Type) - a copy is made</span>
 <span class="keyword">struct</span> <span class="type">User</span> { <span class="keyword">var</span> name: <span class="type">String</span> }
 <span class="keyword">var</span> user1 <span class="operator">=</span> User(name: <span class="string">"Tom"</span>)
@@ -441,7 +515,9 @@ print(<span class="string">"Game1 Score: <span class="operator">\(</span>game1.s
                     </div>
                     <div class="card">
                         <h3>Closures</h3>
-                        <p>Closures are self-contained blocks of functionality that can be passed around and used in your code. They can capture and store references to any constants and variables from the context in which they are defined.</p>
+                        <p>Closures are self-contained blocks of functionality that can be passed around and used in
+                            your code. They can capture and store references to any constants and variables from the
+                            context in which they are defined.</p>
                         <pre><code><span class="keyword">let</span> names <span class="operator">=</span> [<span class="string">"Chris"</span>, <span class="string">"Alex"</span>, <span class="string">"Ewa"</span>, <span class="string">"Barry"</span>, <span class="string">"Daniella"</span>]
 
 <span class="comment">// Trailing closure syntax</span>
@@ -463,7 +539,10 @@ print(reversedNames)</code></pre>
                     </div>
                     <div class="card">
                         <h3>Codable</h3>
-                        <p>The <code>Codable</code> protocol is a type alias for the <code>Encodable</code> and <code>Decodable</code> protocols. It's used to easily encode and decode custom data types to and from external representations like JSON.</p>
+                        <p>The <code>Codable</code> protocol is a type alias for the <code>Encodable</code> and
+                            <code>Decodable</code> protocols. It's used to easily encode and decode custom data types to
+                            and from external representations like JSON.
+                        </p>
                         <pre><code><span class="keyword">struct</span> <span class="type">Landmark</span>: <span class="type">Codable</span> {
     <span class="keyword">var</span> name: <span class="type">String</span>
     <span class="keyword">var</span> foundingYear: <span class="type">Int</span>
@@ -490,7 +569,8 @@ print(reversedNames)</code></pre>
                     </div>
                     <div class="card">
                         <h3>@AppStorage</h3>
-                        <p>A property wrapper that reads and writes to <code>UserDefaults</code>. It's a convenient way to persist small pieces of data, like user settings, across app launches.</p>
+                        <p>A property wrapper that reads and writes to <code>UserDefaults</code>. It's a convenient way
+                            to persist small pieces of data, like user settings, across app launches.</p>
                         <pre><code><span class="comment">// In a SwiftUI View</span>
 <span class="keyword">struct</span> <span class="type">SettingsView</span>: <span class="type">View</span> {
     <span class="property-wrapper">@AppStorage</span>(<span class="string">"username"</span>) <span class="keyword">var</span> username: <span class="type">String</span> <span class="operator">=</span> <span class="string">"Anonymous"</span>
@@ -507,13 +587,15 @@ print(reversedNames)</code></pre>
                         <div class="output-container">
                             <h4>Output</h4>
                             <div class="output-box" style="align-items: flex-start;">
-                                The view will initially show "Welcome, Anonymous!". After tapping the button, it will change to "Welcome, Taylor!" and this will be saved for the next app launch.
+                                The view will initially show "Welcome, Anonymous!". After tapping the button, it will
+                                change to "Welcome, Taylor!" and this will be saved for the next app launch.
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <h3>readLine()</h3>
-                        <p>Reads a line of text from the standard input, which is useful for command-line tools. It returns an optional <code>String</code>, so you need to unwrap it safely.</p>
+                        <p>Reads a line of text from the standard input, which is useful for command-line tools. It
+                            returns an optional <code>String</code>, so you need to unwrap it safely.</p>
                         <pre><code>print(<span class="string">"What is your name?"</span>)
 <span class="keyword">if let</span> name <span class="operator">=</span> readLine() {
     print(<span class="string">"Hello, <span class="operator">\(</span>name<span class="operator">)</span>!"</span>)
@@ -524,7 +606,8 @@ print(reversedNames)</code></pre>
                             <h4>Example Interaction</h4>
                             <div class="output-box" style="font-family: monospace; align-items: flex-start;">
                                 What is your name?<br>
-                                <span style="color: var(--accent-color); font-style: italic;">User types: Jerry</span><br>
+                                <span style="color: var(--accent-color); font-style: italic;">User types:
+                                    Jerry</span><br>
                                 Hello, Jerry!
                             </div>
                         </div>
@@ -544,7 +627,8 @@ print(reversedNames)</code></pre>
                 <div class="grid-container">
                     <div class="card">
                         <h3>VStack</h3>
-                        <p>Use <code>VStack</code> to arrange views in a vertical line, one on top of the other, like stacking blocks.</p>
+                        <p>Use <code>VStack</code> to arrange views in a vertical line, one on top of the other, like
+                            stacking blocks.</p>
                         <pre><code><span class="type">VStack</span>(spacing: <span class="number">10</span>) {
     <span class="type">Text</span>(<span class="string">"Item 1"</span>)
     <span class="type">Text</span>(<span class="string">"Item 2"</span>)
@@ -566,7 +650,8 @@ print(reversedNames)</code></pre>
 }</code></pre>
                         <div class="output-container">
                             <h4>Output</h4>
-                            <div class="output-box" style="flex-direction: row; align-items: center; justify-content: center; gap: 8px; padding: 10px; border: 1px dashed var(--border-color); background-color: var(--card-bg-color);">
+                            <div class="output-box"
+                                style="flex-direction: row; align-items: center; justify-content: center; gap: 8px; padding: 10px; border: 1px dashed var(--border-color); background-color: var(--card-bg-color);">
                                 <i class="fas fa-star" style="font-size: 1.5em; color: var(--accent-color);"></i>
                                 <span style="font-size: 1em;">My Hobby</span>
                             </div>
@@ -574,7 +659,8 @@ print(reversedNames)</code></pre>
                     </div>
                     <div class="card">
                         <h3>Spacer</h3>
-                        <p>A <code>Spacer</code> is a flexible, invisible view that pushes other views as far apart as possible. It's great for aligning things to the edges.</p>
+                        <p>A <code>Spacer</code> is a flexible, invisible view that pushes other views as far apart as
+                            possible. It's great for aligning things to the edges.</p>
                         <pre><code><span class="type">HStack</span> {
     <span class="type">Text</span>(<span class="string">"Start"</span>)
     <span class="type">Spacer</span>()
@@ -582,7 +668,8 @@ print(reversedNames)</code></pre>
 }</code></pre>
                         <div class="output-container">
                             <h4>Output</h4>
-                            <div class="output-box" style="flex-direction: row; justify-content: space-between; width: 100%;">
+                            <div class="output-box"
+                                style="flex-direction: row; justify-content: space-between; width: 100%;">
                                 <div>Start</div>
                                 <div>End</div>
                             </div>
@@ -596,16 +683,19 @@ print(reversedNames)</code></pre>
     <span class="type">Text</span>(<span class="string">"Content on Top"</span>) <span class="comment">// Foreground</span>
         .foregroundColor(.white)
 }</code></pre>
-                         <div class="output-container">
+                        <div class="output-container">
                             <h4>Output</h4>
-                            <div class="output-box" style="background-color: purple; color: white; width:100%; height: 80px;">
+                            <div class="output-box"
+                                style="background-color: purple; color: white; width:100%; height: 80px;">
                                 Content on Top
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <h3>Combining Layouts</h3>
-                        <p><code>VStack</code>, <code>HStack</code>, <code>ZStack</code>, and <code>Spacer</code> can be nested and combined to create complex user interfaces. This example shows a card-like structure.</p>
+                        <p><code>VStack</code>, <code>HStack</code>, <code>ZStack</code>, and <code>Spacer</code> can be
+                            nested and combined to create complex user interfaces. This example shows a card-like
+                            structure.</p>
                         <pre><code><span class="type">ZStack</span>(alignment: .topLeading) {
     <span class="comment">// Background for the card</span>
     <span class="type">Color</span>.gray.opacity(<span class="number">0.1</span>)
@@ -628,18 +718,25 @@ print(reversedNames)</code></pre>
 .frame(width: <span class="number">250</span>, height: <span class="number">150</span>) <span class="comment">// Frame for ZStack</span></code></pre>
                         <div class="output-container">
                             <h4>Output</h4>
-                            <div class="output-box" style="width: 250px; height: 150px; background-color: #006400; color: white; border-radius: 10px; padding: 15px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; position: relative;">
-                                <div style="display: flex; flex-direction: row; align-items: center; width: 100%; margin-bottom: 8px;">
-                                    <i class="fas fa-star" style="font-size: 20px; color: #f1c40f; margin-right: 5px;"></i>
-                                    <span style="font-weight: bold; font-size: 1.1em; color: white;">Featured Item</span>
+                            <div class="output-box"
+                                style="width: 250px; height: 150px; background-color: #006400; color: white; border-radius: 10px; padding: 15px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; position: relative;">
+                                <div
+                                    style="display: flex; flex-direction: row; align-items: center; width: 100%; margin-bottom: 8px;">
+                                    <i class="fas fa-star"
+                                        style="font-size: 20px; color: #f1c40f; margin-right: 5px;"></i>
+                                    <span style="font-weight: bold; font-size: 1.1em; color: white;">Featured
+                                        Item</span>
                                 </div>
-                                <p style="font-size: 0.9em; margin: 0; color: white;">This item uses ZStack, VStack, HStack, and Spacer.</p>
+                                <p style="font-size: 0.9em; margin: 0; color: white;">This item uses ZStack, VStack,
+                                    HStack, and Spacer.</p>
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <h3>ScrollView</h3>
-                        <p>A scrollable view. You can specify the scroll direction (<code>.vertical</code> or <code>.horizontal</code>). It's great for content that doesn't fit on one screen.</p>
+                        <p>A scrollable view. You can specify the scroll direction (<code>.vertical</code> or
+                            <code>.horizontal</code>). It's great for content that doesn't fit on one screen.
+                        </p>
                         <pre><code><span class="type">ScrollView</span> {
     <span class="type">VStack</span>(alignment: .leading, spacing: <span class="number">10</span>) {
         <span class="keyword">ForEach</span>(<span class="number">0</span>..<span class="number">50</span>) { index <span class="keyword">in</span>
@@ -650,8 +747,13 @@ print(reversedNames)</code></pre>
 .frame(height: <span class="number">200</span>) <span class="comment">// Give the ScrollView a fixed height</span></code></pre>
                         <div class="output-container">
                             <h4>Output</h4>
-                            <div class="output-box" style="height: 200px; width: 100%; overflow-y: scroll; border: 1px solid var(--border-color); align-items: flex-start; flex-direction: column; padding: 10px;">
-                                <p>Row 0</p><p>Row 1</p><p>Row 2</p><p>...</p><p>Row 49</p>
+                            <div class="output-box"
+                                style="height: 200px; width: 100%; overflow-y: scroll; border: 1px solid var(--border-color); align-items: flex-start; flex-direction: column; padding: 10px;">
+                                <p>Row 0</p>
+                                <p>Row 1</p>
+                                <p>Row 2</p>
+                                <p>...</p>
+                                <p>Row 49</p>
                             </div>
                         </div>
                     </div>
@@ -678,13 +780,14 @@ print(reversedNames)</code></pre>
                         <div class="output-container">
                             <h4>Output</h4>
                             <div class="output-box">
-                                 <div class="image-placeholder">avatar1<br>100x100</div>
+                                <div class="image-placeholder">avatar1<br>100x100</div>
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <h3>Image(systemName: "...")</h3>
-                        <p>Displays an icon from Apple's SF Symbols library. These are vector-based and adapt well to different sizes and styles.</p>
+                        <p>Displays an icon from Apple's SF Symbols library. These are vector-based and adapt well to
+                            different sizes and styles.</p>
                         <pre><code><span class="comment">// Displaying various SF Symbols</span>
 <span class="type">VStack</span>(spacing: <span class="number">15</span>) {
     <span class="type">Image</span>(systemName: <span class="string">"star.fill"</span>)
@@ -696,7 +799,8 @@ print(reversedNames)</code></pre>
 .foregroundColor(.blue) <span class="comment">// Apply a consistent color</span></code></pre>
                         <div class="output-container">
                             <h4>Output</h4>
-                            <div class="output-box" style="display: flex; flex-direction: column; gap: 15px; align-items: center; font-size: 2em; color: var(--code-keyword);">
+                            <div class="output-box"
+                                style="display: flex; flex-direction: column; gap: 15px; align-items: center; font-size: 2em; color: var(--code-keyword);">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-heart-circle-check"></i>
                                 <i class="fas fa-trash"></i>
@@ -706,7 +810,8 @@ print(reversedNames)</code></pre>
                     </div>
                     <div class="card">
                         <h3>AsyncImage</h3>
-                        <p>Loads and displays an image from a URL asynchronously. It shows a placeholder while the image is loading.</p>
+                        <p>Loads and displays an image from a URL asynchronously. It shows a placeholder while the image
+                            is loading.</p>
                         <pre><code><span class="type">AsyncImage</span>(url: <span class="type">URL</span>(string: <span class="string">"https://picsum.photos/id/237/200/300"</span>)) { image <span class="keyword">in</span>
     image.resizable().scaledToFit()
 } placeholder: {
@@ -716,8 +821,10 @@ print(reversedNames)</code></pre>
                         <div class="output-container">
                             <h4>Output</h4>
                             <div class="output-box">
-                                <img src="https://picsum.photos/id/237/100/100" alt="AsyncImage example" style="width: 100px; height: 100px; border-radius: 8px;">
-                                <p style="font-size: 0.8em; text-align: center; margin-top: 5px;">(Image loaded from URL)</p>
+                                <img src="https://picsum.photos/id/237/100/100" alt="AsyncImage example"
+                                    style="width: 100px; height: 100px; border-radius: 8px;">
+                                <p style="font-size: 0.8em; text-align: center; margin-top: 5px;">(Image loaded from
+                                    URL)</p>
                             </div>
                         </div>
                     </div>
@@ -738,15 +845,21 @@ print(reversedNames)</code></pre>
 .listStyle(.plain)</code></pre>
                         <div class="output-container">
                             <h4>Output (Simplified)</h4>
-                            <div class="output-box" style="align-items: flex-start; height: 100px; overflow-y: auto; border: 1px solid var(--border-color); padding: 10px; background: var(--card-bg-color);">
-                                <div style="display:flex; align-items:center; gap: 5px; color: var(--text-color);"><i class="fas fa-music" style="color: var(--text-color);"></i> Music</div>
-                                <div style="display:flex; align-items:center; gap: 5px; margin-top:5px; color: var(--text-color);"><i class="fas fa-film" style="color: var(--text-color);"></i> Movies</div>
+                            <div class="output-box"
+                                style="align-items: flex-start; height: 100px; overflow-y: auto; border: 1px solid var(--border-color); padding: 10px; background: var(--card-bg-color);">
+                                <div style="display:flex; align-items:center; gap: 5px; color: var(--text-color);"><i
+                                        class="fas fa-music" style="color: var(--text-color);"></i> Music</div>
+                                <div
+                                    style="display:flex; align-items:center; gap: 5px; margin-top:5px; color: var(--text-color);">
+                                    <i class="fas fa-film" style="color: var(--text-color);"></i> Movies
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <h3>ProgressView</h3>
-                        <p>Displays a view that shows the progress of a task over time. It can be indeterminate (a spinner) or determinate (a progress bar).</p>
+                        <p>Displays a view that shows the progress of a task over time. It can be indeterminate (a
+                            spinner) or determinate (a progress bar).</p>
                         <pre><code><span class="type">VStack</span>(spacing: <span class="number">20</span>) {
     <span class="comment">// Indeterminate (spinner)</span>
     <span class="type">ProgressView</span>()
@@ -764,7 +877,8 @@ print(reversedNames)</code></pre>
                                 </div>
                                 <div style="width: 80%; text-align: center;">
                                     <p style="margin: 0;">Loading...</p>
-                                    <div style="background-color: #e9ecef; border-radius: .25rem; height: 1rem; overflow: hidden;">
+                                    <div
+                                        style="background-color: #e9ecef; border-radius: .25rem; height: 1rem; overflow: hidden;">
                                         <div style="width: 75%; height: 100%; background-color: #007AFF;"></div>
                                     </div>
                                 </div>
@@ -777,7 +891,8 @@ print(reversedNames)</code></pre>
                 <div class="grid-container">
                     <div class="card">
                         <h3>Shapes (Circle, Rectangle)</h3>
-                        <p>SwiftUI provides several built-in shapes that you can use as views. They can be styled with modifiers like <code>.fill</code>, <code>.stroke</code>, and <code>.frame</code>.</p>
+                        <p>SwiftUI provides several built-in shapes that you can use as views. They can be styled with
+                            modifiers like <code>.fill</code>, <code>.stroke</code>, and <code>.frame</code>.</p>
                         <pre><code><span class="type">HStack</span>(spacing: <span class="number">20</span>) {
     <span class="type">Circle</span>()
         .fill(<span class="type">Color</span>.blue)
@@ -790,14 +905,16 @@ print(reversedNames)</code></pre>
                         <div class="output-container">
                             <h4>Output</h4>
                             <div class="output-box" style="flex-direction: row; gap: 20px; align-items: center;">
-                                <div style="width: 80px; height: 80px; background-color: #007AFF; border-radius: 50%;"></div>
+                                <div style="width: 80px; height: 80px; background-color: #007AFF; border-radius: 50%;">
+                                </div>
                                 <div style="width: 120px; height: 80px; border: 5px solid #FF3B30;"></div>
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <h3>MapKit Integration</h3>
-                        <p>Display an interactive map by importing <code>MapKit</code> and using the <code>Map</code> view. You can specify a coordinate region to display.</p>
+                        <p>Display an interactive map by importing <code>MapKit</code> and using the <code>Map</code>
+                            view. You can specify a coordinate region to display.</p>
                         <pre><code><span class="keyword">import</span> <span class="type">MapKit</span>
 
 <span class="keyword">struct</span> <span class="type">MapView</span>: <span class="type">View</span> {
@@ -814,8 +931,10 @@ print(reversedNames)</code></pre>
                         <div class="output-container">
                             <h4>Output</h4>
                             <div class="output-box">
-                                <img src="https://kristaps.me/assets/swiftui-map-markers/default.png" alt="Map View" style="width: 25%; height: auto; border-radius: 8px;">
-                                <p style="font-size: 0.8em; text-align: center; margin-top: 5px;">(Simulated Map View)</p>
+                                <img src="https://kristaps.me/assets/swiftui-map-markers/default.png" alt="Map View"
+                                    style="width: 25%; height: auto; border-radius: 8px;">
+                                <p style="font-size: 0.8em; text-align: center; margin-top: 5px;">(Simulated Map View)
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -825,7 +944,9 @@ print(reversedNames)</code></pre>
                 <div class="grid-container">
                     <div class="card">
                         <h3>MVVM Design Pattern</h3>
-                        <p>The Model-View-ViewModel (MVVM) pattern separates your code into three parts: the Model (data), the View (UI), and the ViewModel (business logic), making your code cleaner and easier to manage.</p>
+                        <p>The Model-View-ViewModel (MVVM) pattern separates your code into three parts: the Model
+                            (data), the View (UI), and the ViewModel (business logic), making your code cleaner and
+                            easier to manage.</p>
                         <pre><code><span class="comment">// Model</span>
 <span class="keyword">struct</span> <span class="type">Counter</span> { <span class="keyword">var</span> value <span class="operator">=</span> <span class="number">0</span> }
 
@@ -848,7 +969,10 @@ print(reversedNames)</code></pre>
                     </div>
                     <div class="card">
                         <h3>Observation Framework (@Observable)</h3>
-                        <p>Introduced in iOS 17, the <code>@Observable</code> macro simplifies state management by automatically making class properties observable, removing the need for <code>@Published</code>.</p>
+                        <p>Introduced in iOS 17, the <code>@Observable</code> macro simplifies state management by
+                            automatically making class properties observable, removing the need for
+                            <code>@Published</code>.
+                        </p>
                         <pre><code><span class="keyword">import</span> <span class="type">Observation</span>
 
 <span class="property-wrapper">@Observable</span>
@@ -865,7 +989,10 @@ print(reversedNames)</code></pre>
                     </div>
                     <div class="card">
                         <h3>SwiftData</h3>
-                        <p>SwiftData is a powerful and expressive framework for data persistence. Use the <code>@Model</code> macro to turn a Swift class into a stored model, and <code>@Query</code> to fetch data.</p>
+                        <p>SwiftData is a powerful and expressive framework for data persistence. Use the
+                            <code>@Model</code> macro to turn a Swift class into a stored model, and <code>@Query</code>
+                            to fetch data.
+                        </p>
                         <pre><code><span class="keyword">import</span> <span class="type">SwiftData</span>
 
 <span class="property-wrapper">@Model</span>
@@ -885,7 +1012,9 @@ print(reversedNames)</code></pre>
                     </div>
                     <div class="card">
                         <h3>CoreData</h3>
-                        <p>CoreData is a mature and robust framework for managing a model layer. It can persist data locally on the device. It requires more setup than SwiftData but is powerful for complex data models.</p>
+                        <p>CoreData is a mature and robust framework for managing a model layer. It can persist data
+                            locally on the device. It requires more setup than SwiftData but is powerful for complex
+                            data models.</p>
                         <pre><code><span class="comment">// In DataController</span>
 <span class="keyword">let</span> container <span class="operator">=</span> NSPersistentContainer(name: <span class="string">"Model"</span>)
 
@@ -901,7 +1030,9 @@ print(reversedNames)</code></pre>
                     </div>
                     <div class="card">
                         <h3>@Binding</h3>
-                        <p>Creates a two-way connection between a property that stores data, and a view that displays and changes it. It allows a child view to modify a <code>@State</code> property owned by its parent.</p>
+                        <p>Creates a two-way connection between a property that stores data, and a view that displays
+                            and changes it. It allows a child view to modify a <code>@State</code> property owned by its
+                            parent.</p>
                         <pre><code><span class="keyword">struct</span> <span class="type">ParentView</span>: <span class="type">View</span> {
     <span class="property-wrapper">@State</span> <span class="keyword">private var</span> isToggleOn <span class="operator">=</span> <span class="keyword">false</span>
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> { <span class="type">ChildView</span>(isToggleOn: $isToggleOn) }
@@ -914,7 +1045,9 @@ print(reversedNames)</code></pre>
                     </div>
                     <div class="card">
                         <h3>@StateObject vs. @ObservedObject</h3>
-                        <p>Both are used for complex reference-type data (classes). Use <code>@StateObject</code> when a view <strong>creates and owns</strong> the object. Use <code>@ObservedObject</code> when a view <strong>receives</strong> the object from a parent view.</p>
+                        <p>Both are used for complex reference-type data (classes). Use <code>@StateObject</code> when a
+                            view <strong>creates and owns</strong> the object. Use <code>@ObservedObject</code> when a
+                            view <strong>receives</strong> the object from a parent view.</p>
                         <pre><code><span class="keyword">class</span> <span class="type">UserProgress</span>: <span class="type">ObservableObject</span> {
     <span class="property-wrapper">@Published</span> <span class="keyword">var</span> score <span class="operator">=</span> <span class="number">0</span>
 }
@@ -945,7 +1078,9 @@ print(reversedNames)</code></pre>
                     </div>
                     <div class="card">
                         <h3>@EnvironmentObject</h3>
-                        <p>Injects an object into the environment, making it accessible to any child view in the hierarchy without passing it down manually. Useful for shared data like user settings or themes.</p>
+                        <p>Injects an object into the environment, making it accessible to any child view in the
+                            hierarchy without passing it down manually. Useful for shared data like user settings or
+                            themes.</p>
                         <pre><code><span class="comment">// Inject the object in the root view of the app</span>
 <span class="comment">// SceneDelegate.swift or App.swift</span>
 let settings <span class="operator">=</span> UserSettings()
@@ -962,7 +1097,8 @@ ContentView().environmentObject(settings)
                     </div>
                     <div class="card">
                         <h3>Firebase Authentication</h3>
-                        <p>Integrate secure authentication into your app using Firebase. It supports email & password, phone, and social logins like Google and Facebook.</p>
+                        <p>Integrate secure authentication into your app using Firebase. It supports email & password,
+                            phone, and social logins like Google and Facebook.</p>
                         <pre><code><span class="keyword">import</span> <span class="type">Firebase</span>
 
 <span class="comment">// Sign Up a new user</span>
@@ -979,7 +1115,8 @@ Auth.auth().signIn(withEmail: email, password: password)</code></pre>
                     </div>
                     <div class="card">
                         <h3>Cloud Firestore</h3>
-                        <p>A flexible, scalable NoSQL cloud database to store and sync data for client- and server-side development. Data is synced in real-time across all clients.</p>
+                        <p>A flexible, scalable NoSQL cloud database to store and sync data for client- and server-side
+                            development. Data is synced in real-time across all clients.</p>
                         <pre><code><span class="keyword">import</span> <span class="type">FirebaseFirestore</span>
 
 <span class="keyword">let</span> db <span class="operator">=</span> Firestore.firestore()
@@ -1004,7 +1141,9 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                 <div class="grid-container">
                     <div class="card">
                         <h3>Modifier Order Matters</h3>
-                        <p>The order in which you apply modifiers is important. A modifier usually wraps the view and returns a new, modified view. Applying them in a different order can produce a different result.</p>
+                        <p>The order in which you apply modifiers is important. A modifier usually wraps the view and
+                            returns a new, modified view. Applying them in a different order can produce a different
+                            result.</p>
                         <pre><code><span class="comment">// Example 1: Padding then Background</span>
 <span class="type">Text</span>(<span class="string">"Hello"</span>)
     .padding()
@@ -1017,14 +1156,22 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                         <div class="output-container">
                             <h4>Output</h4>
                             <div class="output-box" style="flex-direction: row; gap: 20px; align-items: center;">
-                                <div style="background-color: #FF3B30; padding: 10px; color: white; border-radius: 4px;">Hello</div>
-                                <div style="background-color: transparent; padding: 10px; border: 1px solid var(--border-color);"><span style="background-color: #FF3B30; color: white;">Hello</span></div>
+                                <div
+                                    style="background-color: #FF3B30; padding: 10px; color: white; border-radius: 4px;">
+                                    Hello</div>
+                                <div
+                                    style="background-color: transparent; padding: 10px; border: 1px solid var(--border-color);">
+                                    <span style="background-color: #FF3B30; color: white;">Hello</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <h3>Custom Fonts</h3>
-                        <p>To use custom fonts, add the font file (e.g., <code>.ttf</code> or <code>.otf</code>) to your project, register it in your <code>Info.plist</code> file, and then use it with the <code>.font(.custom(...))</code> modifier.</p>
+                        <p>To use custom fonts, add the font file (e.g., <code>.ttf</code> or <code>.otf</code>) to your
+                            project, register it in your <code>Info.plist</code> file, and then use it with the
+                            <code>.font(.custom(...))</code> modifier.
+                        </p>
                         <pre><code><span class="comment">// 1. Add font file to project</span>
 <span class="comment">// 2. Add "Fonts provided by application" key to Info.plist</span>
 <span class="comment">// 3. Use in your view</span>
@@ -1033,7 +1180,9 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                     </div>
                     <div class="card">
                         <h3>ViewModifier</h3>
-                        <p>Create reusable sets of modifiers by defining a custom <code>ViewModifier</code>. This helps keep your code clean and consistent, especially for styles you apply often, like for buttons or titles.</p>
+                        <p>Create reusable sets of modifiers by defining a custom <code>ViewModifier</code>. This helps
+                            keep your code clean and consistent, especially for styles you apply often, like for buttons
+                            or titles.</p>
                         <pre><code><span class="keyword">struct</span> <span class="type">PrimaryTitle</span>: <span class="type">ViewModifier</span> {
     <span class="keyword">func</span> <span class="function-name">body</span>(content: <span class="type">Content</span>) -> <span class="keyword">some</span> <span class="type">View</span> {
         content
@@ -1049,32 +1198,89 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
 <span class="type">Text</span>(<span class="string">"Main Title"</span>)
     .modifier(<span class="type">PrimaryTitle</span>())</code></pre>
                     </div>
-                    <div class="card"><h3>.font()</h3><p>Changes text font and size. E.g.,<br><code>.font(.title)</code>,<br><code>.font(.headline)</code>,<br><code>.font(.system(size: 32, weight: .bold))</code>,<br><code>.font(.custom("Corinthia-Regular", size: 70))</code>,<br><code>.font(.custom("Silkscreen-Regular", size: 40))</code>,<br><code>.font(.custom("Sacramento-Regular", size: 50))</code>.</p></div>
-                    <div class="card"><h3>.foregroundColor()</h3><p>Changes text or icon color. E.g.,<br><code>.foregroundColor(.blue)</code>,<br><code>.foregroundColor(Color.white)</code>.</p></div>
-                    <div class="card"><h3>.background()</h3><p>Puts a colored background. E.g.,<br><code>.background(Color.black.opacity(0.5))</code>.</p></div>
-                    <div class="card"><h3>.padding()</h3><p>Adds space around a view. E.g.,<br><code>.padding()</code> (all sides),<br><code>.padding(.horizontal)</code> (left & right),<br><code>.padding([.top, .leading], 10)</code> (specific sides & amount).</p></div>
-                    <div class="card"><h3>.cornerRadius()</h3><p>Rounds the corners. E.g.,<br><code>.cornerRadius(15)</code>.</p></div>
-                    <div class="card"><h3>.frame()</h3><p>Gives a view a fixed size. E.g.,<br><code>.frame(width: 150, height: 150)</code>,<br><code>.frame(height: 180)</code>.</p></div>
-                    <div class="card"><h3>.resizable()</h3><p>(For Images) Allows the image to be resized.</p></div>
-                    <div class="card"><h3>.aspectRatio() / .scaledToFill()</h3><p>(For Images) Controls how an image fills its frame. E.g.,<br><code>.aspectRatio(contentMode: .fill)</code>.</p></div>
-                    <div class="card"><h3>.clipShape()</h3><p>(For Images) Clips the view into a shape. E.g.,<br><code>.clipShape(Circle())</code>.</p></div>
-                    <div class="card"><h3>.overlay()</h3><p>Layers another view on top, often for borders. E.g.,<br><code>.overlay(Circle().stroke(Color.white, lineWidth: 4))</code>.</p></div>
-                    <div class="card"><h3>.shadow()</h3><p>Adds a drop shadow. E.g.,<br><code>.shadow(radius: 10)</code>.</p></div>
-                    <div class="card"><h3>.offset()</h3><p>Moves a view from its original position without affecting the layout of other views. E.g.,<br><code>.offset(x: 20, y: -10)</code> moves the view 20 points right and 10 points up.</p></div>
+                    <div class="card">
+                        <h3>.font()</h3>
+                        <p>Changes text font and size.
+                            E.g.,<br><code>.font(.title)</code>,<br><code>.font(.headline)</code>,<br><code>.font(.system(size: 32, weight: .bold))</code>,<br><code>.font(.custom("Corinthia-Regular", size: 70))</code>,<br><code>.font(.custom("Silkscreen-Regular", size: 40))</code>,<br><code>.font(.custom("Sacramento-Regular", size: 50))</code>.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>.foregroundColor()</h3>
+                        <p>Changes text or icon color.
+                            E.g.,<br><code>.foregroundColor(.blue)</code>,<br><code>.foregroundColor(Color.white)</code>.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>.background()</h3>
+                        <p>Puts a colored background. E.g.,<br><code>.background(Color.black.opacity(0.5))</code>.</p>
+                    </div>
+                    <div class="card">
+                        <h3>.padding()</h3>
+                        <p>Adds space around a view. E.g.,<br><code>.padding()</code> (all
+                            sides),<br><code>.padding(.horizontal)</code> (left &
+                            right),<br><code>.padding([.top, .leading], 10)</code> (specific sides & amount).</p>
+                    </div>
+                    <div class="card">
+                        <h3>.cornerRadius()</h3>
+                        <p>Rounds the corners. E.g.,<br><code>.cornerRadius(15)</code>.</p>
+                    </div>
+                    <div class="card">
+                        <h3>.frame()</h3>
+                        <p>Gives a view a fixed size.
+                            E.g.,<br><code>.frame(width: 150, height: 150)</code>,<br><code>.frame(height: 180)</code>.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>.resizable()</h3>
+                        <p>(For Images) Allows the image to be resized.</p>
+                    </div>
+                    <div class="card">
+                        <h3>.aspectRatio() / .scaledToFill()</h3>
+                        <p>(For Images) Controls how an image fills its frame.
+                            E.g.,<br><code>.aspectRatio(contentMode: .fill)</code>.</p>
+                    </div>
+                    <div class="card">
+                        <h3>.clipShape()</h3>
+                        <p>(For Images) Clips the view into a shape. E.g.,<br><code>.clipShape(Circle())</code>.</p>
+                    </div>
+                    <div class="card">
+                        <h3>.overlay()</h3>
+                        <p>Layers another view on top, often for borders.
+                            E.g.,<br><code>.overlay(Circle().stroke(Color.white, lineWidth: 4))</code>.</p>
+                    </div>
+                    <div class="card">
+                        <h3>.shadow()</h3>
+                        <p>Adds a drop shadow. E.g.,<br><code>.shadow(radius: 10)</code>.</p>
+                    </div>
+                    <div class="card">
+                        <h3>.offset()</h3>
+                        <p>Moves a view from its original position without affecting the layout of other views.
+                            E.g.,<br><code>.offset(x: 20, y: -10)</code> moves the view 20 points right and 10 points
+                            up.</p>
+                    </div>
                     <div class="card">
                         <h3>.position()</h3>
-                        <p>Places the center of a view at a specific coordinate within its parent's coordinate space. E.g.,<br><code>.position(x: 100, y: 150)</code>.</p>
+                        <p>Places the center of a view at a specific coordinate within its parent's coordinate space.
+                            E.g.,<br><code>.position(x: 100, y: 150)</code>.</p>
                         <p>For dynamic centering, use <code>GeometryReader</code> to get the parent's size:</p>
                         <pre><code><span class="type">GeometryReader</span> { geometry <span class="keyword">in</span>
     <span class="type">Text</span>(<span class="string">"Centered"</span>)
         .position(x: geometry.size.width / <span class="number">2</span>, y: geometry.size.height / <span class="number">2</span>)
 }</code></pre>
                     </div>
-                    <div class="card"><h3>.listStyle()</h3><p>(For Lists) Changes list appearance. E.g.,<br><code>.listStyle(.plain)</code>.</p></div>
-                    <div class="card"><h3>.ignoresSafeArea()</h3><p>(For Colors/Backgrounds) Makes it fill the whole screen, even under notches. E.g.,<br><code>Color.black.ignoresSafeArea()</code>.</p></div>
+                    <div class="card">
+                        <h3>.listStyle()</h3>
+                        <p>(For Lists) Changes list appearance. E.g.,<br><code>.listStyle(.plain)</code>.</p>
+                    </div>
+                    <div class="card">
+                        <h3>.ignoresSafeArea()</h3>
+                        <p>(For Colors/Backgrounds) Makes it fill the whole screen, even under notches.
+                            E.g.,<br><code>Color.black.ignoresSafeArea()</code>.</p>
+                    </div>
                     <div class="card">
                         <h3>Modifier Combo: Styled Button Text</h3>
-                        <p>Combining modifiers to create a common button style with padding, background, corner radius, and text styling.</p>
+                        <p>Combining modifiers to create a common button style with padding, background, corner radius,
+                            and text styling.</p>
                         <pre><code><span class="type">Text</span>(<span class="string">"Tap Me!"</span>)
     .font(.headline)
     .foregroundColor(.white)
@@ -1085,13 +1291,16 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                         <div class="output-container">
                             <h4>Output</h4>
                             <div class="output-box">
-                                <div style="font-weight: bold; color: white; padding: 10px 20px; background-color: var(--code-keyword); border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">Tap Me!</div>
+                                <div
+                                    style="font-weight: bold; color: white; padding: 10px 20px; background-color: var(--code-keyword); border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                    Tap Me!</div>
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <h3>Modifier Combo: Circular Profile Image</h3>
-                        <p>Common pattern for profile images: resizable, specific frame, circular clip, and an overlay border.</p>
+                        <p>Common pattern for profile images: resizable, specific frame, circular clip, and an overlay
+                            border.</p>
                         <pre><code><span class="type">Image</span>(<span class="string">"avatar1"</span>) <span class="comment">// Assuming "avatar1" is in Assets</span>
     .resizable()
     .scaledToFill() <span class="comment">// Fill the frame, may crop</span>
@@ -1104,13 +1313,16 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                         <div class="output-container">
                             <h4>Output</h4>
                             <div class="output-box">
-                                <div class="image-placeholder" style="width: 100px; height: 100px; border: 4px solid var(--accent-color); box-shadow: 0 0 7px rgba(0,0,0,0.3);">avatar1<br>Circular</div>
+                                <div class="image-placeholder"
+                                    style="width: 100px; height: 100px; border: 4px solid var(--accent-color); box-shadow: 0 0 7px rgba(0,0,0,0.3);">
+                                    avatar1<br>Circular</div>
                             </div>
                         </div>
                     </div>
-                     <div class="card">
+                    <div class="card">
                         <h3>Modifier Combo: Card View</h3>
-                        <p>Creating a card-like appearance using padding, background, corner radius, and shadow on a VStack.</p>
+                        <p>Creating a card-like appearance using padding, background, corner radius, and shadow on a
+                            VStack.</p>
                         <pre><code><span class="type">VStack</span>(alignment: .leading) {
     <span class="type">Text</span>(<span class="string">"Card Title"</span>)
         .font(.title2).bold()
@@ -1127,9 +1339,14 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                         <div class="output-container">
                             <h4>Output</h4>
                             <div class="output-box" style="background-color: transparent; border: none; padding: 10px;">
-                                <div style="background-color: rgba(128,128,128,0.1); /* Light Gray with opacity */ border-radius: 12px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left;">
-                                    <h5 style="font-size: 1.2em; font-weight: bold; color: var(--heading-color); margin-bottom: 5px;">Card Title</h5>
-                                    <p style="font-size: 0.9em; color: var(--text-color); opacity:0.7; margin:0;">This is some descriptive text for the card content. It explains what the card is about.</p>
+                                <div
+                                    style="background-color: rgba(128,128,128,0.1); /* Light Gray with opacity */ border-radius: 12px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left;">
+                                    <h5
+                                        style="font-size: 1.2em; font-weight: bold; color: var(--heading-color); margin-bottom: 5px;">
+                                        Card Title</h5>
+                                    <p style="font-size: 0.9em; color: var(--text-color); opacity:0.7; margin:0;">This
+                                        is some descriptive text for the card content. It explains what the card is
+                                        about.</p>
                                 </div>
                             </div>
                         </div>
@@ -1140,7 +1357,8 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                 <div class="grid-container">
                     <div class="card">
                         <h3>.opacity()</h3>
-                        <p>Controls the transparency of a view. A value of 1.0 is fully opaque, while 0.0 is fully transparent.</p>
+                        <p>Controls the transparency of a view. A value of 1.0 is fully opaque, while 0.0 is fully
+                            transparent.</p>
                         <pre><code><span class="type">Text</span>(<span class="string">"Faded Text"</span>)
     .opacity(<span class="number">0.5</span>)</code></pre>
                         <div class="output-container">
@@ -1170,7 +1388,8 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                     </div>
                     <div class="card">
                         <h3>.blur()</h3>
-                        <p>Applies a Gaussian blur effect to a view. The radius determines the intensity of the blur.</p>
+                        <p>Applies a Gaussian blur effect to a view. The radius determines the intensity of the blur.
+                        </p>
                         <pre><code><span class="type">Text</span>(<span class="string">"Blurred"</span>)
     .blur(radius: <span class="number">3.0</span>)</code></pre>
                         <div class="output-container">
@@ -1180,7 +1399,9 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                     </div>
                     <div class="card">
                         <h3>Gradients</h3>
-                        <p>Create smooth transitions between colors. Common types include <code>LinearGradient</code>, <code>RadialGradient</code>, and <code>AngularGradient</code>.</p>
+                        <p>Create smooth transitions between colors. Common types include <code>LinearGradient</code>,
+                            <code>RadialGradient</code>, and <code>AngularGradient</code>.
+                        </p>
                         <pre><code><span class="type">VStack</span>(spacing: <span class="number">10</span>) {
     <span class="type">LinearGradient</span>(colors: [.blue, .white], startPoint: .top, endPoint: .bottom)
     <span class="type">RadialGradient</span>(colors: [.yellow, .red], center: .center, startRadius: <span class="number">5</span>, endRadius: <span class="number">50</span>)
@@ -1190,9 +1411,14 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                         <div class="output-container">
                             <h4>Output</h4>
                             <div class="output-box" style="flex-direction: column; gap: 10px; width: 100%;">
-                                <div class="gradient-bg" style="background: linear-gradient(to bottom, #007AFF, white); color: black;">Linear</div>
-                                <div class="gradient-bg" style="background: radial-gradient(circle, #FFCC00, #FF3B30);">Radial</div>
-                                <div class="gradient-bg" style="background: conic-gradient(from 0deg, #34C759, #007AFF, #34C759);">Angular</div>
+                                <div class="gradient-bg"
+                                    style="background: linear-gradient(to bottom, #007AFF, white); color: black;">Linear
+                                </div>
+                                <div class="gradient-bg" style="background: radial-gradient(circle, #FFCC00, #FF3B30);">
+                                    Radial</div>
+                                <div class="gradient-bg"
+                                    style="background: conic-gradient(from 0deg, #34C759, #007AFF, #34C759);">Angular
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1202,7 +1428,8 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                 <div class="grid-container">
                     <div class="card">
                         <h3>State & Actions</h3>
-                        <p>Use <code>@State</code> to store a value that can change. A <code>Button</code> can change that value, and SwiftUI will automatically update the view.</p>
+                        <p>Use <code>@State</code> to store a value that can change. A <code>Button</code> can change
+                            that value, and SwiftUI will automatically update the view.</p>
                         <pre><code><span class="property-wrapper">@State</span> <span class="keyword">private var</span> tapCount <span class="operator">=</span> <span class="number">0</span>
 
 <span class="type">VStack</span>(spacing: <span class="number">15</span>) {
@@ -1215,7 +1442,8 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                             <h4>Interactive Output</h4>
                             <div class="output-box">
                                 <div id="tap-count-output">Taps: 0</div>
-                                <div class="interactive-button" style="margin-top: 10px;" onclick="updateTapCount()">Tap Me</div>
+                                <div class="interactive-button" style="margin-top: 10px;" onclick="updateTapCount()">Tap
+                                    Me</div>
                             </div>
                         </div>
                     </div>
@@ -1231,7 +1459,10 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                     </div>
                     <div class="card">
                         <h3>Animation</h3>
-                        <p>SwiftUI provides two main ways to create animations: implicit animations using the <code>.animation()</code> modifier, and explicit animations using the <code>withAnimation</code> block.</p>
+                        <p>SwiftUI provides two main ways to create animations: implicit animations using the
+                            <code>.animation()</code> modifier, and explicit animations using the
+                            <code>withAnimation</code> block.
+                        </p>
                         <pre><code><span class="property-wrapper">@State</span> <span class="keyword">private var</span> isRotated <span class="operator">=</span> <span class="keyword">false</span>
 
 <span class="comment">// Implicit Animation</span>
@@ -1248,7 +1479,8 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                     </div>
                     <div class="card">
                         <h3>.onAppear() / .onDisappear()</h3>
-                        <p>Triggers an action when a view becomes visible or is removed from the view hierarchy. Useful for loading data or cleanup.</p>
+                        <p>Triggers an action when a view becomes visible or is removed from the view hierarchy. Useful
+                            for loading data or cleanup.</p>
                         <pre><code><span class="type">Text</span>(<span class="string">"My View"</span>)
     .onAppear {
         print(<span class="string">"View appeared!"</span>)
@@ -1265,7 +1497,8 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                     </div>
                     <div class="card">
                         <h3>.sheet() & .presentationDetents()</h3>
-                        <p>Presents a view modally. Use <code>.presentationDetents()</code> to specify the height of the sheet, such as half-screen (<code>.medium</code>) or full-screen (<code>.large</code>).</p>
+                        <p>Presents a view modally. Use <code>.presentationDetents()</code> to specify the height of the
+                            sheet, such as half-screen (<code>.medium</code>) or full-screen (<code>.large</code>).</p>
                         <pre><code><span class="property-wrapper">@State</span> <span class="keyword">private var</span> isShowingSheet = <span class="keyword">false</span>
 
 <span class="type">Button</span>(<span class="string">"Show Sheet"</span>) {
@@ -1284,7 +1517,8 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                     </div>
                     <div class="card">
                         <h3>.alert()</h3>
-                        <p>Displays an alert message to the user, also controlled by a boolean <code>@State</code> variable.</p>
+                        <p>Displays an alert message to the user, also controlled by a boolean <code>@State</code>
+                            variable.</p>
                         <pre><code><span class="property-wrapper">@State</span> <span class="keyword">private var</span> isShowingAlert = <span class="keyword">false</span>
 
 <span class="type">Button</span>(<span class="string">"Show Alert"</span>) {
@@ -1301,13 +1535,17 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                         </div>
                     </div>
                 </div>
-                
+
                 <h3 class="subsection-title">Navigation</h3>
                 <div class="grid-container">
                     <div class="card">
                         <h3>NavigationView & NavigationLink</h3>
-                        <p><code>NavigationView</code> creates a navigation bar. <code>NavigationLink</code> is a special button that pushes a new view onto the screen.</p>
-                        <p style="font-size: 0.9em; color: var(--accent-color);"><strong>Note:</strong> <code>NavigationView</code> is deprecated in iOS 16+. It's recommended to use <code>NavigationStack</code> for new projects for more robust navigation control.</p>
+                        <p><code>NavigationView</code> creates a navigation bar. <code>NavigationLink</code> is a
+                            special button that pushes a new view onto the screen.</p>
+                        <p style="font-size: 0.9em; color: var(--accent-color);"><strong>Note:</strong>
+                            <code>NavigationView</code> is deprecated in iOS 16+. It's recommended to use
+                            <code>NavigationStack</code> for new projects for more robust navigation control.
+                        </p>
                         <pre><code><span class="type">NavigationView</span> {
     <span class="type">VStack</span> {
         <span class="type">NavigationLink</span>(destination: <span class="type">Text</span>(<span class="string">"Detail View"</span>)) {
@@ -1319,23 +1557,34 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                         <!-- MODIFIED: Navigation output to show side-by-side views -->
                         <div class="output-container">
                             <h4>Output: Master → Detail View</h4>
-                            <div class="output-box" style="flex-direction: row; align-items: stretch; gap: 15px; background-color: transparent; border: none; padding: 0;">
+                            <div class="output-box"
+                                style="flex-direction: row; align-items: stretch; gap: 15px; background-color: transparent; border: none; padding: 0;">
                                 <!-- Master View -->
-                                <div style="flex: 1; border: 1px solid var(--output-border-color); border-radius: 8px; background-color: var(--output-bg-color); display: flex; flex-direction: column; overflow: hidden;">
+                                <div
+                                    style="flex: 1; border: 1px solid var(--output-border-color); border-radius: 8px; background-color: var(--output-bg-color); display: flex; flex-direction: column; overflow: hidden;">
                                     <div class="nav-bar">Master View</div>
-                                    <div style="padding: 20px; display: flex; justify-content: center; align-items: center; flex-grow: 1;">
-                                        <div class="styled-text" style="background-color: #e0e0e0; color: #007AFF; font-weight: 500; padding: 6px 10px; font-size: 0.9em;">Go to Detail</div>
+                                    <div
+                                        style="padding: 20px; display: flex; justify-content: center; align-items: center; flex-grow: 1;">
+                                        <div class="styled-text"
+                                            style="background-color: #e0e0e0; color: #007AFF; font-weight: 500; padding: 6px 10px; font-size: 0.9em;">
+                                            Go to Detail</div>
                                     </div>
                                 </div>
                                 <!-- Arrow -->
-                                <div style="display: flex; align-items: center; font-size: 2rem; color: var(--accent-color);">→</div>
+                                <div
+                                    style="display: flex; align-items: center; font-size: 2rem; color: var(--accent-color);">
+                                    →</div>
                                 <!-- Detail View -->
-                                <div style="flex: 1; border: 1px solid var(--output-border-color); border-radius: 8px; background-color: var(--output-bg-color); display: flex; flex-direction: column; overflow: hidden;">
-                                    <div class="nav-bar" style="display: flex; align-items: center; justify-content: center; position: relative;">
-                                        <span style="position: absolute; left: 10px; color: #007AFF; font-size: 0.9em;">< Master</span>
-                                        <span style="font-weight: bold;">Detail View</span>
+                                <div
+                                    style="flex: 1; border: 1px solid var(--output-border-color); border-radius: 8px; background-color: var(--output-bg-color); display: flex; flex-direction: column; overflow: hidden;">
+                                    <div class="nav-bar"
+                                        style="display: flex; align-items: center; justify-content: center; position: relative;">
+                                        <span style="position: absolute; left: 10px; color: #007AFF; font-size: 0.9em;">
+                                            < Master</span>
+                                                <span style="font-weight: bold;">Detail View</span>
                                     </div>
-                                    <div style="padding: 20px; display: flex; justify-content: center; align-items: center; flex-grow: 1;">
+                                    <div
+                                        style="padding: 20px; display: flex; justify-content: center; align-items: center; flex-grow: 1;">
                                         Detail Content
                                     </div>
                                 </div>
@@ -1344,7 +1593,8 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                     </div>
                     <div class="card">
                         <h3>NavigationStack</h3>
-                        <p>The modern way to handle navigation, introduced in iOS 16. It provides a more flexible and programmatic way to manage a stack of views.</p>
+                        <p>The modern way to handle navigation, introduced in iOS 16. It provides a more flexible and
+                            programmatic way to manage a stack of views.</p>
                         <pre><code><span class="type">NavigationStack</span> {
     <span class="type">List</span>(destinations) { destination <span class="keyword">in</span>
         <span class="type">NavigationLink</span>(destination.name, value: destination)
@@ -1357,7 +1607,9 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                     </div>
                     <div class="card">
                         <h3>Modal Presentation with .sheet()</h3>
-                        <p>Presents a view modally over the current one. This is a common way to handle self-contained tasks like logging in, creating a new item, or showing settings, without adding to the main navigation stack.</p>
+                        <p>Presents a view modally over the current one. This is a common way to handle self-contained
+                            tasks like logging in, creating a new item, or showing settings, without adding to the main
+                            navigation stack.</p>
                         <pre><code><span class="property-wrapper">@State</span> <span class="keyword">private var</span> isShowingLoginSheet <span class="operator">=</span> <span class="keyword">false</span>
 
 <span class="type">VStack</span> {
@@ -1379,7 +1631,7 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
                 </div>
             </div>
         </section>
-            </div>
+        </div>
     </main>
 
     <footer>
@@ -1389,11 +1641,11 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
     <script src="../js/main.js"></script>
     <script>
         // Page-specific JavaScript for swift-swiftui-cheatsheet.html
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Tap counter functionality (if element exists)
             const tapButton = document.querySelector('.interactive-button[onclick="updateTapCount()"]');
             if (tapButton) { // Check if the specific button exists
-                 tapButton.addEventListener('click', function updateTapCount() {
+                tapButton.addEventListener('click', function updateTapCount() {
                     const tapCountElement = document.getElementById('tap-count-output');
                     if (tapCountElement) {
                         const currentTaps = parseInt(tapCountElement.innerText.split(': ')[1] || 0);
@@ -1414,4 +1666,5 @@ db.collection(<span class="string">"users"</span>).getDocuments() { (querySnapsh
     </script>
     <button id="scrollToTopBtn" class="scroll-to-top-button" title="Go to top">⬆️</button>
 </body>
+
 </html>

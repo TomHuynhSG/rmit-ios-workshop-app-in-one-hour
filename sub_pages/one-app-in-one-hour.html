@@ -77,6 +77,96 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Styles for output examples */
+        .output-container {
+            margin-top: 15px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+        }
+
+        .output-container h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .output-box {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+            font-family: 'Helvetica Neue', sans-serif;
+            color: #333;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        /* Dark mode adjustments for output box */
+        @media (prefers-color-scheme: dark) {
+            .output-box {
+                background-color: #2c2c2e;
+                border-color: #444;
+                color: #fff;
+            }
+        }
+
+        .output-box .sf-symbol {
+            width: 32px;
+            height: 32px;
+            fill: currentColor;
+        }
+
+        .output-box .styled-text,
+        .output-box .interactive-button {
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: white;
+            background-color: #007AFF;
+        }
+
+        .output-box .interactive-button {
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .output-box .interactive-button:hover {
+            background-color: #0056b3;
+        }
+
+        .output-box .image-placeholder {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 0.8rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .output-box .gradient-bg {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -207,8 +297,12 @@
                         <li>Change the icon names to other SF Symbols (e.g., <code>"message.fill"</code>,
                             <code>"paperplane.fill"</code>).
                         </li>
-                        <li><strong>Tip:</strong> Use the SF Symbols app or the <strong>(+)</strong> menu in Playgrounds
-                            to find new icons.</li>
+                        <li><strong>Tip:</strong> Use the star menu in the Playgrounds
+                            to find new icons.
+                            <br>
+                            <img src="../assets/guide_imgs/magic-me-workshop/search-sf-symbols.png"
+                                alt="Search SF Symbols" class="img-large">
+                        </li>
                     </ol>
 
                     <pre><code><span class="comment">// MARK: - STEP 5: CONTACT BUTTONS</span>
@@ -230,9 +324,6 @@
                         </li>
                         <li><strong>The Icon Trick:</strong> Don't guess the icon names! Click on the Star Icon to find
                             them.
-                            <br>
-                            <img src="../assets/guide_imgs/magic-me-workshop/search-sf-symbols.png"
-                                alt="Search SF Symbols" class="img-large">
                         </li>
                     </ol>
 
@@ -411,6 +502,12 @@
         <span class="function">Text</span>(<span class="string">"Hello there"</span>)
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            Hello there
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -423,6 +520,12 @@
         <span class="function">Text</span>(name)
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            Tom
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -434,6 +537,12 @@
         <span class="function">Text</span>(<span class="string">"My name is \(name)"</span>)
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            My name is Tom
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -446,6 +555,12 @@
         <span class="function">Text</span>(<span class="string">"My name is \(name) and my score is \(score)"</span>)
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            My name is Tom and my score is 10
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -471,6 +586,14 @@
         }
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            My name is Tom and my score is 10. My height is 1.75
+                            <br>I'm not a student
+                            <br>I am good!
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -485,6 +608,13 @@
         }
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            My random fruit is below:<br>
+                            Banana
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -495,6 +625,13 @@
         <span class="function">Image</span>(<span class="string">"avatar-1"</span>)
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            <img src="../assets/avatar-1.png" alt="avatar-1"
+                                style="max-width: 100px; height: auto; border-radius: 50%;">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -512,6 +649,13 @@
             .<span class="function">frame</span>(width: 300)
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            <img src="../assets/avatar-1.png" alt="avatar-1"
+                                style="width: 150px; height: auto; border-radius: 50%;">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -524,6 +668,13 @@
             .<span class="function">foregroundColor</span>(.blue)
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            <img src="../assets/heart.circle.fill.png" alt="heart.circle.fill"
+                                style="width: 50px; height: auto;">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -539,6 +690,14 @@
         }
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            Item 1
+                            <br>Item 2
+                            <br>Item 3
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -553,6 +712,13 @@
         }
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box" style="display: flex; align-items: center;">
+                            <img src="../assets/star.fill.png" alt="star.fill" style="width: 20px; height: auto;">
+                            <span style="margin-left: 5px;">My Hobby is Basketball</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -568,6 +734,13 @@
         }
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box" style="display: flex; justify-content: space-between; width: 100%;">
+                            <span>Start</span>
+                            <span>End</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -581,6 +754,12 @@
         }
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box" style="background-color: purple; color: white; text-align: center;">
+                            Content on Top
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -607,6 +786,21 @@
         .<span class="function">frame</span>(width: 250, height: 150) <span class="comment">// Frame for ZStack</span>
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box"
+                            style="background-color: green; color: white; padding: 10px; width: 250px; height: 150px; display: flex; flex-direction: column; justify-content: center;">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; align-items: center;">
+                                    <img src="../assets/star.fill.png" alt="star.fill"
+                                        style="width: 20px; height: auto;">
+                                    <span style="margin-left: 5px; font-weight: bold;">Featured Item</span>
+                                </div>
+                                <span></span>
+                            </div>
+                            <span style="font-size: 0.8em;">This item uses ZStack, VStack, HStack, and Spacer.</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
@@ -624,6 +818,20 @@
         }
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            <span id="tap-text-15">Taps: 0</span><br>
+                            <button class="interactive-button" id="btn-15">Tap Me</button>
+                        </div>
+                    </div>
+                    <script>
+                        document.getElementById('btn-15').addEventListener('click', function () {
+                            const textElement = document.getElementById('tap-text-15');
+                            let currentCount = parseInt(textElement.innerText.split(': ')[1]);
+                            textElement.innerText = 'Taps: ' + (currentCount + 1);
+                        });
+                    </script>
                 </div>
 
                 <div class="card instruction-step">
@@ -641,6 +849,23 @@
         }
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            <span id="tap-text-16">Taps: 0</span><br>
+                            <div class="image-placeholder" id="img-16" style="cursor: pointer;">
+                                <img src="../assets/avatar-1.png" alt="avatar-1"
+                                    style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        document.getElementById('img-16').addEventListener('click', function () {
+                            const textElement = document.getElementById('tap-text-16');
+                            let currentCount = parseInt(textElement.innerText.split(': ')[1]);
+                            textElement.innerText = 'Taps: ' + (currentCount + 1);
+                        });
+                    </script>
                 </div>
 
                 <div class="card instruction-step">
@@ -661,6 +886,33 @@
         }
     }
 }</code></pre>
+                    <div class="output-container">
+                        <h4>Output</h4>
+                        <div class="output-box">
+                            <span id="tap-text-17">Taps: 0</span><br>
+                            <div class="image-placeholder" id="img-17"
+                                style="cursor: pointer; transition: transform 0.5s ease-in-out;">
+                                <img src="../assets/avatar-1.png" alt="avatar-1"
+                                    style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        document.getElementById('img-17').addEventListener('click', function () {
+                            const textElement = document.getElementById('tap-text-17');
+                            const imgElement = document.getElementById('img-17');
+
+                            // Update count
+                            let currentCount = parseInt(textElement.innerText.split(': ')[1]);
+                            textElement.innerText = 'Taps: ' + (currentCount + 1);
+
+                            // Animate
+                            imgElement.style.transform = 'scale(1.2)';
+                            setTimeout(() => {
+                                imgElement.style.transform = 'scale(1)';
+                            }, 200);
+                        });
+                    </script>
                 </div>
             </div>
         </section>

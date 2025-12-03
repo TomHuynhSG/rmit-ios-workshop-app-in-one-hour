@@ -59,6 +59,24 @@
         .card ul {
             list-style-type: disc;
         }
+
+        /* Grid layout for Part 1, 2, and 3 steps */
+        #part1-setup .collapsible-content,
+        #part2-concepts .collapsible-content,
+        #part3-building-ui .collapsible-content {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+
+            #part1-setup .collapsible-content,
+            #part2-concepts .collapsible-content,
+            #part3-building-ui .collapsible-content {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -83,14 +101,310 @@
 
     <main class="container">
 
-        <section class="cheatsheet-section" id="part1-concepts">
-            <h2 class="collapsible-header start-open">
-                Part 1: Core Concepts & UI Basics
+        <section class="cheatsheet-section" id="part1-setup">
+            <h2 class="collapsible-header">
+                Part 1: Setup & Download 🛠️
                 <span class="collapse-icon"></span>
             </h2>
             <div class="collapsible-content">
                 <div class="card instruction-step">
-                    <h3>1. Displaying Static Text</h3>
+                    <h3>Step 1: Grab the Goods (Download) 📥</h3>
+                    <p>Click the link below to download the starter project files.</p>
+                    <p><a href="../assets/files/Magic Me.zip" download class="download-button"><i
+                                class="fas fa-download"></i> Download Magic Me.zip</a></p>
+                </div>
+                <div class="card instruction-step">
+                    <h3>Step 2: Unleash the Files (Unzip) 📂</h3>
+                    <p>Locate the downloaded <code>Magic Me.zip</code> file in your Downloads folder and double-click it
+                        to unzip it.</p>
+                    <img src="../assets/guide_imgs/magic-me-workshop/part-1-step-2.png" alt="Unzip Magic Me.zip"
+                        class="img-large">
+                </div>
+                <div class="card instruction-step">
+                    <h3>Step 3: Launch the Lab (Open Playgrounds) 🐦</h3>
+                    <p>Open the unzipped folder and double-click on the <code>Magic Me</code> file to open it in Swift
+                        Playgrounds.</p>
+                    <img src="../assets/guide_imgs/magic-me-workshop/part-1-step-3.png" alt="Open Magic Me file"
+                        class="img-large">
+                </div>
+                <div class="card instruction-step">
+                    <h3>Step 4: Shake Hands (Trust) 🤝</h3>
+                    <p>If you see a dialog asking "Are you sure you want to open Magic Me?", click <strong>Open</strong>
+                        to trust and open the file.</p>
+                    <img src="../assets/guide_imgs/magic-me-workshop/part-1-step-4.png"
+                        alt="Trust the Playground Dialog" class="img-large">
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="part3-building-ui">
+            <h2 class="collapsible-header">
+                Part 2: Build Your App 📱
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+
+                <div class="card instruction-step">
+                    <h3>Mission 1: Steal the Identity 🕵️‍♀️</h3>
+                    <p><strong>Duration:</strong> 5 Minutes<br>
+                        <strong>The Goal:</strong> Take ownership of the app immediately.
+                    </p>
+                    <p><strong>The Task:</strong></p>
+                    <ol>
+                        <li>Look at the very top of the file under <strong>STEP 1</strong>.</li>
+                        <li>Find the text inside the quotation marks <code>""</code>.</li>
+                        <li>Delete my name and type yours.</li>
+                        <li><strong>Press "Run App"</strong> (the Play button) to see your changes live!</li>
+                    </ol>
+
+                    <pre><code><span class="comment">// MARK: - STEP 1: PERSONALITY</span>
+<span class="comment">// Change the text inside the quotes "" to your own details.</span>
+<span class="keyword">let</span> myName = <span class="string">"Tom Huynh"</span>
+<span class="keyword">let</span> myJob = <span class="string">"RMIT Lecturer"</span>
+<span class="keyword">let</span> myPhone = <span class="string">"0123456789"</span>
+<span class="keyword">let</span> myEmail = <span class="string">"tom.huynh@rmit.edu.vn"</span></code></pre>
+                </div>
+
+                <div class="card instruction-step">
+                    <h3>Mission 2: Vibe Check 🎨</h3>
+                    <p><strong>Duration:</strong> 10 Minutes<br>
+                        <strong>The Goal:</strong> Master SwiftUI Modifiers (Colors & Fonts).
+                    </p>
+                    <p><strong>The Task:</strong></p>
+                    <ol>
+                        <li><strong>Background:</strong> Find <strong>STEP 2</strong>. Delete <code>.mint</code> and
+                            type a dot <code>.</code> to see a popup list of all Apple colors (e.g.,
+                            <code>.purple</code>, <code>.indigo</code>, <code>.black</code>).
+                        </li>
+                        <li><strong>Text:</strong> Find <strong>STEP 4</strong>. Change <code>.bold</code> to
+                            <code>.heavy</code> or <code>.thin</code>.
+                        </li>
+                        <li><strong>Challenge:</strong> Who can make the <em>ugliest</em> color combination
+                            possible? (e.g., Yellow background with White text).</li>
+                    </ol>
+
+                    <pre><code><span class="comment">// MARK: - STEP 2: BACKGROUND COLOR</span>
+<span class="comment">// Try changing .mint to .blue, .purple, .black, or .orange</span>
+<span class="type">Color</span>.mint
+    .<span class="function">ignoresSafeArea</span>() <span class="comment">// Fills the whole screen</span>
+
+<span class="comment">// ...</span>
+
+<span class="comment">// MARK: - STEP 4: TEXT STYLING</span>
+<span class="comment">// Try changing .bold to .heavy or .thin</span>
+<span class="function">Text</span>(myName)
+    .<span class="function">font</span>(.<span class="function">system</span>(size: 32, weight: .bold))</code></pre>
+                </div>
+
+                <div class="card instruction-step">
+                    <h3>Mission 3: Iconify Your Life 🖼️</h3>
+                    <p><strong>Duration:</strong> 5 Minutes<br>
+                        <strong>The Goal:</strong> Customize contact button icons.
+                    </p>
+                    <p><strong>The Task:</strong></p>
+                    <ol>
+                        <li>Find <strong>STEP 5</strong>.</li>
+                        <li>Change the icon names to other SF Symbols (e.g., <code>"message.fill"</code>,
+                            <code>"paperplane.fill"</code>).
+                        </li>
+                        <li><strong>Tip:</strong> Use the SF Symbols app or the <strong>(+)</strong> menu in Playgrounds
+                            to find new icons.</li>
+                    </ol>
+
+                    <pre><code><span class="comment">// MARK: - STEP 5: CONTACT BUTTONS</span>
+<span class="comment">// These use the data you typed in Step 1.</span>
+<span class="function">ContactPill</span>(icon: <span class="string">"phone.fill"</span>, text: myPhone)
+<span class="function">ContactPill</span>(icon: <span class="string">"envelope.fill"</span>, text: myEmail)</code></pre>
+                </div>
+
+                <div class="card instruction-step">
+                    <h3>Mission 4: Clone Wars (Reusability) ⚙️</h3>
+                    <p><strong>Duration:</strong> 10 Minutes<br>
+                        <strong>The Goal:</strong> Learn Reusability & SF Symbols.
+                    </p>
+                    <p><strong>The Task:</strong></p>
+                    <ol>
+                        <li>Scroll down to <strong>STEP 7</strong> (HobbyList).</li>
+                        <li><strong>The Copy/Paste Hack:</strong> Programmers are lazy! Copy the line starting with
+                            <code>HobbyRow(...)</code> and paste it again to create a 4th hobby.
+                        </li>
+                        <li><strong>The Icon Trick:</strong> Don't guess the icon names! Click on the Star Icon to find
+                            them.
+                            <br>
+                            <img src="../assets/guide_imgs/magic-me-workshop/search-sf-symbols.png"
+                                alt="Search SF Symbols" class="img-large">
+                        </li>
+                    </ol>
+
+                    <pre><code><span class="comment">// MARK: - STEP 7: CUSTOMIZE HOBBIES</span>
+<span class="comment">// You can change the icon names (e.g. "star.fill", "heart.fill") and the text.</span>
+<span class="keyword">struct</span> <span class="type">HobbyList</span>: <span class="type">View</span> {
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+        <span class="function">VStack</span>(alignment: .leading, spacing: 10) {
+            <span class="function">HobbyRow</span>(icon: <span class="string">"gamecontroller.fill"</span>, text: <span class="string">"Gaming"</span>)
+            <span class="function">HobbyRow</span>(icon: <span class="string">"music.note"</span>, text: <span class="string">"Listening to Music"</span>)
+            <span class="function">HobbyRow</span>(icon: <span class="string">"film.fill"</span>, text: <span class="string">"Watching Movies"</span>)
+            <span class="comment">// You can copy and paste the line above to add a 4th hobby!</span>
+        }
+        .<span class="function">padding</span>()
+        .<span class="function">background</span>(<span class="type">Color</span>.white.<span class="function">opacity</span>(0.8))
+        .<span class="function">cornerRadius</span>(15)
+    }
+}</code></pre>
+                </div>
+
+                <div class="card instruction-step">
+                    <h3>Mission 5: Brain Power (Data) 🧠</h3>
+                    <p><strong>Duration:</strong> 10 Minutes<br>
+                        <strong>The Goal:</strong> Modify an Array (Data Collection).
+                    </p>
+                    <p><strong>The Task:</strong></p>
+                    <ol>
+                        <li>Scroll to <strong>STEP 8</strong>.</li>
+                        <li>This is an <strong>Array</strong> (a list of text strings).</li>
+                        <li>Add your own phrases inside quotes <code>""</code>.</li>
+                        <li><strong>CRITICAL RULE:</strong> Make sure you put a <strong>comma
+                                <code>,</code></strong> between every phrase, or the code will explode!</li>
+                    </ol>
+
+                    <pre><code><span class="comment">// MARK: - STEP 8: GEN Z SLANG DATABASE</span>
+<span class="comment">// Add your own phrases inside the quotes!</span>
+<span class="keyword">let</span> allAnswers = [
+    <span class="string">"Bet."</span>, <span class="string">"No cap."</span>, <span class="string">"It's giving... yes."</span>, <span class="string">"Slay."</span>, <span class="string">"That's fire."</span>,
+    <span class="string">"Manifesting this."</span>, <span class="string">"The vibes are immaculate."</span>, <span class="string">"Let's get it."</span>,
+    <span class="string">"It's giving... nope."</span>, <span class="string">"That's a major L."</span>, <span class="string">"Big yikes."</span>, <span class="string">"I'm not the one."</span>,
+    <span class="string">"That's cringe."</span>, <span class="string">"The math ain't mathing."</span>, <span class="string">"It's a no from me."</span>,
+    <span class="string">"Vibe check passed."</span>, <span class="string">"Ask again later."</span>, <span class="string">"The rizz is unconfirmed."</span>,
+    <span class="string">"Let it cook."</span>, <span class="string">"Main character energy."</span>
+]</code></pre>
+                </div>
+
+                <div class="card instruction-step">
+                    <h3>Mission 6: AI Magic 🤖</h3>
+                    <p><strong>Duration:</strong> 15 Minutes<br>
+                        <strong>The Goal:</strong> Generate AI Assets & Import them.
+                    </p>
+                    <p><strong>The Task:</strong></p>
+                    <ol>
+                        <li><strong>Browse Our Gallery:</strong> Check out the <a href="asset-gallery.html"
+                                target="_blank">Asset Gallery</a> for a collection of celebrity avatars and fun images
+                            ready to use!</li>
+                        <li><strong>Or Generate Your Own:</strong> Open Safari and go to one of these free AI
+                            generators:
+                            <ul>
+                                <li><strong>Perchance (Fastest):</strong>
+                                    <a href="https://perchance.org/ai-text-to-image-generator"
+                                        target="_blank">perchance.org/ai-text-to-image-generator</a>
+                                </li>
+                                <li><strong>ArtGuru:</strong> <a href="https://artguru.ai"
+                                        target="_blank">artguru.ai</a></li>
+                                <li><strong>Raphael:</strong> <a href="https://raphael.app"
+                                        target="_blank">raphael.app</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Prompt:</strong> Type something crazy like: <em>"Avatar of Justin Bieber in
+                                Cyberpunk style"</em> or <em>"Cute 3D Pixar character coding on a laptop."</em></li>
+                        <li><strong>Save:</strong> Long-press the image and "Save to Photos."</li>
+                        <li><strong>Import:</strong>
+                            <ul>
+                                <li>In the <strong>Finder</strong> where you downloaded your photo, click and drag it
+                                    over to <strong>Assets</strong> in Swift Playgrounds.</li>
+                                <li><strong>Rename</strong> the file in the sidebar to <code>avatar-picture</code> (keep
+                                    it simple!).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Code:</strong> Go to <strong>STEP 9</strong> and update the code.</li>
+                    </ol>
+
+                    <pre><code><span class="comment">// MARK: - STEP 9: YOUR IMAGE</span>
+<span class="comment">// Make sure the name "avatar-picture" matches the file in your Assets</span>
+<span class="function">Image</span>(<span class="string">"avatar-picture"</span>) 
+    .<span class="function">resizable</span>()
+    .<span class="function">scaledToFit</span>()
+    .<span class="function">frame</span>(width: 150)
+    .<span class="function">clipShape</span>(<span class="function">Circle</span>())</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="challenge">
+            <h2 class="collapsible-header">
+                🚀 Part 3: The Ultimate Challenge 🏆
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <p>Work solo and get ready for the ultimate creative showdown! Your mission, should
+                        you choose to accept it, is to transform the basic "Magic Me" app into a legendary digital
+                        oracle. This is your chance to infuse the app with your unique personality and flair.</p>
+                    <p><strong>The Quest: 🧙‍♂️</strong> Will you create a wise-cracking wizard, a sassy crystal ball
+                        🔮,
+                        a futuristic AI 🤖, or something completely out of this world? The choice is yours!</p>
+                    <h3>Judging Criteria - The Four Pillars of Power:</h3>
+                    <ul>
+                        <li><strong style="color: #a855f7;">Visual Design (Appealing):</strong> Is your app a visual
+                            feast? We're looking for
+                            stunning designs, slick animations, and a user interface that wows. ✨</li>
+                        <li><strong style="color: #22c55e;">Creative Implementation (Creative):</strong> Did you think
+                            outside the box? Surprise us with
+                            a concept that is original, fresh, and unforgettable. 💡</li>
+                        <li><strong style="color: #3b82f6;">User Engagement (Interesting):</strong> Does your app make
+                            us want to come back
+                            for more? Is it captivating and interactive? 🎮</li>
+                        <li><strong style="color: #eab308;">Technical Excellence (Functionality):</strong> Does it make
+                            us laugh? Is it a joy to use? We want to see
+                            apps that are genuinely entertaining. 😂</li>
+                    </ul>
+                </div>
+                <div class="card instruction-step">
+                    <h3>How to Submit Your Entry 📮</h3>
+                    <ol style="list-style-type: decimal; padding-left: 20px; line-height: 1.8;">
+                        <li>Click the <strong>(+)</strong> button at the bottom-right of the Padlet board to start your
+                            post.</li>
+
+                        <li>For the <strong>Subject</strong>, please enter your unique <strong>App Name</strong>.</li>
+                        <li>Click the <strong>Upload</strong> button to add a screenshot of your app.</li>
+                        <li>In the main text area, please provide the following details:
+                            <ul style="list-style-type: disc; padding-left: 20px; margin-top: 10px;">
+                                <li>Your Name</li>
+                                <li>A short description of your app and the inspiration behind it.</li>
+                            </ul>
+                        </li>
+                        <li>Once you're ready, click the <strong>Publish</strong> button to finalize your submission.
+                        </li>
+                    </ol>
+                    <p style="margin-top: 20px;">
+                        <strong>Important:</strong> Voting is anonymous, so feel free to vote for any design you like!
+                        The deadline is the start of our next lecture, where the winners from each tutorial group will
+                        be announced. Good luck!
+                    </p>
+                </div>
+                <div class="padlet-embed"
+                    style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4">
+                    <p style="padding:0;margin:0"><iframe src="https://rmit.padlet.org/embed/dak88nn3ewumeio8"
+                            frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write"
+                            style="width:100%;height:1000px;display:block;padding:0;margin:0"></iframe></p>
+                    <div style="display:flex;align-items:center;justify-content:end;margin:0;height:28px"><a
+                            href="https://padlet.com?ref=embed"
+                            style="display:block;flex-grow:0;margin:0;border:none;padding:0;text-decoration:none"
+                            target="_blank">
+                            <div style="display:flex;align-items:center;"><img
+                                    src="https://padlet.net/embeds/made_with_padlet_2022.png" width="114" height="28"
+                                    style="padding:0;margin:0;background:0 0;border:none;box-shadow:none"
+                                    alt="Made with Padlet"></div>
+                        </a></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cheatsheet-section" id="part2-concepts">
+            <h2 class="collapsible-header">
+                Simple Cheatsheet 📝
+                <span class="collapse-icon"></span>
+            </h2>
+            <div class="collapsible-content">
+                <div class="card instruction-step">
+                    <h3>1. Just Saying Hello (Text) 💬</h3>
                     <p>The <code>Text()</code> view is used to display simple, non-changing text on the screen.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
@@ -100,7 +414,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>2. Storing and Displaying Data (Constants)</h3>
+                    <h3>2. Lock It In (Constants) 📦</h3>
                     <p>Use <code>let</code> to create a constant to store data that doesn't change. You can then display
                         this data using a <code>Text</code> view.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -112,7 +426,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>3. String Interpolation</h3>
+                    <h3>3. Mixing It Up (Interpolation) 🔗</h3>
                     <p>Mixing text and data using <code>\(...)</code>.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">let</span> name = <span class="string">"Tom"</span>
@@ -123,7 +437,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>4. Variable & Constant</h3>
+                    <h3>4. To Change or Not To Change? 🔄</h3>
                     <p>A constant (<code>let</code>) cannot be changed, while a variable (<code>var</code>) can be.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">let</span> name = <span class="string">"Tom"</span> <span class="comment">// Constant (cannot be changed)</span>
@@ -135,7 +449,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>5. Basic Data Types</h3>
+                    <h3>5. The Building Blocks (Types) 🔢</h3>
                     <p>Working with text (<code>String</code>), numbers (<code>Int</code>, <code>Double</code>), and
                         true/false values (<code>Bool</code>).</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -160,7 +474,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>6. Array & Random Elements</h3>
+                    <h3>6. Pick a Card, Any Card (Arrays) 🎲</h3>
                     <p>Storing a collection of items in an Array and picking a random one.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">let</span> fruits = [<span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Cherry"</span>]
@@ -174,7 +488,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>7. Image("imageName")</h3>
+                    <h3>7. Show a Pic 🖼️</h3>
                     <p>Displays an image from your project's "Assets" folder.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
@@ -184,7 +498,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>8. Add some modifiers for images</h3>
+                    <h3>8. Style That Pic 📏</h3>
                     <p><code>.resizable()</code>: Allows the image to be resized.<br>
                         <code>.scaledToFit()</code>: Scales the image to fit its container while maintaining its aspect
                         ratio.<br>
@@ -201,7 +515,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>9. Image(systemName: "...")</h3>
+                    <h3>9. Apple's Icons 🍏</h3>
                     <p>Displays an icon from Apple's SF Symbols library.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
@@ -213,7 +527,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>10. VStack</h3>
+                    <h3>10. Stack It Up (VStack) ⬇️</h3>
                     <p>Use <code>VStack</code> to arrange views in a vertical line, one on top of the other, like
                         stacking blocks.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -228,7 +542,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>11. HStack</h3>
+                    <h3>11. Side by Side (HStack) ➡️</h3>
                     <p>Stacks views horizontally. Good for icons next to text.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
@@ -242,7 +556,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>12. Spacer</h3>
+                    <h3>12. Give Me Space ↔️</h3>
                     <p>A <code>Spacer</code> is a flexible, invisible view that pushes other views as far apart as
                         possible.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -257,7 +571,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>13. ZStack</h3>
+                    <h3>13. Pancake Stack (ZStack) 🥞</h3>
                     <p>Layers views on top of each other. Useful for backgrounds.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
@@ -270,7 +584,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>14. Combining Layouts</h3>
+                    <h3>14. Master Builder (Layouts) 🏗️</h3>
                     <p><code>VStack</code>, <code>HStack</code>, <code>ZStack</code>, and <code>Spacer</code> can be
                         nested and combined to create complex user interfaces.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -296,7 +610,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>15. State & Actions</h3>
+                    <h3>15. Action! (State) 🎬</h3>
                     <p>Use <code>@State</code> to store a value that can change. A <code>Button</code> can change that
                         value, and SwiftUI will automatically update the view.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -313,7 +627,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>16. onTapGesture { ... }</h3>
+                    <h3>16. Tap It! 👆</h3>
                     <p>Makes any view tappable. Code inside the curly braces runs on tap.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="property-wrapper">@State</span> <span class="keyword">var</span> tapCount = 0
@@ -330,7 +644,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>17. Animation</h3>
+                    <h3>17. Smooth Moves (Animation) 🎞️</h3>
                     <p>Smoothly animates changes with <code>withAnimation()</code> when the watched <code>@State</code>
                         variable updates.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -347,233 +661,6 @@
         }
     }
 }</code></pre>
-                </div>
-            </div>
-        </section>
-
-        <section class="cheatsheet-section" id="part2-building-ui">
-            <h2 class="collapsible-header">
-                Part 2: Building "Magic Me" - The UI
-                <span class="collapse-icon"></span>
-            </h2>
-            <div class="collapsible-content">
-                <div class="card instruction-step">
-                    <h3>Step 0: Add a background color</h3>
-                    <p>Use a <code>ZStack</code> to layer a <code>Color</code> view behind all other content, setting a
-                        base for the UI.</p>
-                    <pre><code><span class="function">ZStack</span> {
-    <span class="type">Color</span>.mint
-}</code></pre>
-                </div>
-
-                <div class="card instruction-step">
-                    <h3>Step 1: Create a core profile (Image & Text)</h3>
-                    <p>Combine an <code>Image</code> and <code>Text</code> views within a <code>VStack</code> to form
-                        the main profile section. Apply modifiers to style the avatar image as a circle and format the
-                        name and title text.</p>
-                    <pre><code><span class="function">VStack</span> {
-    <span class="function">Image</span>(<span class="string">"avatar-3"</span>)
-        .<span class="function">resizable</span>()
-        .<span class="function">scaledToFit</span>()
-        .<span class="function">frame</span>(width: 140)
-        .<span class="function">clipShape</span>(<span class="function">Circle</span>())
-    <span class="function">VStack</span> {
-        <span class="function">Text</span>(<span class="string">"Tom Huynh"</span>)
-            .<span class="function">font</span>(.<span class="function">system</span>(size: 32, weight: .bold))
-            .<span class="function">foregroundColor</span>(.black)
-        <span class="function">Text</span>(<span class="string">"iOS Developer"</span>)
-            .<span class="function">font</span>(.headline)
-            .<span class="function">foregroundColor</span>(.red)
-    }
-}</code></pre>
-                </div>
-
-                <div class="card instruction-step">
-                    <h3>Step 2: Add a Magic Ball over the top of the profile</h3>
-                    <p>Overlay a 'magic ball' image on top of the profile avatar using a <code>ZStack</code> to create a
-                        layered visual effect.</p>
-                    <pre><code><span class="function">ZStack</span> {
-    <span class="function">Image</span>(<span class="string">"avatar-3"</span>)
-        .<span class="function">resizable</span>()
-        .<span class="function">scaledToFit</span>()
-        .<span class="function">frame</span>(width: 140)
-        .<span class="function">clipShape</span>(<span class="function">Circle</span>())
-    <span class="function">Image</span>(<span class="string">"magic-ball-empty"</span>)
-        .<span class="function">resizable</span>()
-        .<span class="function">scaledToFit</span>()
-        .<span class="function">frame</span>(width:550)
-}</code></pre>
-                </div>
-
-                <div class="card instruction-step">
-                    <h3>Step 3: Add Phone number and Email</h3>
-                    <p>Display contact information using <code>ZStack</code>s to layer <code>HStack</code>s over
-                        <code>RoundedRectangle</code>s, creating styled buttons for the phone number and email.
-                    </p>
-                    <pre><code><span class="function">ZStack</span>{
-    <span class="function">RoundedRectangle</span>(cornerRadius: 25)
-        .<span class="function">fill</span>(<span class="type">Color</span>.white)
-        .<span class="function">frame</span>(width: 250, height: 50)
-    <span class="function">HStack</span> {
-        <span class="function">Image</span>(systemName: <span class="string">"phone.fill"</span>)
-            .<span class="function">foregroundColor</span>(<span class="type">Color</span>.red)
-        <span class="function">Text</span>(<span class="string">"09123456789"</span>)
-            .<span class="function">foregroundColor</span>(.black)
-    }
-}
-<span class="function">ZStack</span>{
-    <span class="function">RoundedRectangle</span>(cornerRadius: 25)
-        .<span class="function">fill</span>(<span class="type">Color</span>.white)
-        .<span class="function">frame</span>(width: 250, height: 50)
-    <span class="function">HStack</span> {
-        <span class="function">Image</span>(systemName: <span class="string">"envelope.fill"</span>)
-            .<span class="function">foregroundColor</span>(<span class="type">Color</span>.red)
-        <span class="function">Text</span>(<span class="string">"tom.huynh@rmit.edu.vn"</span>)
-            .<span class="function">tint</span>(.black)
-    }
-}</code></pre>
-                </div>
-
-                <div class="card instruction-step">
-                    <h3>Step 4: Add a List of hobbies</h3>
-                    <p>Use a <code>VStackLayout</code> to display a list of hobbies, with each item formatted using an
-                        <code>HStack</code> to pair an icon with text.
-                    </p>
-                    <pre><code><span class="function">VStackLayout</span>(alignment: .leading, spacing: 15) {
-    <span class="function">HStack</span> {
-        <span class="function">Image</span>(systemName: <span class="string">"gamecontroller.fill"</span>)
-        <span class="function">Text</span>(<span class="string">"Gaming"</span>)
-    }
-    <span class="function">HStack</span> {
-        <span class="function">Image</span>(systemName: <span class="string">"music.note"</span>)
-        <span class="function">Text</span>(<span class="string">"Listening to Music"</span>)
-    }
-    <span class="function">HStack</span> {
-        <span class="function">Image</span>(systemName: <span class="string">"film.fill"</span>)
-        <span class="function">Text</span>(<span class="string">"Watching Movies"</span>)
-    }
-}
-.<span class="function">padding</span>()
-.<span class="function">background</span>(<span class="type">Color</span>.white)
-.<span class="function">cornerRadius</span>(15)
-.<span class="function">foregroundColor</span>(.blue)</code></pre>
-                </div>
-            </div>
-        </section>
-
-        <section class="cheatsheet-section" id="part3-bringing-to-life">
-            <h2 class="collapsible-header">
-                Part 3: Bringing It to Life - Logic & Interaction
-                <span class="collapse-icon"></span>
-            </h2>
-            <div class="collapsible-content">
-                <div class="card instruction-step">
-                    <h3>Step 1: The Data (An Array of Answers)</h3>
-                    <p>Define a constant array of strings that will serve as the possible answers for the magic oracle.
-                    </p>
-                    <pre><code><span class="keyword">let</span> allAnswers = [
-    <span class="comment">// Affirmative Answers</span>
-    <span class="string">"Bet."</span>,
-    <span class="string">"No cap."</span>,
-    <span class="string">"It's giving... yes."</span>,
-    <span class="string">"Slay."</span>,
-    <span class="string">"That's fire."</span>,
-    <span class="string">"Manifesting this for you."</span>,
-    <span class="string">"The vibes are immaculate."</span>,
-    <span class="string">"Let's get it."</span>,
-    
-    <span class="comment">// Negative Answers</span>
-    <span class="string">"It's giving... nope."</span>,
-    <span class="string">"That's a major L."</span>,
-    <span class="string">"Big yikes."</span>,
-    <span class="string">"I'm not the one."</span>,
-    <span class="string">"That's cringe."</span>,
-    <span class="string">"My sources say nah."</span>,
-    <span class="string">"The math ain't mathing."</span>,
-    <span class="string">"It's a no from me, dawg."</span>,
-    
-    <span class="comment">// Non-Committal & Unclear Answers</span>
-    <span class="string">"Vibe check."</span>,
-    <span class="string">"Ask again when my social battery is full."</span>,
-    <span class="string">"The rizz is unconfirmed."</span>,
-    <span class="string">"Reply hazy, try again... but make it ✨aesthetic✨."</span>,
-    <span class="string">"It's complicated, situationship-style."</span>,
-    <span class="string">"Let it cook."</span>,
-    <span class="string">"Main character energy is low."</span>,
-    <span class="string">"Check back after the next TikTok trend."</span>
-]</code></pre>
-                </div>
-
-                <div class="card instruction-step">
-                    <h3>Step 2: The "Memory" (@State)</h3>
-                    <p>Introduce a state variable using the <code>@State</code> property wrapper to hold the current
-                        answer, allowing the view to update whenever the answer changes.</p>
-                    <pre><code><span class="property-wrapper">@State</span> <span class="keyword">var</span> currentAnswer = <span class="string">"Tap my face for wisdom..."</span></code></pre>
-                </div>
-
-                <div class="card instruction-step">
-                    <h3>Step 3: The Display (A Text View for the Quote)</h3>
-                    <p>Add a <code>Text</code> view to display the value of the <code>currentAnswer</code> state
-                        variable, with styling to make it stand out.</p>
-                    <pre><code><span class="function">Text</span>(currentAnswer)
-    .<span class="function">font</span>(.title3)
-    .<span class="function">fontWeight</span>(.medium)
-    .<span class="function">foregroundColor</span>(.white)
-    .<span class="function">frame</span>(height:50)
-    .<span class="function">padding</span>()
-    .<span class="function">background</span>(.<span class="type">black</span>.<span class="function">opacity</span>(0.5))
-    .<span class="function">cornerRadius</span>(15)</code></pre>
-                </div>
-
-                <div class="card instruction-step">
-                    <h3>Step 4: The Trigger (.onTapGesture)</h3>
-                    <p>Make the view interactive by adding an <code>.onTapGesture</code> modifier. When tapped, it will
-                        select a new random answer from the <code>allAnswers</code> array and update the
-                        <code>currentAnswer</code>.
-                    </p>
-                    <pre><code>.<span class="function">onTapGesture</span> {
-    currentAnswer = allAnswers.<span class="function">randomElement</span>()!
-}</code></pre>
-                </div>
-
-                <div class="card instruction-step">
-                    <h3>Step 5: Animation</h3>
-                    <p>Enhance the user experience by wrapping the state change in a <code>withAnimation</code> block,
-                        which smoothly animates the appearance of the new answer.</p>
-                    <pre><code>.<span class="function">onTapGesture</span> {
-    <span class="function">withAnimation</span>(.<span class="function">easeInOut</span>(duration: 1.5)) {
-        currentAnswer = allAnswers.<span class="function">randomElement</span>()!
-    }
-}</code></pre>
-                </div>
-            </div>
-        </section>
-
-        <section class="cheatsheet-section" id="challenge">
-            <h2 class="collapsible-header">
-                🚀 Challenge: Forge Your "Magic Me" Masterpiece! 🎨
-                <span class="collapse-icon"></span>
-            </h2>
-            <div class="collapsible-content">
-                <div class="card instruction-step">
-                    <p>Assemble your squad of four and get ready for the ultimate creative showdown! Your mission,
-                        should
-                        you choose to accept it, is to transform the basic "Magic Me" app into a legendary digital
-                        oracle. This is your chance to infuse the app with your team's unique personality and flair.</p>
-                    <p><strong>The Quest: 🧙‍♂️</strong> Will you create a wise-cracking wizard, a sassy crystal ball
-                        🔮,
-                        a futuristic AI 🤖, or something completely out of this world? The choice is yours!</p>
-                    <h3>Judging Criteria - The Four Pillars of Power:</h3>
-                    <ul>
-                        <li><strong>Visual Vibes (Appealing):</strong> Is your app a visual feast? We're looking for
-                            stunning designs, slick animations, and a user interface that wows. ✨</li>
-                        <li><strong>Creative Spark (Creative):</strong> Did you think outside the box? Surprise us with
-                            a concept that is original, fresh, and unforgettable. 💡</li>
-                        <li><strong>Engagement Factor (Interesting):</strong> Does your app make us want to come back
-                            for more? Is it captivating and interactive? 🎮</li>
-                        <li><strong>Pure Fun (Fun):</strong> Does it make us laugh? Is it a joy to use? We want to see
-                            apps that are genuinely entertaining. 😂</li>
-                    </ul>
                 </div>
             </div>
         </section>

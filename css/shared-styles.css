@@ -21,7 +21,7 @@
     box-shadow: 0 4px 6px var(--shadow-color);
 }
 
-.cheatsheet-section > h2.collapsible-header {
+.cheatsheet-section>h2.collapsible-header {
     font-size: 1.5rem;
     color: var(--heading-color);
     margin-bottom: 20px;
@@ -30,7 +30,7 @@
     font-weight: 600;
 }
 
-.cheatsheet-section > h2.collapsible-header.collapsed {
+.cheatsheet-section>h2.collapsible-header.collapsed {
     margin-bottom: 0;
 }
 
@@ -96,4 +96,33 @@
     border-radius: 3px;
     font-size: 0.85em;
     color: var(--text-color);
+}
+
+/* Override base theme flex-grow to align content to top */
+.card p {
+    flex-grow: 0;
+}
+
+/* Download Button Style */
+.download-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--accent-color);
+    color: white !important;
+    /* Override default link color */
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 10px;
+}
+
+.download-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+}
+
+.download-button i {
+    margin-right: 8px;
 }

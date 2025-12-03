@@ -59,16 +59,7 @@
             /* Slightly smaller heading for nested cards */
         }
 
-        /* Change visited link text to white on the homepage */
-        /* For .go-to-link spans within visited card links */
-        a.card:visited .go-to-link {
-            color: #ffffff;
-        }
 
-        /* For other direct <a> links within cards (e.g., Google Drive link) */
-        .card a:visited {
-            color: #ffffff;
-        }
 
         .card img {
             width: 100%;
@@ -76,6 +67,76 @@
             margin-top: 15px;
             border-radius: 5px;
             box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        /* Rainbow Border Animation */
+        @keyframes rainbow-border {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        #rainbow-card {
+            position: relative;
+            z-index: 0;
+            /* Remove overflow: hidden so the border/glow is visible outside */
+            border-radius: 8px;
+            background: transparent;
+            /* Make parent transparent */
+        }
+
+        /* The Rainbow Border (Behind everything) */
+        #rainbow-card::before {
+            content: "";
+            position: absolute;
+            z-index: -2;
+            /* Lowest layer */
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg,
+                    #ff0000,
+                    #ff7300,
+                    #fffb00,
+                    #48ff00,
+                    #00ffd5,
+                    #002bff,
+                    #7a00ff,
+                    #ff00c8,
+                    #ff0000);
+            background-size: 400%;
+            border-radius: 10px;
+            animation: rainbow-border 20s linear infinite;
+            filter: blur(2px);
+        }
+
+        /* The Card Background (Between rainbow and content) */
+        #rainbow-card::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            /* Above rainbow, below content */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--card-bg-color);
+            border-radius: 8px;
+        }
+
+        /* Ensure content stays on top */
+        #rainbow-card * {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
@@ -122,7 +183,7 @@
 
         <section class="cheatsheet-section" id="start-playgrounds">
             <h2 class="collapsible-header">
-                Start with Playgrounds
+                Start with Swift Playgrounds
                 <span class="collapse-icon"></span>
             </h2>
             <div class="collapsible-content">
@@ -174,7 +235,7 @@
 
         <section class="cheatsheet-section" id="troubleshoot-playgrounds">
             <h2 class="collapsible-header">
-                Troubleshoot with Playgrounds
+                Troubleshoot with Swift Playgrounds
                 <span class="collapse-icon"></span>
             </h2>
             <div class="collapsible-content">
@@ -230,75 +291,10 @@
 
 
         <div class="main-section-header">
-            <h2>Weekly Guide</h2>
-        </div>
-        <div class="grid-container">
-            <a href="sub_pages/basic-swift.html" class="card">
-                <h3>Week 1: Basic Swift Guide</h3>
-                <p>An introduction to the Swift programming language, covering fundamental concepts such as variables,
-                    control flow, and functions through practical examples.</p>
-                <span class="go-to-link">View Guide</span>
-            </a>
-            <a href="sub_pages/intermediate-swift.html" class="card">
-                <h3>Week 2: Intermediate Swift Guide</h3>
-                <p>A guide to more advanced Swift topics, including switch statements, dictionaries, optionals,
-                    structures, classes, and more.</p>
-                <span class="go-to-link">View Guide</span>
-            </a>
-            <a href="sub_pages/magic-me-guide.html" class="card">
-                <h3>Week 3: Magic Me Step by Step Guide</h3>
-                <p>Complete tutorial for building the 'Magic Me' app. Includes Swift & SwiftUI code examples, UI
-                    building techniques, interactivity, and challenge projects.</p>
-                <span class="go-to-link">View Guide</span>
-            </a>
-            <a href="sub_pages/contact-list-app-part-1-guide.html" class="card">
-                <h3>Week 4: Contact List App Part 1 Guide</h3>
-                <p>A step-by-step guide to building the Contact List app, focusing on creating the user interface and
-                    setting up the basic data model.</p>
-                <span class="go-to-link">View Guide</span>
-            </a>
-            <a href="sub_pages/contact-list-app-part-2-guide.html" class="card">
-                <h3>Week 5: Contact List App Part 2 Guide</h3>
-                <p>Refactor the app to load data from a local JSON file, a key step for creating scalable and
-                    maintainable apps.</p>
-                <span class="go-to-link">View Guide</span>
-            </a>
-            <a href="sub_pages/rmit-casino-game-part-1-guide.html" class="card">
-                <h3>Week 6: RMIT Casino Game Part 1</h3>
-                <p>A step-by-step guide to building the RMIT Casino game, covering project setup, asset management, UI
-                    construction, and basic interactivity.</p>
-                <span class="go-to-link">View Guide</span>
-            </a>
-            <a href="sub_pages/rmit-casino-game-part-2-guide.html" class="card">
-                <h3>Week 8: RMIT Casino Game Part 2</h3>
-                <p>Continue building the RMIT Casino game by adding betting logic, calculating winnings, managing
-                    scores, and adding sound effects.</p>
-                <span class="go-to-link">View Guide</span>
-            </a>
-            <a href="sub_pages/data-flow-mvvm-observation-framework.html" class="card">
-                <h3>Week 9: Data Flow, MVVM & Observation Framework</h3>
-                <p>A guide to understanding data flow in SwiftUI, applying the MVVM architecture, and using the new
-                    Observation Framework.</p>
-                <span class="go-to-link">View Guide</span>
-            </a>
-            <a href="sub_pages/data-persistence-firebase.html" class="card">
-                <h3>Week 10: Data Persistence with Firebase</h3>
-                <p>A guide to setting up and using Firebase for data persistence in your iOS applications, covering
-                    Authentication and Cloud Firestore.</p>
-                <span class="go-to-link">View Guide</span>
-            </a>
-            <a href="sub_pages/data-persistence-swiftdata.html" class="card">
-                <h3>Week 11: Data Persistence with SwiftData</h3>
-                <p>A guide to setting up and using SwiftData for data persistence in your iOS applications.</p>
-                <span class="go-to-link">View Guide</span>
-            </a>
-        </div>
-
-        <div class="main-section-header">
             <h2>Workshop Resources</h2>
         </div>
         <div class="grid-container">
-            <a href="sub_pages/one-app-in-one-hour.html" class="card">
+            <a href="sub_pages/one-app-in-one-hour.html" class="card" id="rainbow-card">
                 <h3>One App in One Hour Workshop</h3>
                 <p>The official guide for the high school workshop. Build your first iOS app in just 60 minutes!</p>
                 <span class="go-to-link">View Workshop</span>
@@ -322,6 +318,78 @@
                 <span class="go-to-link">View Resources</span>
             </a>
         </div>
+
+        <div id="weekly-guide-section" style="padding-top: 20px; display: none;">
+            <div class="main-section-header">
+                <h2>Weekly Guide</h2>
+            </div>
+            <div class="grid-container">
+                <a href="sub_pages/basic-swift.html" class="card">
+                    <h3>Week 1: Basic Swift Guide</h3>
+                    <p>An introduction to the Swift programming language, covering fundamental concepts such as
+                        variables,
+                        control flow, and functions through practical examples.</p>
+                    <span class="go-to-link">View Guide</span>
+                </a>
+                <a href="sub_pages/intermediate-swift.html" class="card">
+                    <h3>Week 2: Intermediate Swift Guide</h3>
+                    <p>A guide to more advanced Swift topics, including switch statements, dictionaries, optionals,
+                        structures, classes, and more.</p>
+                    <span class="go-to-link">View Guide</span>
+                </a>
+                <a href="sub_pages/magic-me-guide.html" class="card">
+                    <h3>Week 3: Magic Me Step by Step Guide</h3>
+                    <p>Complete tutorial for building the 'Magic Me' app. Includes Swift & SwiftUI code examples, UI
+                        building techniques, interactivity, and challenge projects.</p>
+                    <span class="go-to-link">View Guide</span>
+                </a>
+                <a href="sub_pages/contact-list-app-part-1-guide.html" class="card">
+                    <h3>Week 4: Contact List App Part 1 Guide</h3>
+                    <p>A step-by-step guide to building the Contact List app, focusing on creating the user interface
+                        and
+                        setting up the basic data model.</p>
+                    <span class="go-to-link">View Guide</span>
+                </a>
+                <a href="sub_pages/contact-list-app-part-2-guide.html" class="card">
+                    <h3>Week 5: Contact List App Part 2 Guide</h3>
+                    <p>Refactor the app to load data from a local JSON file, a key step for creating scalable and
+                        maintainable apps.</p>
+                    <span class="go-to-link">View Guide</span>
+                </a>
+                <a href="sub_pages/rmit-casino-game-part-1-guide.html" class="card">
+                    <h3>Week 6: RMIT Casino Game Part 1</h3>
+                    <p>A step-by-step guide to building the RMIT Casino game, covering project setup, asset management,
+                        UI
+                        construction, and basic interactivity.</p>
+                    <span class="go-to-link">View Guide</span>
+                </a>
+                <a href="sub_pages/rmit-casino-game-part-2-guide.html" class="card">
+                    <h3>Week 8: RMIT Casino Game Part 2</h3>
+                    <p>Continue building the RMIT Casino game by adding betting logic, calculating winnings, managing
+                        scores, and adding sound effects.</p>
+                    <span class="go-to-link">View Guide</span>
+                </a>
+                <a href="sub_pages/data-flow-mvvm-observation-framework.html" class="card">
+                    <h3>Week 9: Data Flow, MVVM & Observation Framework</h3>
+                    <p>A guide to understanding data flow in SwiftUI, applying the MVVM architecture, and using the new
+                        Observation Framework.</p>
+                    <span class="go-to-link">View Guide</span>
+                </a>
+                <a href="sub_pages/data-persistence-firebase.html" class="card">
+                    <h3>Week 10: Data Persistence with Firebase</h3>
+                    <p>A guide to setting up and using Firebase for data persistence in your iOS applications, covering
+                        Authentication and Cloud Firestore.</p>
+                    <span class="go-to-link">View Guide</span>
+                </a>
+                <a href="sub_pages/data-persistence-swiftdata.html" class="card">
+                    <h3>Week 11: Data Persistence with SwiftData</h3>
+                    <p>A guide to setting up and using SwiftData for data persistence in your iOS applications.</p>
+                    <span class="go-to-link">View Guide</span>
+                </a>
+            </div>
+        </div>
+
+
     </main>
 
     <footer>

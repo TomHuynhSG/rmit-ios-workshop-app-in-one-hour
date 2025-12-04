@@ -1,119 +1,60 @@
-# COSC3062 - iPhone Software Engineering Guide 📱
+# iOS Workshop - One App in One Hour 📱
 
-## 🌐 Live Website
-**Access the complete guide at:** https://tomhuynhsg.github.io/COSC3062-iOS-Software-Engineering-Guide/
+> **One Hour. One App. Infinite Possibilities.** 🚀
 
-Welcome to your comprehensive learning companion for iOS development! This guide will support you throughout your journey in mastering iPhone app development using Swift and SwiftUI.
+Welcome to the official repository for the **One App in One Hour** workshop! 🍎 This session is designed for high school students to get a taste of iOS app development using **Swift** and **SwiftUI** on **Swift Playgrounds**.
 
-## 🎯 What You'll Master
+👉 **[View the Live Workshop Guide](https://tomhuynhsg.github.io/rmit-ios-workshop-app-in-one-hour/)** 👈
 
-This course introduces all facets of application development on mobile computing platforms, using iOS as the foundation for learning:
+## 🎓 Workshop Overview
 
-- **Swift Programming** - Master Apple's powerful programming language
-- **SwiftUI Interface Design** - Build beautiful, responsive user interfaces
-- **Mobile App Architecture** - Learn professional development patterns
-- **Data Management** - Handle local and cloud-based data storage
-- **Game Development** - Create interactive entertainment applications
-- **Enterprise Integration** - Connect to business systems and services
+*   **Topic:** 🍏 iOS App Development with Swift Playground & SwiftUI
+*   **Duration:** ⏱️ Strictly 1 hour
+*   **Target Audience:** 🎒 High School Students
+*   **Goal:** 🏆 Build your very first iPhone app, "Magic Me", from scratch!
 
-## 🗺️ Your Learning Path
+In just 60 minutes, you'll go from zero code to a fully functional, interactive app that reflects your unique personality. ✨
 
-### **Weeks 1-2: Swift Foundations**
-- Programming fundamentals and Swift syntax
-- Variables, data types, and control structures
-- Object-oriented programming concepts
+## 📍 Getting Started
 
-### **Weeks 3-4: SwiftUI Basics & Interface Design**
-- Introduction to SwiftUI framework
-- Layout systems and navigation
-- Building your first complete apps
+### 🏫 Location
+**Building 1, Level 3, Room 006 (1.3.006)**
 
-### **Weeks 5-8: Advanced Features & Interactive Apps**
-- Game logic and user interaction
-- Sound effects and animations
-- Data handling and state management
+### 🖥️ Lab Computers
+We will be using the Mac Lab. Please log in using the guest account credentials provided by the instructor.
 
-### **Weeks 9-12: Professional Development**
-- Advanced architectural patterns (MVVM)
-- Cloud and local data persistence
-- Enterprise-level app development
+### 🛠️ Tools
+*   **Swift Playgrounds:** The fun and interactive way to learn coding on Mac and iPad. 🐦
 
-## 🚀 How to Use This Guide
+## 📚 Curriculum Highlights
 
-### **📖 Main Resources**
-- **[Step-by-Step Tutorial](https://tomhuynhsg.github.io/COSC3062-iOS-Software-Engineering-Guide/sub_pages/bootcamp-guide.html)** - Build your first "Magic Me" app
-- **[Swift & SwiftUI Reference](https://tomhuynhsg.github.io/COSC3062-iOS-Software-Engineering-Guide/sub_pages/swift-swiftui-cheatsheet.html)** - Quick lookup for syntax and concepts
-- **[Asset Gallery](https://tomhuynhsg.github.io/COSC3062-iOS-Software-Engineering-Guide/sub_pages/asset-gallery.html)** - Download images, sounds, and icons for your projects
-- **[Learning Resources](https://tomhuynhsg.github.io/COSC3062-iOS-Software-Engineering-Guide/sub_pages/useful-resources.html)** - External tools and platforms
+The workshop is divided into three main parts:
 
-### **🎯 Getting Started**
-1. **Start with the Tutorial** - Follow the Magic Me app guide to get hands-on experience
-2. **Use the Cheatsheet** - Keep it open while coding for quick reference
-3. **Explore the Assets** - Download resources for your own projects
-4. **Practice Regularly** - Build small apps to reinforce your learning
+### 📦 Part 1: Setup & Download
+*   Downloading the starter project (`Magic Me.zip`). 📥
+*   Unzipping and launching the project in Swift Playgrounds. 📂
 
-## 🛠️ Development Environment Setup
+### 📱 Part 2: Build Your App
+We'll guide you through 6 exciting missions:
+1.  **Steal the Identity:** 🕵️‍♀️ Personalize the app with your name and details.
+2.  **Vibe Check:** 🎨 Master SwiftUI modifiers to change colors and fonts.
+3.  **Iconify Your Life:** 🖼️ Customize icons using SF Symbols.
+4.  **Clone Wars:** ⚙️ Learn about code reusability.
+5.  **Brain Power:** 🧠 Modify data arrays to change the app's content.
+6.  **AI Magic:** 🤖 Generate and import custom AI assets.
 
-### **Swift Playgrounds (Beginner-Friendly)**
-- Perfect for learning Swift basics
-- Interactive coding environment
-- No complex setup required
-- Great for experimenting with code
+### 🚀 Part 3: The Ultimate Challenge
+**The Quest:** Transform "Magic Me" into a legendary digital oracle! 🔮
+*   **Judging Criteria:** Visual Design ✨, Creative Implementation 💡, User Engagement 🎮, and Technical Excellence 😂.
+*   **Submission:** Post your creation to our [Padlet Board](https://rmit.padlet.org/embed/dak88nn3ewumeio8). 📮
 
-### **Xcode (Professional Development)**
-- Full-featured iOS development environment
-- Complete project management
-- iOS Simulator for testing
-- Required for advanced features
+## 🔗 Resources
 
-**Setup Instructions:** Detailed visual guides are available on the main page for both Swift Playgrounds and Xcode.
+*   [**Workshop Homepage**](index.html): The main landing page. 🏠
+*   [**Workshop Guide**](sub_pages/one-app-in-one-hour.html): The step-by-step instructions. 📖
+*   [**Asset Gallery**](sub_pages/asset-gallery.html): Download avatars and images. 🖼️
+*   [**Cheatsheet**](sub_pages/swift-swiftui-cheatsheet.html): Quick reference for Swift & SwiftUI. 📝
 
-## 🎨 Course Projects & Practice
+## ❤️ Credits
 
-### **Magic Me Oracle App**
-Your first complete SwiftUI application featuring:
-- Interactive user interface
-- State management
-- Animations and gestures
-- Random data generation
-
-### **Contact List Application**
-Learn professional app patterns:
-- Navigation and list views
-- Data modeling with Codable
-- Map integration
-- User interface design
-
-### **RMIT Casino Game**
-Advanced interactive development:
-- Game logic implementation
-- Sound effects and animations
-- User preferences with UserDefaults
-- Custom UI components
-
-## 📚 Resource Library
-
-### **🖼️ Visual Assets**
-- **Generic Avatars** - 6 customizable profile images
-- **Celebrity Avatars** - 20+ recognizable personalities
-- **Mystery Collection** - 15 rare collectible avatars with rarity tiers
-- **Game Symbols** - Dice, casino elements, fruits, and icons
-- **RMIT Branding** - Official logos and casino-themed variants
-
-### **🎵 Audio Assets**
-- Game sound effects (8 high-quality audio files)
-- UI interaction sounds
-- Background music elements
-- Win/lose audio feedback
-
-### **📖 Learning Materials**
-- Complete Swift syntax reference
-- SwiftUI component library
-- Code examples with explanations
-- Visual programming guides
-
-**Happy Coding!** 🎉
-
----
-
-*© 2025 Created by Tom Huynh with love ❤️*
+Created by **Tom Huynh** with love.

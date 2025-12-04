@@ -193,32 +193,32 @@
 
         <section class="cheatsheet-section" id="part1-setup">
             <h2 class="collapsible-header">
-                Part 1: Setup & Download 🛠️
+                🛠️ Part 1: Setup & Download
                 <span class="collapse-icon"></span>
             </h2>
             <div class="collapsible-content">
                 <div class="card instruction-step">
-                    <h3>Step 1: Grab the Goods (Download) 📥</h3>
+                    <h3>📥 Step 1: Grab the Goods (Download)</h3>
                     <p>Click the link below to download the starter project files.</p>
                     <p><a href="../assets/files/Magic Me.zip" download class="download-button"><i
                                 class="fas fa-download"></i> Download Magic Me.zip</a></p>
                 </div>
                 <div class="card instruction-step">
-                    <h3>Step 2: Unleash the Files (Unzip) 📂</h3>
+                    <h3>📂 Step 2: Unleash the Files (Unzip)</h3>
                     <p>Locate the downloaded <code>Magic Me.zip</code> file in your Downloads folder and double-click it
                         to unzip it.</p>
                     <img src="../assets/guide_imgs/magic-me-workshop/part-1-step-2.png" alt="Unzip Magic Me.zip"
                         class="img-large">
                 </div>
                 <div class="card instruction-step">
-                    <h3>Step 3: Launch the Lab (Open Playgrounds) 🐦</h3>
+                    <h3>🐦 Step 3: Launch the Lab (Open Playgrounds)</h3>
                     <p>Open the unzipped folder and double-click on the <code>Magic Me</code> file to open it in Swift
                         Playgrounds.</p>
                     <img src="../assets/guide_imgs/magic-me-workshop/part-1-step-3.png" alt="Open Magic Me file"
                         class="img-large">
                 </div>
                 <div class="card instruction-step">
-                    <h3>Step 4: Shake Hands (Trust) 🤝</h3>
+                    <h3>🤝 Step 4: Shake Hands (Trust)</h3>
                     <p>If you see a dialog asking "Are you sure you want to open Magic Me?", click <strong>Open</strong>
                         to trust and open the file.</p>
                     <img src="../assets/guide_imgs/magic-me-workshop/part-1-step-4.png"
@@ -229,13 +229,13 @@
 
         <section class="cheatsheet-section" id="part3-building-ui">
             <h2 class="collapsible-header">
-                Part 2: Build Your App 📱
+                📱 Part 2: Build Your App
                 <span class="collapse-icon"></span>
             </h2>
             <div class="collapsible-content">
 
                 <div class="card instruction-step">
-                    <h3>Mission 1: Steal the Identity 🕵️‍♀️</h3>
+                    <h3>🕵️‍♀️ Mission 1: Steal the Identity</h3>
                     <p><strong>Duration:</strong> 5 Minutes<br>
                         <strong>The Goal:</strong> Take ownership of the app immediately.
                     </p>
@@ -253,10 +253,12 @@
 <span class="keyword">let</span> myJob = <span class="string">"RMIT Lecturer"</span>
 <span class="keyword">let</span> myPhone = <span class="string">"0123456789"</span>
 <span class="keyword">let</span> myEmail = <span class="string">"tom.huynh@rmit.edu.vn"</span></code></pre>
+                    <p style="margin-top: 15px;"><strong>Tip:</strong> Feel free to change this information to be
+                        relevant to yourself, or even a celebrity or fictional character you like! 🌟</p>
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>Mission 2: Vibe Check 🎨</h3>
+                    <h3>🎨 Mission 2: Vibe Check</h3>
                     <p><strong>Duration:</strong> 10 Minutes<br>
                         <strong>The Goal:</strong> Master SwiftUI Modifiers (Colors & Fonts).
                     </p>
@@ -284,10 +286,32 @@
 <span class="comment">// Try changing .bold to .heavy or .thin</span>
 <span class="function">Text</span>(myName)
     .<span class="function">font</span>(.<span class="function">system</span>(size: 32, weight: .bold))</code></pre>
+
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button id="fancy-bg-toggle" class="fancy-toggle-btn">Want Fancy Background? ✨</button>
+                    </div>
+
+                    <div id="fancy-bg-code" class="hidden-code-snippet" style="display: none; margin-top: 15px;">
+                        <p>Replace your current <code>Color</code> line with this <code>LinearGradient</code>.<br>
+                            <strong>Challenge:</strong> Try changing the colors (e.g. <code>.blue</code>,
+                            <code>.purple</code>) and directions (e.g. <code>.leading</code>, <code>.trailing</code>)!
+                        </p>
+                        <div class="code-container" style="position: relative;">
+                            <button class="copy-btn" title="Copy to clipboard">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code><span class="type">LinearGradient</span>(
+    colors: [.<span class="type">red</span>, .<span class="type">pink</span>],
+    startPoint: .<span class="type">top</span>,
+    endPoint: .<span class="type">bottom</span>
+)
+.<span class="function">ignoresSafeArea</span>()</code></pre>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>Mission 3: Iconify Your Life 🖼️</h3>
+                    <h3>🖼️ Mission 3: Iconify Your Life</h3>
                     <p><strong>Duration:</strong> 5 Minutes<br>
                         <strong>The Goal:</strong> Customize contact button icons.
                     </p>
@@ -312,7 +336,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>Mission 4: Clone Wars (Reusability) ⚙️</h3>
+                    <h3>⚙️ Mission 4: Clone Wars (Reusability)</h3>
                     <p><strong>Duration:</strong> 10 Minutes<br>
                         <strong>The Goal:</strong> Learn Reusability & SF Symbols.
                     </p>
@@ -345,7 +369,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>Mission 5: Brain Power (Data) 🧠</h3>
+                    <h3>🧠 Mission 5: Brain Power (Data)</h3>
                     <p><strong>Duration:</strong> 10 Minutes<br>
                         <strong>The Goal:</strong> Modify an Array (Data Collection).
                     </p>
@@ -371,7 +395,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>Mission 6: AI Magic 🤖</h3>
+                    <h3>🤖 Mission 6: AI Magic</h3>
                     <p><strong>Duration:</strong> 15 Minutes<br>
                         <strong>The Goal:</strong> Generate AI Assets & Import them.
                     </p>
@@ -420,7 +444,7 @@
 
         <section class="cheatsheet-section" id="challenge">
             <h2 class="collapsible-header">
-                🚀 Part 3: The Ultimate Challenge 🏆
+                🚀 Part 3: The Ultimate Challenge
                 <span class="collapse-icon"></span>
             </h2>
             <div class="collapsible-content">
@@ -490,12 +514,12 @@
 
         <section class="cheatsheet-section" id="part2-concepts">
             <h2 class="collapsible-header">
-                Simple Cheatsheet 📝
+                📝 Simple Cheatsheet
                 <span class="collapse-icon"></span>
             </h2>
             <div class="collapsible-content">
                 <div class="card instruction-step">
-                    <h3>1. Just Saying Hello (Text) 💬</h3>
+                    <h3>💬 1. Just Saying Hello (Text)</h3>
                     <p>The <code>Text()</code> view is used to display simple, non-changing text on the screen.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
@@ -511,7 +535,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>2. Lock It In (Constants) 📦</h3>
+                    <h3>📦 2. Lock It In (Constants)</h3>
                     <p>Use <code>let</code> to create a constant to store data that doesn't change. You can then display
                         this data using a <code>Text</code> view.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -529,7 +553,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>3. Mixing It Up (Interpolation) 🔗</h3>
+                    <h3>🔗 3. Mixing It Up (Interpolation)</h3>
                     <p>Mixing text and data using <code>\(...)</code>.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">let</span> name = <span class="string">"Tom"</span>
@@ -546,7 +570,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>4. To Change or Not To Change? 🔄</h3>
+                    <h3>🔄 4. To Change or Not To Change?</h3>
                     <p>A constant (<code>let</code>) cannot be changed, while a variable (<code>var</code>) can be.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">let</span> name = <span class="string">"Tom"</span> <span class="comment">// Constant (cannot be changed)</span>
@@ -564,7 +588,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>5. The Building Blocks (Types) 🔢</h3>
+                    <h3>🔢 5. The Building Blocks (Types)</h3>
                     <p>Working with text (<code>String</code>), numbers (<code>Int</code>, <code>Double</code>), and
                         true/false values (<code>Bool</code>).</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -597,7 +621,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>6. Pick a Card, Any Card (Arrays) 🎲</h3>
+                    <h3>🎲 6. Pick a Card, Any Card (Arrays)</h3>
                     <p>Storing a collection of items in an Array and picking a random one.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">let</span> fruits = [<span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Cherry"</span>]
@@ -618,7 +642,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>7. Show a Pic 🖼️</h3>
+                    <h3>🖼️ 7. Show a Pic</h3>
                     <p>Displays an image from your project's "Assets" folder.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
@@ -628,14 +652,13 @@
                     <div class="output-container">
                         <h4>Output</h4>
                         <div class="output-box">
-                            <img src="../assets/avatar-1.png" alt="avatar-1"
-                                style="max-width: 100px; height: auto; border-radius: 50%;">
+                            <img src="../assets/avatar-1.png" alt="avatar-1" style="max-width: 100px; height: auto;">
                         </div>
                     </div>
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>8. Style That Pic 📏</h3>
+                    <h3>📏 8. Style That Pic</h3>
                     <p><code>.resizable()</code>: Allows the image to be resized.<br>
                         <code>.scaledToFit()</code>: Scales the image to fit its container while maintaining its aspect
                         ratio.<br>
@@ -652,14 +675,13 @@
                     <div class="output-container">
                         <h4>Output</h4>
                         <div class="output-box">
-                            <img src="../assets/avatar-1.png" alt="avatar-1"
-                                style="width: 150px; height: auto; border-radius: 50%;">
+                            <img src="../assets/avatar-1.png" alt="avatar-1" style="width: 150px; height: auto;">
                         </div>
                     </div>
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>9. Apple's Icons 🍏</h3>
+                    <h3>🍏 9. Apple's Icons</h3>
                     <p>Displays an icon from Apple's SF Symbols library.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
@@ -678,7 +700,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>10. Stack It Up (VStack) ⬇️</h3>
+                    <h3>⬇️ 10. Stack It Up (VStack)</h3>
                     <p>Use <code>VStack</code> to arrange views in a vertical line, one on top of the other, like
                         stacking blocks.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -701,7 +723,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>11. Side by Side (HStack) ➡️</h3>
+                    <h3>➡️ 11. Side by Side (HStack)</h3>
                     <p>Stacks views horizontally. Good for icons next to text.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
@@ -722,7 +744,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>12. Give Me Space ↔️</h3>
+                    <h3>↔️ 12. Give Me Space</h3>
                     <p>A <code>Spacer</code> is a flexible, invisible view that pushes other views as far apart as
                         possible.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -744,7 +766,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>13. Pancake Stack (ZStack) 🥞</h3>
+                    <h3>🥞 13. Pancake Stack (ZStack)</h3>
                     <p>Layers views on top of each other. Useful for backgrounds.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
@@ -763,7 +785,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>14. Master Builder (Layouts) 🏗️</h3>
+                    <h3>🏗️ 14. Master Builder (Layouts)</h3>
                     <p><code>VStack</code>, <code>HStack</code>, <code>ZStack</code>, and <code>Spacer</code> can be
                         nested and combined to create complex user interfaces.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -804,7 +826,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>15. Action! (State) 🎬</h3>
+                    <h3>🎬 15. Action! (State)</h3>
                     <p>Use <code>@State</code> to store a value that can change. A <code>Button</code> can change that
                         value, and SwiftUI will automatically update the view.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -835,7 +857,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>16. Tap It! 👆</h3>
+                    <h3>👆 16. Tap It!</h3>
                     <p>Makes any view tappable. Code inside the curly braces runs on tap.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="property-wrapper">@State</span> <span class="keyword">var</span> tapCount = 0
@@ -855,7 +877,7 @@
                             <span id="tap-text-16">Taps: 0</span><br>
                             <div class="image-placeholder" id="img-16" style="cursor: pointer;">
                                 <img src="../assets/avatar-1.png" alt="avatar-1"
-                                    style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                                    style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
                         </div>
                     </div>
@@ -869,7 +891,7 @@
                 </div>
 
                 <div class="card instruction-step">
-                    <h3>17. Smooth Moves (Animation) 🎞️</h3>
+                    <h3>🎞️ 17. Smooth Moves (Animation)</h3>
                     <p>Smoothly animates changes with <code>withAnimation()</code> when the watched <code>@State</code>
                         variable updates.</p>
                     <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {

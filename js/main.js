@@ -40,6 +40,41 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo({top: 0, behavior: 'smooth'});
         });
     }
+
+    // Fancy Background Toggle
+    const fancyToggleBtn = document.getElementById('fancy-bg-toggle');
+    const fancyBgCode = document.getElementById('fancy-bg-code');
+
+    if (fancyToggleBtn && fancyBgCode) {
+        fancyToggleBtn.addEventListener('click', () => {
+            if (fancyBgCode.style.display === 'none') {
+                fancyBgCode.style.display = 'block';
+                fancyToggleBtn.textContent = 'Hide Fancy Background ✨';
+            } else {
+                fancyBgCode.style.display = 'none';
+                fancyToggleBtn.textContent = 'Want Fancy Background? ✨';
+            }
+        });
+    }
+
+    // Copy to Clipboard Functionality
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const codeBlock = btn.nextElementSibling.querySelector('code');
+            const textToCopy = codeBlock.innerText;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Visual feedback
+                const originalIcon = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    btn.innerHTML = originalIcon;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        });
+    });
 });
 
 // Make scrollToTop globally accessible for inline onclick, just in case

@@ -130,3 +130,58 @@ code {
     /* A light blue color for visibility */
     font-weight: bold;
 }
+
+/* Fancy Background Toggle Button */
+.fancy-toggle-btn {
+    background: linear-gradient(45deg, #ff00cc, #3333ff);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fancy-toggle-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fancy-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+/* Hidden Code Snippet Transition */
+.hidden-code-snippet {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Copy Button Styles */
+.code-container {
+    position: relative;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: var(--code-text-color);
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    z-index: 10;
+}
+
+.copy-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.copy-btn i {
+    font-size: 1rem;
+}

@@ -1,23 +1,12 @@
 /* Basic Reset & Font Setup */
 :root {
-    --bg-color: #f4f7f9;
-    --card-bg-color: #ffffff;
-    --text-color: #2c3e50;
-    --heading-color: #1a2533;
-    --accent-color: #e67e22; /* Default orange */
-    --border-color: #e0e6ed;
+    --bg-color: #1a202c;
+    --card-bg-color: #2d3748;
+    --text-color: #e2e8f0;
+    --heading-color: #ffffff;
+    --accent-color: #f0984a; /* Lighter orange for dark mode */
+    --border-color: #4a5568;
     --shadow-color: rgba(0, 0, 0, 0.05);
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-color: #1a202c;
-        --card-bg-color: #2d3748;
-        --text-color: #e2e8f0;
-        --heading-color: #ffffff;
-        --accent-color: #f0984a; /* Lighter orange for dark mode */
-        --border-color: #4a5568;
-    }
 }
 
 * {

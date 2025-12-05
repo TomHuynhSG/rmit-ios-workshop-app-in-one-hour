@@ -3,39 +3,21 @@
     /* These variables are intended to be used alongside base-theme.css */
     /* They might override or complement variables from base-theme if names clash,
        but ideally, they are additive for code-specific styling. */
-    --code-bg-color: #2d3748;
-    /* Darker blue-gray for code (light mode) */
+    --code-bg-color: #1e293b;
+    /* Even darker blue for code in dark mode */
     --code-text-color: #e2e8f0;
-    /* Light text for code (light mode) */
-    --code-comment: #9ca3af;
-    --code-keyword: #5a9ddf;
-    --code-string: #6a9955;
-    --code-number: #b5cea8;
-    --code-type: #4ec9b0;
-    --code-property-wrapper: #dcc682;
+    /* Text color can remain similar */
+    --code-comment: #a0aec0;
+    --code-keyword: #82aaff;
+    --code-string: #c3e88d;
+    --code-number: #f78c6c;
+    --code-type: #89ddff;
+    --code-property-wrapper: #ffcb6b;
     --operator: #d4d4d4;
     --preprocessor: var(--accent-color);
     /* Use accent color for preprocessor directives */
-    --output-bg-color: #f0f2f5;
-    /* For output boxes often associated with code */
-    --output-border-color: #d1d9e6;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --code-bg-color: #1e293b;
-        /* Even darker blue for code in dark mode */
-        --code-text-color: #e2e8f0;
-        /* Text color can remain similar */
-        --code-comment: #a0aec0;
-        --code-keyword: #82aaff;
-        --code-string: #c3e88d;
-        --code-number: #f78c6c;
-        --code-type: #89ddff;
-        --code-property-wrapper: #ffcb6b;
-        --output-bg-color: #1c2635;
-        --output-border-color: #3a455a;
-    }
+    --output-bg-color: #1c2635;
+    --output-border-color: #3a455a;
 }
 
 /* Code Blocks */

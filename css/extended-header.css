@@ -9,22 +9,27 @@
 }
 
 .logo {
-    height: 50px; /* Default logo size, can be overridden */
+    height: 80px !important;
+    /* Default logo size, can be overridden */
 }
 
 .university-name {
-    font-size: 1.5rem; /* Default name size, can be overridden */
+    font-size: 1.5rem;
+    /* Default name size, can be overridden */
     font-weight: 500;
     color: var(--heading-color);
 }
 
 /* Specific overrides for header elements when extended branding is used */
-header h1 { /* Ensure this doesn't conflict if base-theme also styles h1 */
-    font-size: 2.5rem; /* Larger h1 for pages with full branding */
+header h1 {
+    /* Ensure this doesn't conflict if base-theme also styles h1 */
+    font-size: 2.5rem;
+    /* Larger h1 for pages with full branding */
 }
 
 header .intro {
-    max-width: 600px; /* Default intro width */
+    max-width: 600px;
+    /* Default intro width */
     margin: 1rem auto 0;
     font-size: 1.1rem;
     color: var(--text-color);

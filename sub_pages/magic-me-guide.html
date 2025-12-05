@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,36 +14,46 @@
     <link rel="stylesheet" href="../css/shared-styles.css">
     <style>
         /* Page-specific styles for bootcamp-snippets.html */
-        .logo { /* Override from extended-header.css if needed */
+        .logo {
+            /* Override from extended-header.css if needed */
             height: 60px;
         }
-        .university-name { /* Override from extended-header.css if needed */
+
+        .university-name {
+            /* Override from extended-header.css if needed */
             font-size: 1.75rem;
         }
-        header .intro { /* Override from extended-header.css if needed */
+
+        header .intro {
+            /* Override from extended-header.css if needed */
             max-width: 700px;
         }
 
-        .cheatsheet-section > h2.collapsible-header { /* Style for the main collapsible header */
+        .cheatsheet-section>h2.collapsible-header {
+            /* Style for the main collapsible header */
             font-size: 2rem;
             color: var(--heading-color);
-            margin-bottom: 20px; /* Applied when open */
+            margin-bottom: 20px;
+            /* Applied when open */
             padding-bottom: 10px;
             border-bottom: 1px solid var(--border-color);
             font-weight: 600;
         }
-        
+
         .grid-container {
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 20px;
         }
 
-        .card { /* Override from base-theme.css if needed */
+        .card {
+            /* Override from base-theme.css if needed */
             padding: 20px;
         }
-        
-        pre { /* Override from code-styles.css if needed */
-            margin-bottom: 10px; /* Reduced margin for snippets */
+
+        pre {
+            /* Override from code-styles.css if needed */
+            margin-bottom: 10px;
+            /* Reduced margin for snippets */
         }
 
         .challenge-criteria li {
@@ -54,6 +65,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -62,11 +74,14 @@
                 <a href="../index.html" class="back-to-home-button">&larr; Back to Home</a>
             </div>
             <div class="university-branding">
-                <img src="https://sites.rmit.edu.au/artschoolgraduates/files/2022/10/rmit-logo-red.png" alt="RMIT University Logo" class="logo">
-                <span class="university-name">RMIT University</span>
+                <img src="assets/rmit-logo-white.png" alt="RMIT University Logo" class="logo">
             </div>
             <h1>Magic Me <span>Step by Step Guide</span></h1>
-            <p class="intro">A complete beginner's guide to iOS development with Swift and SwiftUI. This guide walks you through everything from setting up your Xcode environment, managing assets like images and colors, to deploying your first app on a real device. Build the 'Magic Me' app from scratch, learning UI construction, state management, and interactivity. The guide also covers essential skills like Git integration and concludes with a design challenge to test what you've learned.</p>
+            <p class="intro">A complete beginner's guide to iOS development with Swift and SwiftUI. This guide walks you
+                through everything from setting up your Xcode environment, managing assets like images and colors, to
+                deploying your first app on a real device. Build the 'Magic Me' app from scratch, learning UI
+                construction, state management, and interactivity. The guide also covers essential skills like Git
+                integration and concludes with a design challenge to test what you've learned.</p>
         </div>
     </header>
 
@@ -80,70 +95,103 @@
                 <div class="grid-container" style="grid-template-columns: 1fr;">
                     <div class="card instruction-step">
                         <h3>Step 1: Open Xcode</h3>
-                        <p><strong>Description:</strong> Launch Xcode from Applications or using Spotlight Search to begin creating your SwiftUI project.</p>
-                        <p><strong>Instruction:</strong> Press Command + Space to open Spotlight Search, type "Xcode", and click on Xcode to launch the application. Alternatively, find Xcode in your Applications folder.</p>
-                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 1.png" alt="Start with Xcode - Step 1" class="img-large">
+                        <p><strong>Description:</strong> Launch Xcode from Applications or using Spotlight Search to
+                            begin creating your SwiftUI project.</p>
+                        <p><strong>Instruction:</strong> Press Command + Space to open Spotlight Search, type "Xcode",
+                            and click on Xcode to launch the application. Alternatively, find Xcode in your Applications
+                            folder.</p>
+                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 1.png"
+                            alt="Start with Xcode - Step 1" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 2: Create a New Project</h3>
-                        <p><strong>Description:</strong> Start a new Xcode project from the welcome screen to begin your SwiftUI development.</p>
-                        <p><strong>Instruction:</strong> From the Xcode welcome screen, click "Create a new Xcode project". If Xcode is already open, you can also use File > New > Project from the menu bar.</p>
-                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 2.png" alt="Start with Xcode - Step 2" class="img-large">
+                        <p><strong>Description:</strong> Start a new Xcode project from the welcome screen to begin your
+                            SwiftUI development.</p>
+                        <p><strong>Instruction:</strong> From the Xcode welcome screen, click "Create a new Xcode
+                            project". If Xcode is already open, you can also use File > New > Project from the menu bar.
+                        </p>
+                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 2.png"
+                            alt="Start with Xcode - Step 2" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 3: Choose iOS App Template</h3>
-                        <p><strong>Description:</strong> Select the appropriate template for iOS SwiftUI app development.</p>
-                        <p><strong>Instruction:</strong> In the template selection screen, make sure the "iOS" tab is selected at the top, then choose the "App" template from the Application section. Click "Next" to continue.</p>
-                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 3.png" alt="Start with Xcode - Step 3" class="img-large">
+                        <p><strong>Description:</strong> Select the appropriate template for iOS SwiftUI app
+                            development.</p>
+                        <p><strong>Instruction:</strong> In the template selection screen, make sure the "iOS" tab is
+                            selected at the top, then choose the "App" template from the Application section. Click
+                            "Next" to continue.</p>
+                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 3.png"
+                            alt="Start with Xcode - Step 3" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 4: Configure Project Settings</h3>
-                        <p><strong>Description:</strong> Set up your project details and ensure SwiftUI is selected as the interface framework.</p>
+                        <p><strong>Description:</strong> Set up your project details and ensure SwiftUI is selected as
+                            the interface framework.</p>
                         <p><strong>Instruction:</strong> Fill in the project configuration:</p>
                         <ul style="list-style-type: disc; padding-left: 20px;">
                             <li><strong>Product Name:</strong> Enter your app name (e.g., "MyFirstApp")</li>
                             <li><strong>Team:</strong> Select your development team (if available)</li>
-                            <li><strong>Organization Identifier:</strong> Use reverse domain notation (e.g., com.yourname.myfirstapp)</li>
-                            <li><strong>Bundle Identifier:</strong> Auto-generated based on organization identifier and product name</li>
+                            <li><strong>Organization Identifier:</strong> Use reverse domain notation (e.g.,
+                                com.yourname.myfirstapp)</li>
+                            <li><strong>Bundle Identifier:</strong> Auto-generated based on organization identifier and
+                                product name</li>
                             <li><strong>Language:</strong> Swift</li>
                             <li><strong>Interface:</strong> SwiftUI (Important! Make sure this is selected)</li>
                             <li><strong>Use Core Data:</strong> Leave unchecked for beginners</li>
                             <li><strong>Include Tests:</strong> Can be unchecked for simple projects</li>
                         </ul>
                         <p>Click "Next" when all settings are configured.</p>
-                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 4.png" alt="Start with Xcode - Step 4" class="img-large">
+                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 4.png"
+                            alt="Start with Xcode - Step 4" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 5: Choose Project Location</h3>
-                        <p><strong>Description:</strong> Select where to save your project on your Mac and set up version control.</p>
-                        <p><strong>Instruction:</strong> Choose a location to save your project (Desktop or Documents folder recommended). Ensure "Create Git repository on my Mac" is checked for version control. Click "Create" to finish setting up your project.</p>
-                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 5.png" alt="Start with Xcode - Step 5" class="img-large">
+                        <p><strong>Description:</strong> Select where to save your project on your Mac and set up
+                            version control.</p>
+                        <p><strong>Instruction:</strong> Choose a location to save your project (Desktop or Documents
+                            folder recommended). Ensure "Create Git repository on my Mac" is checked for version
+                            control. Click "Create" to finish setting up your project.</p>
+                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 5.png"
+                            alt="Start with Xcode - Step 5" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 6: Understand the Xcode Interface</h3>
-                        <p><strong>Description:</strong> Familiarize yourself with the Xcode workspace layout for SwiftUI development.</p>
+                        <p><strong>Description:</strong> Familiarize yourself with the Xcode workspace layout for
+                            SwiftUI development.</p>
                         <p><strong>Instruction:</strong> The Xcode interface consists of several key areas:</p>
                         <ul style="list-style-type: disc; padding-left: 20px;">
-                            <li><strong>Navigator Area (Left):</strong> Browse project files, folders, and resources</li>
+                            <li><strong>Navigator Area (Left):</strong> Browse project files, folders, and resources
+                            </li>
                             <li><strong>Editor Area (Center):</strong> Write and edit your SwiftUI code</li>
                             <li><strong>Canvas (Right):</strong> Live preview of your SwiftUI interface</li>
-                            <li><strong>Inspector Area (Far Right):</strong> View and modify properties and settings</li>
+                            <li><strong>Inspector Area (Far Right):</strong> View and modify properties and settings
+                            </li>
                             <li><strong>Debug Area (Bottom):</strong> Console output and debugging tools</li>
                             <li><strong>Toolbar (Top):</strong> Build, run, and stop controls</li>
                         </ul>
-                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 6.png" alt="Start with Xcode - Step 6" class="img-large">
+                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 6.png"
+                            alt="Start with Xcode - Step 6" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 7: Enable Canvas Preview</h3>
-                        <p><strong>Description:</strong> Activate the live preview feature to see your SwiftUI code changes in real-time.</p>
-                        <p><strong>Instruction:</strong> In the Canvas area (right side), click the "Resume" button to start the live preview. If the Canvas is not visible, go to Editor > Canvas in the menu bar to show it. The preview will update automatically as you modify your SwiftUI code.</p>
-                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 7.png" alt="Start with Xcode - Step 7" class="img-large">
+                        <p><strong>Description:</strong> Activate the live preview feature to see your SwiftUI code
+                            changes in real-time.</p>
+                        <p><strong>Instruction:</strong> In the Canvas area (right side), click the "Resume" button to
+                            start the live preview. If the Canvas is not visible, go to Editor > Canvas in the menu bar
+                            to show it. The preview will update automatically as you modify your SwiftUI code.</p>
+                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 7.png"
+                            alt="Start with Xcode - Step 7" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 8: Run Your First App</h3>
-                        <p><strong>Description:</strong> Build and run your default SwiftUI app in the iOS Simulator to see it in action.</p>
-                        <p><strong>Instruction:</strong> Click the Play button (▶️) in the toolbar or press Command + R to build and run your app. Xcode will launch the iOS Simulator and display your app. The default app shows "Hello, world!" text - this confirms your SwiftUI project is working correctly.</p>
-                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 8.png" alt="Start with Xcode - Step 8" class="img-large">
+                        <p><strong>Description:</strong> Build and run your default SwiftUI app in the iOS Simulator to
+                            see it in action.</p>
+                        <p><strong>Instruction:</strong> Click the Play button (▶️) in the toolbar or press Command + R
+                            to build and run your app. Xcode will launch the iOS Simulator and display your app. The
+                            default app shows "Hello, world!" text - this confirms your SwiftUI project is working
+                            correctly.</p>
+                        <img src="../assets/intruction_imgs/Start With Xcode for SwiftUI - Step 8.png"
+                            alt="Start with Xcode - Step 8" class="img-large">
                     </div>
                 </div>
             </div>
@@ -157,32 +205,54 @@
                 <div class="grid-container" style="grid-template-columns: 1fr;">
                     <div class="card instruction-step">
                         <h3>Step 1: Prepare Your High-Resolution Image</h3>
-                        <p><strong>Description:</strong> Start with the highest resolution version of your image. A larger image can be scaled down without losing quality, so it's best to start with an image that is at least 3x the final display size.</p>
-                        <p><strong>Instruction:</strong> Create or obtain a high-quality image. For example, if you want your image to be 100x100 points on the screen, your source image should be at least 300x300 pixels.</p>
-                        <img width="200" src="../assets/intruction_imgs/image-set-step-1.png" alt="High-resolution source image" class="img-large">
+                        <p><strong>Description:</strong> Start with the highest resolution version of your image. A
+                            larger image can be scaled down without losing quality, so it's best to start with an image
+                            that is at least 3x the final display size.</p>
+                        <p><strong>Instruction:</strong> Create or obtain a high-quality image. For example, if you want
+                            your image to be 100x100 points on the screen, your source image should be at least 300x300
+                            pixels.</p>
+                        <img width="200" src="../assets/intruction_imgs/image-set-step-1.png"
+                            alt="High-resolution source image" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 2: Generate Image Set with an Online Tool</h3>
-                        <p><strong>Description:</strong> Use a tool to automatically generate the 1x, 2x, and 3x versions of your image. This saves time and ensures the images are correctly sized.</p>
-                        <p><strong>Instruction:</strong> Go to <a href="https://appicon.co/#image-sets" target="_blank">appicon.co</a> and scroll down to the "Image Sets" section. Drag your high-resolution image into the drop zone. The tool will generate a zip file containing the 1x, 2x, and 3x images. Download and unzip the file.</p>
-                        <img src="../assets/intruction_imgs/image-set-step-2.png" alt="Using an online image set generator" class="img-large">
+                        <p><strong>Description:</strong> Use a tool to automatically generate the 1x, 2x, and 3x
+                            versions of your image. This saves time and ensures the images are correctly sized.</p>
+                        <p><strong>Instruction:</strong> Go to <a href="https://appicon.co/#image-sets"
+                                target="_blank">appicon.co</a> and scroll down to the "Image Sets" section. Drag your
+                            high-resolution image into the drop zone. The tool will generate a zip file containing the
+                            1x, 2x, and 3x images. Download and unzip the file.</p>
+                        <img src="../assets/intruction_imgs/image-set-step-2.png"
+                            alt="Using an online image set generator" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 3: Add a New Image Set in Xcode</h3>
-                        <p><strong>Description:</strong> Create a new image set in your project's Asset Catalog to hold the different scale factors of your image.</p>
-                        <p><strong>Instruction:</strong> In Xcode, open your <code>Assets.xcassets</code> file. Click the "+" button at the bottom and select "Image Set". Give the new image set a descriptive name (e.g., "my-awesome-image").</p>
-                        <img src="../assets/intruction_imgs/image-set-step-3.png" alt="Adding a new image set in Xcode" class="img-large">
+                        <p><strong>Description:</strong> Create a new image set in your project's Asset Catalog to hold
+                            the different scale factors of your image.</p>
+                        <p><strong>Instruction:</strong> In Xcode, open your <code>Assets.xcassets</code> file. Click
+                            the "+" button at the bottom and select "Image Set". Give the new image set a descriptive
+                            name (e.g., "my-awesome-image").</p>
+                        <img src="../assets/intruction_imgs/image-set-step-3.png" alt="Adding a new image set in Xcode"
+                            class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 4: Drag and Drop Generated Images</h3>
-                        <p><strong>Description:</strong> Add the generated 1x, 2x, and 3x images to the corresponding slots in the image set.</p>
-                        <p><strong>Instruction:</strong> Drag the <code>image.png</code> (1x), <code>image@2x.png</code> (2x), and <code>image@3x.png</code> (3x) files from the unzipped folder into the respective 1x, 2x, and 3x placeholders in the Xcode image set.</p>
-                        <img src="../assets/intruction_imgs/image-set-step-4.png" alt="Dragging images into the Xcode image set" class="img-large">
+                        <p><strong>Description:</strong> Add the generated 1x, 2x, and 3x images to the corresponding
+                            slots in the image set.</p>
+                        <p><strong>Instruction:</strong> Drag the <code>image.png</code> (1x), <code>image@2x.png</code>
+                            (2x), and <code>image@3x.png</code> (3x) files from the unzipped folder into the respective
+                            1x, 2x, and 3x placeholders in the Xcode image set.</p>
+                        <img src="../assets/intruction_imgs/image-set-step-4.png"
+                            alt="Dragging images into the Xcode image set" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 5: Use the Image in SwiftUI</h3>
-                        <p><strong>Description:</strong> Use the image in your SwiftUI code by referencing the name of the image set. SwiftUI will automatically select the correct image based on the device's screen resolution.</p>
-                        <p><strong>Instruction:</strong> In your SwiftUI view, use <code>Image("my-awesome-image")</code> to display the image. You don't need to specify the scale factor; the system handles it for you.</p>
+                        <p><strong>Description:</strong> Use the image in your SwiftUI code by referencing the name of
+                            the image set. SwiftUI will automatically select the correct image based on the device's
+                            screen resolution.</p>
+                        <p><strong>Instruction:</strong> In your SwiftUI view, use
+                            <code>Image("my-awesome-image")</code> to display the image. You don't need to specify the
+                            scale factor; the system handles it for you.</p>
                         <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
         <span class="type">Image</span>(<span class="string">"my-awesome-image"</span>)
@@ -191,7 +261,8 @@
             .frame(width: <span class="number">100</span>)
     }
 }</code></pre>
-                        <img src="../assets/intruction_imgs/image-set-step-5.png" alt="Using the image set in SwiftUI" class="img-large">
+                        <img src="../assets/intruction_imgs/image-set-step-5.png" alt="Using the image set in SwiftUI"
+                            class="img-large">
                     </div>
                 </div>
             </div>
@@ -205,26 +276,38 @@
                 <div class="grid-container" style="grid-template-columns: 1fr;">
                     <div class="card instruction-step">
                         <h3>Step 1: Open the Asset Catalog</h3>
-                        <p><strong>Description:</strong> Navigate to the Asset Catalog (<code>Assets.xcassets</code>) where you manage all your project's images, colors, and other resources.</p>
-                        <p><strong>Instruction:</strong> In the Project Navigator on the left side of Xcode, click on the <code>Assets.xcassets</code> file. This will open the asset editor.</p>
-                        <img src="../assets/intruction_imgs/Color-Set-Step-1.png" alt="Open Asset Catalog" class="img-large">
+                        <p><strong>Description:</strong> Navigate to the Asset Catalog (<code>Assets.xcassets</code>)
+                            where you manage all your project's images, colors, and other resources.</p>
+                        <p><strong>Instruction:</strong> In the Project Navigator on the left side of Xcode, click on
+                            the <code>Assets.xcassets</code> file. This will open the asset editor.</p>
+                        <img src="../assets/intruction_imgs/Color-Set-Step-1.png" alt="Open Asset Catalog"
+                            class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 2: Create a New Color Set</h3>
-                        <p><strong>Description:</strong> Add a new Color Set to your assets. This will allow you to define a custom color that can be reused throughout your app.</p>
-                        <p><strong>Instruction:</strong> At the bottom of the asset editor, click the "+" button and select "Color Set" from the dropdown menu.</p>
-                        <img src="../assets/intruction_imgs/Color-Set-Step-2.png" alt="Create New Color Set" class="img-large">
+                        <p><strong>Description:</strong> Add a new Color Set to your assets. This will allow you to
+                            define a custom color that can be reused throughout your app.</p>
+                        <p><strong>Instruction:</strong> At the bottom of the asset editor, click the "+" button and
+                            select "Color Set" from the dropdown menu.</p>
+                        <img src="../assets/intruction_imgs/Color-Set-Step-2.png" alt="Create New Color Set"
+                            class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 3: Name and Configure the Color</h3>
-                        <p><strong>Description:</strong> Give your new color a descriptive name and choose the color value. You can set different colors for light and dark mode.</p>
-                        <p><strong>Instruction:</strong> Select the new color set. In the Inspector on the right, give it a name (e.g., "BrandPrimary"). Click on the color swatch for "Any Appearance" to open the color picker and choose your desired color.</p>
-                        <img src="../assets/intruction_imgs/Color-Set-Step-3.png" alt="Configure Color Set" class="img-large">
+                        <p><strong>Description:</strong> Give your new color a descriptive name and choose the color
+                            value. You can set different colors for light and dark mode.</p>
+                        <p><strong>Instruction:</strong> Select the new color set. In the Inspector on the right, give
+                            it a name (e.g., "BrandPrimary"). Click on the color swatch for "Any Appearance" to open the
+                            color picker and choose your desired color.</p>
+                        <img src="../assets/intruction_imgs/Color-Set-Step-3.png" alt="Configure Color Set"
+                            class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 4: Use the Color Set in SwiftUI</h3>
-                        <p><strong>Description:</strong> Once defined, you can easily use your custom color in your SwiftUI views by referencing its name.</p>
-                        <p><strong>Instruction:</strong> In your SwiftUI code, use <code>Color("YourColorName")</code> to apply the custom color. For example, <code>Color("BrandPrimary")</code>.</p>
+                        <p><strong>Description:</strong> Once defined, you can easily use your custom color in your
+                            SwiftUI views by referencing its name.</p>
+                        <p><strong>Instruction:</strong> In your SwiftUI code, use <code>Color("YourColorName")</code>
+                            to apply the custom color. For example, <code>Color("BrandPrimary")</code>.</p>
                         <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
         <span class="type">ZStack</span> {
@@ -235,7 +318,8 @@
         }
     }
 }</code></pre>
-                        <img src="../assets/intruction_imgs/Color-Set-Step-4.png" alt="Use Color Set in SwiftUI" class="img-large">
+                        <img src="../assets/intruction_imgs/Color-Set-Step-4.png" alt="Use Color Set in SwiftUI"
+                            class="img-large">
                     </div>
                 </div>
             </div>
@@ -249,45 +333,71 @@
                 <div class="grid-container" style="grid-template-columns: 1fr;">
                     <div class="card instruction-step">
                         <h3>Step 1: Choose and Download Your Font</h3>
-                        <p><strong>Description:</strong> Find and download a custom font to use in your app. Google Fonts is a great resource for free, high-quality fonts.</p>
-                        <p><strong>Instruction:</strong> Go to <a href="https://fonts.google.com/" target="_blank">fonts.google.com</a>, choose a font you like, and download the font family. Unzip the downloaded file to find the .ttf or .otf font files.</p>
-                        <img src="../assets/intruction_imgs/custom-font-step-1.png" alt="Choose and Download Font" class="img-large">
+                        <p><strong>Description:</strong> Find and download a custom font to use in your app. Google
+                            Fonts is a great resource for free, high-quality fonts.</p>
+                        <p><strong>Instruction:</strong> Go to <a href="https://fonts.google.com/"
+                                target="_blank">fonts.google.com</a>, choose a font you like, and download the font
+                            family. Unzip the downloaded file to find the .ttf or .otf font files.</p>
+                        <img src="../assets/intruction_imgs/custom-font-step-1.png" alt="Choose and Download Font"
+                            class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 2: Install the fonts with Font Book</h3>
-                        <p><strong>Description:</strong> Before using a custom font in your app, you need to install it on your Mac using Font Book. This makes the font available to the system and allows you to verify its details.</p>
-                        <p><strong>Instruction:</strong> Locate the .ttf or .otf font file you downloaded and double-click it. Font Book will open and display a preview of the font. Click the "Install Font" button to add it to your system's font library.</p>
-                        <img src="../assets/intruction_imgs/custom-font-step-2.png" alt="Install Font with Font Book" class="img-large">
+                        <p><strong>Description:</strong> Before using a custom font in your app, you need to install it
+                            on your Mac using Font Book. This makes the font available to the system and allows you to
+                            verify its details.</p>
+                        <p><strong>Instruction:</strong> Locate the .ttf or .otf font file you downloaded and
+                            double-click it. Font Book will open and display a preview of the font. Click the "Install
+                            Font" button to add it to your system's font library.</p>
+                        <img src="../assets/intruction_imgs/custom-font-step-2.png" alt="Install Font with Font Book"
+                            class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 3: Check the PostScript Name in Font Book</h3>
-                        <p><strong>Description:</strong> To use a custom font in SwiftUI, you need its PostScript name, which may be different from the file name. You can find this name in Font Book.</p>
-                        <p><strong>Instruction:</strong> In Font Book, select the font you just installed. Click the "Info" button (i) in the toolbar. Look for the "PostScript name" field. This is the exact name you will use in your code.</p>
-                        <img src="../assets/intruction_imgs/custom-font-step-3.png" alt="Check PostScript Name in Font Book" class="img-large">
+                        <p><strong>Description:</strong> To use a custom font in SwiftUI, you need its PostScript name,
+                            which may be different from the file name. You can find this name in Font Book.</p>
+                        <p><strong>Instruction:</strong> In Font Book, select the font you just installed. Click the
+                            "Info" button (i) in the toolbar. Look for the "PostScript name" field. This is the exact
+                            name you will use in your code.</p>
+                        <img src="../assets/intruction_imgs/custom-font-step-3.png"
+                            alt="Check PostScript Name in Font Book" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 4: Add Font Files to Your Xcode Project</h3>
-                        <p><strong>Description:</strong> Import the font files into your Xcode project and ensure they are included in the target.</p>
-                        <p><strong>Instruction:</strong> Drag the .ttf or .otf font files into the Project Navigator in Xcode. In the dialog that appears, make sure to check "Copy items if needed" and select your app's target in the "Add to targets" section.</p>
-                        <img src="../assets/intruction_imgs/custom-font-step-4.png" alt="Add Font Files to Xcode" class="img-large">
+                        <p><strong>Description:</strong> Import the font files into your Xcode project and ensure they
+                            are included in the target.</p>
+                        <p><strong>Instruction:</strong> Drag the .ttf or .otf font files into the Project Navigator in
+                            Xcode. In the dialog that appears, make sure to check "Copy items if needed" and select your
+                            app's target in the "Add to targets" section.</p>
+                        <img src="../assets/intruction_imgs/custom-font-step-4.png" alt="Add Font Files to Xcode"
+                            class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 5: Register the Font in Info.plist</h3>
-                        <p><strong>Description:</strong> Inform your app about the custom fonts by adding an entry to the <code>Info.plist</code> file.</p>
-                        <p><strong>Instruction:</strong> In the Project Navigator, select your project file, go to the <strong>Info</strong> tab. Click the "+" button to add a new key, and select "Fonts provided by application". Expand this new array and add a new item for each font file you added (e.g., "YourFont-Regular.ttf").</p>
-                        <img src="../assets/intruction_imgs/custom-font-step-5.png" alt="Register Font in Info.plist" class="img-large">
+                        <p><strong>Description:</strong> Inform your app about the custom fonts by adding an entry to
+                            the <code>Info.plist</code> file.</p>
+                        <p><strong>Instruction:</strong> In the Project Navigator, select your project file, go to the
+                            <strong>Info</strong> tab. Click the "+" button to add a new key, and select "Fonts provided
+                            by application". Expand this new array and add a new item for each font file you added
+                            (e.g., "YourFont-Regular.ttf").</p>
+                        <img src="../assets/intruction_imgs/custom-font-step-5.png" alt="Register Font in Info.plist"
+                            class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 6: Use the Font in SwiftUI</h3>
-                        <p><strong>Description:</strong> Apply your custom font to <code>Text</code> views in your SwiftUI code using the <code>.font()</code> modifier.</p>
-                        <p><strong>Instruction:</strong> Use the <code>.font(.custom("FontName", size: 24))</code> modifier on a <code>Text</code> view. The "FontName" should be the PostScript name of the font, which you can find by opening the font file in Font Book on your Mac.</p>
+                        <p><strong>Description:</strong> Apply your custom font to <code>Text</code> views in your
+                            SwiftUI code using the <code>.font()</code> modifier.</p>
+                        <p><strong>Instruction:</strong> Use the <code>.font(.custom("FontName", size: 24))</code>
+                            modifier on a <code>Text</code> view. The "FontName" should be the PostScript name of the
+                            font, which you can find by opening the font file in Font Book on your Mac.</p>
                         <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
         <span class="type">Text</span>(<span class="string">"This is my custom font!"</span>)
             .font(<span class="type">.custom</span>(<span class="string">"YourFont-Regular"</span>, size: <span class="number">24</span>))
     }
 }</code></pre>
-                        <img src="../assets/intruction_imgs/custom-font-step-6.png" alt="Use Custom Font in SwiftUI" class="img-large">
+                        <img src="../assets/intruction_imgs/custom-font-step-6.png" alt="Use Custom Font in SwiftUI"
+                            class="img-large">
                     </div>
                 </div>
             </div>
@@ -301,47 +411,76 @@
                 <div class="grid-container" style="grid-template-columns: 1fr;">
                     <div class="card instruction-step">
                         <h3>Step 1: Connect Your iPhone/iPad to Your Mac</h3>
-                        <p><strong>Description:</strong> Connect your physical iOS device to your Mac using a USB cable to begin the deployment process.</p>
-                        <p><strong>Instruction:</strong> Use a Lightning or USB-C cable to connect your iPhone or iPad directly to one of your Mac's USB ports.</p>
-                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-1.png" alt="Connect Your Device" class="img-large">
+                        <p><strong>Description:</strong> Connect your physical iOS device to your Mac using a USB cable
+                            to begin the deployment process.</p>
+                        <p><strong>Instruction:</strong> Use a Lightning or USB-C cable to connect your iPhone or iPad
+                            directly to one of your Mac's USB ports.</p>
+                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-1.png"
+                            alt="Connect Your Device" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 2: Select Your Device as the Run Destination</h3>
-                        <p><strong>Description:</strong> In Xcode, choose your connected device from the list of available run destinations.</p>
-                        <p><strong>Instruction:</strong> In the Xcode toolbar, click on the device/simulator dropdown (it might currently show an iOS Simulator). Your connected iPhone or iPad should appear at the top of the list. Select it.</p>
-                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-2.png" alt="Select Your Device in Xcode" class="img-large">
+                        <p><strong>Description:</strong> In Xcode, choose your connected device from the list of
+                            available run destinations.</p>
+                        <p><strong>Instruction:</strong> In the Xcode toolbar, click on the device/simulator dropdown
+                            (it might currently show an iOS Simulator). Your connected iPhone or iPad should appear at
+                            the top of the list. Select it.</p>
+                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-2.png"
+                            alt="Select Your Device in Xcode" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 3: Trust the Computer on Your Device</h3>
-                        <p><strong>Description:</strong> Establish a trusted relationship between your iOS device and your Mac to allow Xcode to install and debug apps.</p>
-                        <p><strong>Instruction:</strong> Unlock your iPhone or iPad. A prompt will appear asking whether to "Trust This Computer?". Tap "Trust" and enter your device passcode if prompted.</p>
-                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-3.png" alt="Trust the Computer on Your Device" class="img-large">
+                        <p><strong>Description:</strong> Establish a trusted relationship between your iOS device and
+                            your Mac to allow Xcode to install and debug apps.</p>
+                        <p><strong>Instruction:</strong> Unlock your iPhone or iPad. A prompt will appear asking whether
+                            to "Trust This Computer?". Tap "Trust" and enter your device passcode if prompted.</p>
+                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-3.png"
+                            alt="Trust the Computer on Your Device" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 4: Add Your Apple Developer Account to Xcode</h3>
-                        <p><strong>Description:</strong> Sign in with your Apple ID in Xcode to manage development teams and provisioning profiles. A free Apple ID is sufficient for testing on your own devices.</p>
-                        <p><strong>Instruction:</strong> In Xcode, go to <strong>Xcode > Settings...</strong> (or Preferences...). Click on the <strong>Accounts</strong> tab. Click the <strong>+</strong> button in the bottom-left corner, select "Apple ID", and sign in with your credentials.</p>
-                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-4.png" alt="Add Your Apple Developer Account" class="img-large">
+                        <p><strong>Description:</strong> Sign in with your Apple ID in Xcode to manage development teams
+                            and provisioning profiles. A free Apple ID is sufficient for testing on your own devices.
+                        </p>
+                        <p><strong>Instruction:</strong> In Xcode, go to <strong>Xcode > Settings...</strong> (or
+                            Preferences...). Click on the <strong>Accounts</strong> tab. Click the <strong>+</strong>
+                            button in the bottom-left corner, select "Apple ID", and sign in with your credentials.</p>
+                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-4.png"
+                            alt="Add Your Apple Developer Account" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 5: Assign a Team to Your Project</h3>
-                        <p><strong>Description:</strong> Associate your project with your developer account to allow Xcode to automatically manage the signing process.</p>
-                        <p><strong>Instruction:</strong> In the Project Navigator, select the top-level project file. Go to the <strong>Signing & Capabilities</strong> tab. From the "Team" dropdown, select the personal team associated with your Apple ID. Xcode may show a status message like "Xcode will create and update a provisioning profile."</p>
-                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-5.png" alt="Assign a Team to Your Project" class="img-large">
+                        <p><strong>Description:</strong> Associate your project with your developer account to allow
+                            Xcode to automatically manage the signing process.</p>
+                        <p><strong>Instruction:</strong> In the Project Navigator, select the top-level project file. Go
+                            to the <strong>Signing & Capabilities</strong> tab. From the "Team" dropdown, select the
+                            personal team associated with your Apple ID. Xcode may show a status message like "Xcode
+                            will create and update a provisioning profile."</p>
+                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-5.png"
+                            alt="Assign a Team to Your Project" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 6: Build and Run the App</h3>
-                        <p><strong>Description:</strong> Deploy and launch your app on your connected physical device.</p>
-                        <p><strong>Instruction:</strong> Click the <strong>Play button (▶️)</strong> or press <strong>Command + R</strong>. Xcode will build the app and install it on your device.</p>
-                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-6.png" alt="Build and Run the App" class="img-large">
+                        <p><strong>Description:</strong> Deploy and launch your app on your connected physical device.
+                        </p>
+                        <p><strong>Instruction:</strong> Click the <strong>Play button (▶️)</strong> or press
+                            <strong>Command + R</strong>. Xcode will build the app and install it on your device.</p>
+                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-6.png"
+                            alt="Build and Run the App" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 7: Trust the Developer on Your Device</h3>
-                        <p><strong>Description:</strong> The first time you run an app from a new developer account, you must manually trust the developer in your device's settings.</p>
-                        <p><strong>Instruction:</strong> On your iPhone/iPad, go to <strong>Settings > General > VPN & Device Management</strong>. Under the "Developer App" section, tap on your developer app certificate and then tap "Trust". After this, the app will be able to launch.</p>
-                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-7a.png" alt="Trust the Developer on Your Device" class="img-large">
-                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-7b.png" alt="Trust the Developer on Your Device" class="img-large">
-                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-7c.png" alt="Trust the Developer on Your Device" class="img-large">
+                        <p><strong>Description:</strong> The first time you run an app from a new developer account, you
+                            must manually trust the developer in your device's settings.</p>
+                        <p><strong>Instruction:</strong> On your iPhone/iPad, go to <strong>Settings > General > VPN &
+                                Device Management</strong>. Under the "Developer App" section, tap on your developer app
+                            certificate and then tap "Trust". After this, the app will be able to launch.</p>
+                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-7a.png"
+                            alt="Trust the Developer on Your Device" class="img-large">
+                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-7b.png"
+                            alt="Trust the Developer on Your Device" class="img-large">
+                        <img src="../assets/intruction_imgs/deploy-on-physical-device-step-7c.png"
+                            alt="Trust the Developer on Your Device" class="img-large">
                     </div>
                 </div>
             </div>
@@ -355,21 +494,35 @@
                 <div class="grid-container" style="grid-template-columns: 1fr;">
                     <div class="card instruction-step">
                         <h3>Step 1: Take a Screenshot in the Simulator</h3>
-                        <p><strong>Description:</strong> Open your app in the iPhone Simulator and use the built-in screenshot functionality. Note that the simulator screenshot will not include the iPhone device frame, which is expected behavior.</p>
-                        <p><strong>Instruction:</strong> With your app running in the simulator, navigate to <strong>File > New Screen Shot</strong> in the menu bar, or use the keyboard shortcut <strong>Cmd + S</strong>. The screenshot will be saved to your desktop.</p>
-                        <img src="../assets/intruction_imgs/How to Screenshot Your App with an iPhone Frame - Step 1.png" alt="Simulator Screenshot" class="img-large">
+                        <p><strong>Description:</strong> Open your app in the iPhone Simulator and use the built-in
+                            screenshot functionality. Note that the simulator screenshot will not include the iPhone
+                            device frame, which is expected behavior.</p>
+                        <p><strong>Instruction:</strong> With your app running in the simulator, navigate to
+                            <strong>File > New Screen Shot</strong> in the menu bar, or use the keyboard shortcut
+                            <strong>Cmd + S</strong>. The screenshot will be saved to your desktop.</p>
+                        <img src="../assets/intruction_imgs/How to Screenshot Your App with an iPhone Frame - Step 1.png"
+                            alt="Simulator Screenshot" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 2: Add an iPhone Frame with Mockuphone</h3>
-                        <p><strong>Description:</strong> To create a more professional-looking image, you can add a device frame to your screenshot using a free online tool like Mockuphone.</p>
-                        <p><strong>Instruction:</strong> Go to <a href="https://mockuphone.com/" target="_blank">mockuphone.com</a>. Select the iPhone model that matches the one you used in the Xcode simulator. For example, if you used the iPhone 12 mini, select that model on the website.</p>
-                        <img src="../assets/intruction_imgs/How to Screenshot Your App with an iPhone Frame - Step 2.png" alt="Mockuphone Website" class="img-large">
+                        <p><strong>Description:</strong> To create a more professional-looking image, you can add a
+                            device frame to your screenshot using a free online tool like Mockuphone.</p>
+                        <p><strong>Instruction:</strong> Go to <a href="https://mockuphone.com/"
+                                target="_blank">mockuphone.com</a>. Select the iPhone model that matches the one you
+                            used in the Xcode simulator. For example, if you used the iPhone 12 mini, select that model
+                            on the website.</p>
+                        <img src="../assets/intruction_imgs/How to Screenshot Your App with an iPhone Frame - Step 2.png"
+                            alt="Mockuphone Website" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 3: Upload and Download Your Framed Screenshot</h3>
-                        <p><strong>Description:</strong> Upload your screenshot to Mockuphone to have it automatically placed within the selected iPhone frame.</p>
-                        <p><strong>Instruction:</strong> Follow the website's instructions to upload the screenshot you took in Step 1. Once processed, you can download the final image, which will now feature your app within a realistic iPhone frame.</p>
-                        <img src="../assets/intruction_imgs/How to Screenshot Your App with an iPhone Frame - Step 3.png" alt="Final Screenshot with Frame" class="img-large">
+                        <p><strong>Description:</strong> Upload your screenshot to Mockuphone to have it automatically
+                            placed within the selected iPhone frame.</p>
+                        <p><strong>Instruction:</strong> Follow the website's instructions to upload the screenshot you
+                            took in Step 1. Once processed, you can download the final image, which will now feature
+                            your app within a realistic iPhone frame.</p>
+                        <img src="../assets/intruction_imgs/How to Screenshot Your App with an iPhone Frame - Step 3.png"
+                            alt="Final Screenshot with Frame" class="img-large">
                     </div>
                 </div>
             </div>
@@ -383,57 +536,89 @@
                 <div class="grid-container" style="grid-template-columns: 1fr;">
                     <div class="card instruction-step">
                         <h3>Step 1: Navigate to Personal Access Tokens</h3>
-                        <p><strong>Description:</strong> To connect Xcode with your GitHub account, you first need to navigate to the Personal Access Token section in your GitHub settings.</p>
+                        <p><strong>Description:</strong> To connect Xcode with your GitHub account, you first need to
+                            navigate to the Personal Access Token section in your GitHub settings.</p>
                         <p><strong>Instruction:</strong></p>
                         <ul style="list-style-type: disc; padding-left: 20px;">
-                            <li>Click your profile icon in the top-right corner and select <strong>Settings</strong>.</li>
+                            <li>Click your profile icon in the top-right corner and select <strong>Settings</strong>.
+                            </li>
                             <li>In the left sidebar, scroll down and click on <strong>Developer settings</strong>.</li>
-                            <li>Select <strong>Personal access tokens</strong>, then choose <strong>Tokens (classic)</strong>.</li>
-                            <li>Click the "Generate new token" dropdown and select <strong>Generate new token (classic)</strong>.</li>
+                            <li>Select <strong>Personal access tokens</strong>, then choose <strong>Tokens
+                                    (classic)</strong>.</li>
+                            <li>Click the "Generate new token" dropdown and select <strong>Generate new token
+                                    (classic)</strong>.</li>
                         </ul>
-                        <img src="../assets/intruction_imgs/github-integration-step-1.png" alt="Navigating to GitHub Personal Access Token settings" class="img-large">
+                        <img src="../assets/intruction_imgs/github-integration-step-1.png"
+                            alt="Navigating to GitHub Personal Access Token settings" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 2: Generate a New Personal Access Token</h3>
-                        <p><strong>Description:</strong> Create a new token with the specific permissions (scopes) that Xcode needs to interact with your GitHub account and repositories.</p>
+                        <p><strong>Description:</strong> Create a new token with the specific permissions (scopes) that
+                            Xcode needs to interact with your GitHub account and repositories.</p>
                         <p><strong>Instruction:</strong></p>
                         <ul style="list-style-type: disc; padding-left: 20px;">
                             <li>Click "Generate new token."</li>
-                            <li>Give your token a descriptive name (e.g., "My Xcode Token") and set an expiration date (e.g., 90 days).</li>
-                            <li>In the "Select scopes" section, check the boxes for the following permissions: <strong>repo</strong>, <strong>admin:public_key</strong>, <strong>user</strong>, and <strong>write:discussion</strong>.</li>
+                            <li>Give your token a descriptive name (e.g., "My Xcode Token") and set an expiration date
+                                (e.g., 90 days).</li>
+                            <li>In the "Select scopes" section, check the boxes for the following permissions:
+                                <strong>repo</strong>, <strong>admin:public_key</strong>, <strong>user</strong>, and
+                                <strong>write:discussion</strong>.</li>
                             <li>Click "Generate token" at the bottom of the page.</li>
-                            <li><strong>Important:</strong> Copy the generated token to a safe place immediately. You will not be able to see it again.</li>
+                            <li><strong>Important:</strong> Copy the generated token to a safe place immediately. You
+                                will not be able to see it again.</li>
                         </ul>
-                        <img src="../assets/intruction_imgs/github-integration-step-2.png" alt="Generating a new GitHub Personal Access Token with correct scopes" class="img-large">
+                        <img src="../assets/intruction_imgs/github-integration-step-2.png"
+                            alt="Generating a new GitHub Personal Access Token with correct scopes" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 3: Add Personal Access Token to Xcode</h3>
-                        <p><strong>Description:</strong> Add your GitHub account to Xcode using the personal access token you just created.</p>
-                        <p><strong>Instruction:</strong> In Xcode, go to <strong>Xcode > Settings... > Accounts</strong>. Click the "+" button, select "GitHub," and sign in using your GitHub username and the personal access token as the password.</p>
-                        <img src="../assets/intruction_imgs/github-integration-step-3.png" alt="Add GitHub Account to Xcode" class="img-large">
+                        <p><strong>Description:</strong> Add your GitHub account to Xcode using the personal access
+                            token you just created.</p>
+                        <p><strong>Instruction:</strong> In Xcode, go to <strong>Xcode > Settings... >
+                                Accounts</strong>. Click the "+" button, select "GitHub," and sign in using your GitHub
+                            username and the personal access token as the password.</p>
+                        <img src="../assets/intruction_imgs/github-integration-step-3.png"
+                            alt="Add GitHub Account to Xcode" class="img-large">
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 4: Create a New Project to Test GitHub Integration</h3>
-                        <p><strong>Description:</strong> When creating a new project, you can either create a new GitHub repository or clone an existing one.</p>
+                        <p><strong>Description:</strong> When creating a new project, you can either create a new GitHub
+                            repository or clone an existing one.</p>
                         <p><strong>Instruction:</strong></p>
                         <ul style="list-style-type: disc; padding-left: 20px;">
-                            <li><strong>Option A: Create a new GitHub repo from a local project:</strong> When creating your project, ensure "Create Git repository on my Mac" is checked. After the project opens, go to the Source Control navigator (the second icon in the left sidebar). Right-click the "Remotes" folder and select "New <code>[Your Project Name]</code> Remote...". In the pop-up window, you can set the repository name, description, and visibility, then click "Create" to publish your local project to GitHub.</li>
-                            <img src="../assets/intruction_imgs/github-integration-step-4a.png" alt="Create New Remote Repository from Xcode" class="img-large">
-                            <li><strong>Option B: Link a local project to an existing GitHub repo:</strong> If you have an existing local project with Git, you can link it to a remote repository. In the Source Control navigator, right-click the "Remotes" folder, select "Add Existing Remote...", and paste your repository's HTTPS URL.</li>
-                            <img src="../assets/intruction_imgs/github-integration-step-4b.png" alt="Add Existing Remote in Xcode" class="img-large">
+                            <li><strong>Option A: Create a new GitHub repo from a local project:</strong> When creating
+                                your project, ensure "Create Git repository on my Mac" is checked. After the project
+                                opens, go to the Source Control navigator (the second icon in the left sidebar).
+                                Right-click the "Remotes" folder and select "New <code>[Your Project Name]</code>
+                                Remote...". In the pop-up window, you can set the repository name, description, and
+                                visibility, then click "Create" to publish your local project to GitHub.</li>
+                            <img src="../assets/intruction_imgs/github-integration-step-4a.png"
+                                alt="Create New Remote Repository from Xcode" class="img-large">
+                            <li><strong>Option B: Link a local project to an existing GitHub repo:</strong> If you have
+                                an existing local project with Git, you can link it to a remote repository. In the
+                                Source Control navigator, right-click the "Remotes" folder, select "Add Existing
+                                Remote...", and paste your repository's HTTPS URL.</li>
+                            <img src="../assets/intruction_imgs/github-integration-step-4b.png"
+                                alt="Add Existing Remote in Xcode" class="img-large">
                         </ul>
                     </div>
                     <div class="card instruction-step">
                         <h3>Step 5: Commit and Push Changes from Xcode</h3>
-                        <p><strong>Description:</strong> After making changes to your code, you can commit them to your local repository and push them to GitHub to keep your project synchronized.</p>
+                        <p><strong>Description:</strong> After making changes to your code, you can commit them to your
+                            local repository and push them to GitHub to keep your project synchronized.</p>
                         <p><strong>Instruction:</strong></p>
                         <ul style="list-style-type: disc; padding-left: 20px;">
-                            <li>After modifying a file, go to <strong>Source Control > Commit...</strong> in the menu bar.</li>
-                            <li>In the commit window, you can review the changes, select the files you want to include, and write a meaningful commit message describing your updates.</li>
-                            <li>To commit and push simultaneously, check the "Push to remote" box and click "Commit and Push."</li>
-                            <li>Alternatively, you can commit locally first and then push separately by going to <strong>Source Control > Push...</strong>.</li>
+                            <li>After modifying a file, go to <strong>Source Control > Commit...</strong> in the menu
+                                bar.</li>
+                            <li>In the commit window, you can review the changes, select the files you want to include,
+                                and write a meaningful commit message describing your updates.</li>
+                            <li>To commit and push simultaneously, check the "Push to remote" box and click "Commit and
+                                Push."</li>
+                            <li>Alternatively, you can commit locally first and then push separately by going to
+                                <strong>Source Control > Push...</strong>.</li>
                         </ul>
-                        <img src="../assets/intruction_imgs/github-integration-step-5.png" alt="Commit and Push workflow in Xcode" class="img-large">
+                        <img src="../assets/intruction_imgs/github-integration-step-5.png"
+                            alt="Commit and Push workflow in Xcode" class="img-large">
                     </div>
                 </div>
             </div>
@@ -456,7 +641,8 @@
                     </div>
                     <div class="card">
                         <h3>2. Storing and Displaying Data (Constants)</h3>
-                        <p>Use <code>let</code> to create a constant to store data that doesn't change. You can then display this data using a <code>Text</code> view.</p>
+                        <p>Use <code>let</code> to create a constant to store data that doesn't change. You can then
+                            display this data using a <code>Text</code> view.</p>
                         <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">let</span> name <span class="operator">=</span> <span class="string">"Tom"</span>
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
@@ -536,7 +722,8 @@
                         <h3>8. Add some modifiers for images</h3>
                         <p>
                             <code>.resizable()</code>: Allows the image to be resized.<br>
-                            <code>.scaledToFit()</code>: Scales the image to fit its container while maintaining its aspect ratio.<br>
+                            <code>.scaledToFit()</code>: Scales the image to fit its container while maintaining its
+                            aspect ratio.<br>
                             <code>.frame(width: 300)</code>: Sets a fixed width for the image.
                         </p>
                         <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
@@ -561,7 +748,8 @@
                     </div>
                     <div class="card">
                         <h3>10. VStack</h3>
-                        <p>Use <code>VStack</code> to arrange views in a vertical line, one on top of the other, like stacking blocks.</p>
+                        <p>Use <code>VStack</code> to arrange views in a vertical line, one on top of the other, like
+                            stacking blocks.</p>
                         <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
         <span class="type">VStack</span> {
@@ -587,7 +775,8 @@
                     </div>
                     <div class="card">
                         <h3>12. Spacer</h3>
-                        <p>A <code>Spacer</code> is a flexible, invisible view that pushes other views as far apart as possible.</p>
+                        <p>A <code>Spacer</code> is a flexible, invisible view that pushes other views as far apart as
+                            possible.</p>
                         <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
         <span class="type">HStack</span> {
@@ -612,7 +801,8 @@
                     </div>
                     <div class="card">
                         <h3>14. Combining Layouts</h3>
-                        <p>VStack, HStack, ZStack, and Spacer can be nested and combined to create complex user interfaces. This example shows a card-like structure.</p>
+                        <p>VStack, HStack, ZStack, and Spacer can be nested and combined to create complex user
+                            interfaces. This example shows a card-like structure.</p>
                         <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
         <span class="type">ZStack</span> {
@@ -637,7 +827,8 @@
 
                     <div class="card">
                         <h3>15. State & Actions</h3>
-                        <p>Use <code>@State</code> to store a value that can change. A <code>Button</code> can change that value, and SwiftUI will automatically update the view.</p>
+                        <p>Use <code>@State</code> to store a value that can change. A <code>Button</code> can change
+                            that value, and SwiftUI will automatically update the view.</p>
                         <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="property-wrapper">@State</span> <span class="keyword">var</span> tapCount <span class="operator">=</span> <span class="number">0</span>
     
@@ -670,7 +861,8 @@
                     </div>
                     <div class="card">
                         <h3>17. Animation</h3>
-                        <p>Smoothly animates changes with <code>withAnimation()</code> when the watched <code>@State</code> variable updates.</p>
+                        <p>Smoothly animates changes with <code>withAnimation()</code> when the watched
+                            <code>@State</code> variable updates.</p>
                         <pre><code><span class="keyword">struct</span> <span class="type">ContentView</span>: <span class="type">View</span> {
     <span class="property-wrapper">@State</span> <span class="keyword">var</span> tapCount <span class="operator">=</span> <span class="number">0</span>
     
@@ -701,7 +893,9 @@
                 <div class="grid-container">
                     <div class="card">
                         <h3>Step 0: Add a background color</h3>
-                        <p>Use a <code>ZStack</code> to layer a <code>Color</code> view behind all other content, setting a base for the UI. The <code>.ignoresSafeArea()</code> modifier is added to make the color extend to the edges of the screen.</p>
+                        <p>Use a <code>ZStack</code> to layer a <code>Color</code> view behind all other content,
+                            setting a base for the UI. The <code>.ignoresSafeArea()</code> modifier is added to make the
+                            color extend to the edges of the screen.</p>
                         <pre><code><span class="type">ZStack</span> {
     <span class="type">Color</span>.mint
         .ignoresSafeArea()
@@ -709,7 +903,9 @@
                     </div>
                     <div class="card">
                         <h3>Step 1: Create a core profile (Image & Text)</h3>
-                        <p>Combine an <code>Image</code> and <code>Text</code> views within a <code>VStack</code> to form the main profile section. Apply modifiers to style the avatar image as a circle and format the name and title text.</p>
+                        <p>Combine an <code>Image</code> and <code>Text</code> views within a <code>VStack</code> to
+                            form the main profile section. Apply modifiers to style the avatar image as a circle and
+                            format the name and title text.</p>
                         <pre><code><span class="type">VStack</span> {
     <span class="type">Image</span>(<span class="string">"avatar-3"</span>)
         .resizable() 
@@ -729,7 +925,8 @@
                     </div>
                     <div class="card">
                         <h3>Step 2: Add a Magic Ball over the top of the profile</h3>
-                        <p>Overlay a 'magic ball' image on top of the profile avatar using a <code>ZStack</code> to create a layered visual effect.</p>
+                        <p>Overlay a 'magic ball' image on top of the profile avatar using a <code>ZStack</code> to
+                            create a layered visual effect.</p>
                         <pre><code><span class="type">ZStack</span> {
     <span class="type">Image</span>(<span class="string">"avatar-3"</span>)
         .resizable() 
@@ -744,7 +941,8 @@
                     </div>
                     <div class="card">
                         <h3>Step 3: Add Phone number and Email</h3>
-                        <p>Display contact information using <code>ZStack</code>s to layer <code>HStack</code>s over <code>RoundedRectangle</code>s, creating styled buttons for the phone number and email.</p>
+                        <p>Display contact information using <code>ZStack</code>s to layer <code>HStack</code>s over
+                            <code>RoundedRectangle</code>s, creating styled buttons for the phone number and email.</p>
                         <pre><code><span class="type">ZStack</span>{
     <span class="type">RoundedRectangle</span>(cornerRadius: <span class="number">25</span>)
         .fill(<span class="type">Color</span>.white)
@@ -771,7 +969,8 @@
                     </div>
                     <div class="card">
                         <h3>Step 4: Add a List of hobbies</h3>
-                        <p>Use a <code>VStack</code> to display a list of hobbies, with each item formatted using an <code>HStack</code> to pair an icon with text.</p>
+                        <p>Use a <code>VStack</code> to display a list of hobbies, with each item formatted using an
+                            <code>HStack</code> to pair an icon with text.</p>
                         <pre><code class="language-swift"><span class="type">VStackLayout</span>(alignment: <span class="type">.leading</span>, spacing: <span class="number">15</span>) {
     <span class="type">HStack</span> {
         <span class="type">Image</span>(systemName: <span class="string">"gamecontroller.fill"</span>)
@@ -805,7 +1004,8 @@
                 <div class="grid-container">
                     <div class="card">
                         <h3>Step 1: The Data (An Array of Answers)</h3>
-                        <p>Define a constant array of strings that will serve as the possible answers for the magic oracle.</p>
+                        <p>Define a constant array of strings that will serve as the possible answers for the magic
+                            oracle.</p>
                         <pre><code><span class="keyword">let</span> allAnswers <span class="operator">=</span> [
     <span class="comment">// Affirmative Answers</span>
     <span class="string">"Bet."</span>,
@@ -840,12 +1040,14 @@
                     </div>
                     <div class="card">
                         <h3>Step 2: The "Memory" (@State)</h3>
-                        <p>Introduce a state variable using the <code>@State</code> property wrapper to hold the current answer, allowing the view to update whenever the answer changes.</p>
+                        <p>Introduce a state variable using the <code>@State</code> property wrapper to hold the current
+                            answer, allowing the view to update whenever the answer changes.</p>
                         <pre><code><span class="property-wrapper">@State</span> <span class="keyword">var</span> currentAnswer <span class="operator">=</span> <span class="string">"Tap my face for wisdom..."</span></code></pre>
                     </div>
                     <div class="card">
                         <h3>Step 3: The Display (A Text View for the Quote)</h3>
-                        <p>Add a <code>Text</code> view to display the value of the <code>currentAnswer</code> state variable, with styling to make it stand out.</p>
+                        <p>Add a <code>Text</code> view to display the value of the <code>currentAnswer</code> state
+                            variable, with styling to make it stand out.</p>
                         <pre><code class="language-swift"><span class="type">Text</span>(currentAnswer)
     .font(<span class="type">.title3</span>)
     .fontWeight(<span class="type">.medium</span>)
@@ -857,14 +1059,17 @@
                     </div>
                     <div class="card">
                         <h3>Step 4: The Trigger (.onTapGesture)</h3>
-                        <p>Make the view interactive by adding an <code>.onTapGesture</code> modifier. When tapped, it will select a new random answer from the <code>allAnswers</code> array and update the <code>currentAnswer</code>.</p>
+                        <p>Make the view interactive by adding an <code>.onTapGesture</code> modifier. When tapped, it
+                            will select a new random answer from the <code>allAnswers</code> array and update the
+                            <code>currentAnswer</code>.</p>
                         <pre><code>.onTapGesture {
     currentAnswer <span class="operator">=</span> allAnswers.randomElement()!
 }</code></pre>
                     </div>
                     <div class="card">
                         <h3>Step 5: Animation</h3>
-                        <p>Enhance the user experience by wrapping the state change in a <code>withAnimation</code> block, which smoothly animates the appearance of the new answer.</p>
+                        <p>Enhance the user experience by wrapping the state change in a <code>withAnimation</code>
+                            block, which smoothly animates the appearance of the new answer.</p>
                         <pre><code>.onTapGesture { 
     withAnimation(<span class="type">.easeInOut</span>(duration: <span class="number">1.5</span>)) { 
         currentAnswer <span class="operator">=</span> allAnswers.randomElement()!
@@ -1030,29 +1235,43 @@
                     <div class="card">
                         <h3>🚀 Challenge: Forge Your "Magic Me" Masterpiece! 🎨</h3>
                         <p>
-                            Work solo or form a team of two people and get ready for the ultimate creative challenge! Your mission is to transform the basic "Magic Me" app into a unique digital experience that showcases your iOS development skills. This is your chance to infuse the app with your team's personality and demonstrate your understanding of Swift & SwiftUI concepts.
+                            Work solo or form a team of two people and get ready for the ultimate creative challenge!
+                            Your mission is to transform the basic "Magic Me" app into a unique digital experience that
+                            showcases your iOS development skills. This is your chance to infuse the app with your
+                            team's personality and demonstrate your understanding of Swift & SwiftUI concepts.
                             <br><br>
                             <strong>The Quest: 🧙‍♂️</strong>
                             <br>
-                            Will you create a wise-cracking wizard, a sassy crystal ball 🔮, a futuristic AI 🤖, or something completely out of this world? The choice is yours!
+                            Will you create a wise-cracking wizard, a sassy crystal ball 🔮, a futuristic AI 🤖, or
+                            something completely out of this world? The choice is yours!
                             <br><br>
                             <strong>Assessment Criteria - The Four Pillars of Excellence:</strong>
-                            <ul class="challenge-criteria">
-                                <li><b style="color: #8e44ad;">Visual Design (Appealing):</b> Is your app visually compelling? We're looking for thoughtful design choices, smooth animations, and an intuitive user interface. ✨</li>
-                                <li><b style="color: #27ae60;">Creative Implementation (Creative):</b> Did you think outside the box? Surprise us with original concepts and innovative use of SwiftUI features. 💡</li>
-                                <li><b style="color: #2980b9;">User Engagement (Interesting):</b> Does your app provide meaningful interaction? Is it captivating and encourages exploration? 🎮</li>
-                                <li><b style="color: #f1c40f;">Technical Excellence (Functionality):</b> Does your app work smoothly? Is the code well-structured and does it demonstrate good iOS development practices? 🔧</li>
-                            </ul>
-                            <strong>Showcase Opportunity: 🏆</strong>
-                            <br>
-                            Outstanding projects will be featured in class presentations, giving you the chance to share your creative solutions and technical achievements with your peers. This is an excellent opportunity to build your portfolio and demonstrate your iOS development capabilities!
+                        <ul class="challenge-criteria">
+                            <li><b style="color: #8e44ad;">Visual Design (Appealing):</b> Is your app visually
+                                compelling? We're looking for thoughtful design choices, smooth animations, and an
+                                intuitive user interface. ✨</li>
+                            <li><b style="color: #27ae60;">Creative Implementation (Creative):</b> Did you think outside
+                                the box? Surprise us with original concepts and innovative use of SwiftUI features. 💡
+                            </li>
+                            <li><b style="color: #2980b9;">User Engagement (Interesting):</b> Does your app provide
+                                meaningful interaction? Is it captivating and encourages exploration? 🎮</li>
+                            <li><b style="color: #f1c40f;">Technical Excellence (Functionality):</b> Does your app work
+                                smoothly? Is the code well-structured and does it demonstrate good iOS development
+                                practices? 🔧</li>
+                        </ul>
+                        <strong>Showcase Opportunity: 🏆</strong>
+                        <br>
+                        Outstanding projects will be featured in class presentations, giving you the chance to share
+                        your creative solutions and technical achievements with your peers. This is an excellent
+                        opportunity to build your portfolio and demonstrate your iOS development capabilities!
                         </p>
                     </div>
                 </div>
                 <div class="card">
                     <h3>How to Submit Your Entry</h3>
                     <ol style="list-style-type: decimal; padding-left: 20px; line-height: 1.8;">
-                        <li>Click the <strong>(+)</strong> button at the bottom-right of the Padlet board to start your post.</li>
+                        <li>Click the <strong>(+)</strong> button at the bottom-right of the Padlet board to start your
+                            post.</li>
                         <li>Select your correct <strong>tutorial group</strong> column for your submission.</li>
                         <li>For the <strong>Subject</strong>, please enter your unique <strong>App Name</strong>.</li>
                         <li>Click the <strong>Upload</strong> button to add a screenshot of your app.</li>
@@ -1062,13 +1281,30 @@
                                 <li>A short description of your app and the inspiration behind it.</li>
                             </ul>
                         </li>
-                        <li>Once you're ready, click the <strong>Publish</strong> button to finalize your submission.</li>
+                        <li>Once you're ready, click the <strong>Publish</strong> button to finalize your submission.
+                        </li>
                     </ol>
                     <p style="margin-top: 20px;">
-                        <strong>Important:</strong> Voting is anonymous, so feel free to vote for any design you like! The deadline is the start of our next lecture, where the winners from each tutorial group will be announced. Good luck!
+                        <strong>Important:</strong> Voting is anonymous, so feel free to vote for any design you like!
+                        The deadline is the start of our next lecture, where the winners from each tutorial group will
+                        be announced. Good luck!
                     </p>
                 </div>
-                <div class="padlet-embed" style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4"><p style="padding:0;margin:0"><iframe src="https://rmit.padlet.org/embed/dak88nn3ewumeio8" frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write" style="width:100%;height:608px;display:block;padding:0;margin:0"></iframe></p><div style="display:flex;align-items:center;justify-content:end;margin:0;height:28px"><a href="https://padlet.com?ref=embed" style="display:block;flex-grow:0;margin:0;border:none;padding:0;text-decoration:none" target="_blank"><div style="display:flex;align-items:center;"><img src="https://padlet.net/embeds/made_with_padlet_2022.png" width="114" height="28" style="padding:0;margin:0;background:0 0;border:none;box-shadow:none" alt="Made with Padlet"></div></a></div></div>
+                <div class="padlet-embed"
+                    style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4">
+                    <p style="padding:0;margin:0"><iframe src="https://rmit.padlet.org/embed/dak88nn3ewumeio8"
+                            frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write"
+                            style="width:100%;height:608px;display:block;padding:0;margin:0"></iframe></p>
+                    <div style="display:flex;align-items:center;justify-content:end;margin:0;height:28px"><a
+                            href="https://padlet.com?ref=embed"
+                            style="display:block;flex-grow:0;margin:0;border:none;padding:0;text-decoration:none"
+                            target="_blank">
+                            <div style="display:flex;align-items:center;"><img
+                                    src="https://padlet.net/embeds/made_with_padlet_2022.png" width="114" height="28"
+                                    style="padding:0;margin:0;background:0 0;border:none;box-shadow:none"
+                                    alt="Made with Padlet"></div>
+                        </a></div>
+                </div>
             </div>
         </section>
     </main>
@@ -1080,4 +1316,5 @@
     <script src="../js/main.js"></script>
     <button id="scrollToTopBtn" class="scroll-to-top-button" title="Go to top">⬆️</button>
 </body>
+
 </html>

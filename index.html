@@ -97,6 +97,74 @@
         #rainbow-card::before {
             content: "";
             position: absolute;
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 10px 0;
+            /* Padding for larger click area */
+        }
+
+        .card .go-to-link::after {
+            content: ' →';
+        }
+
+        /* Ensure cards within the new section use the global card styling but adjust grid if needed */
+        .cheatsheet-section .grid-container {
+            grid-template-columns: 1fr;
+            /* Override for single column layout within this section */
+            gap: 15px;
+            /* Smaller gap for nested cards */
+        }
+
+        .cheatsheet-section .card {
+            padding: 15px;
+            /* Slightly less padding for nested cards */
+        }
+
+        .cheatsheet-section .card h3 {
+            font-size: 1.15rem;
+            /* Slightly smaller heading for nested cards */
+        }
+
+
+
+        .card img {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        /* Rainbow Border Animation */
+        @keyframes rainbow-border {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        #rainbow-card {
+            position: relative;
+            z-index: 0;
+            /* Remove overflow: hidden so the border/glow is visible outside */
+            border-radius: 8px;
+            background: transparent;
+            /* Make parent transparent */
+        }
+
+        /* The Rainbow Border (Behind everything) */
+        #rainbow-card::before {
+            content: "";
+            position: absolute;
             z-index: -2;
             /* Lowest layer */
             top: -2px;
@@ -138,6 +206,125 @@
             position: relative;
             z-index: 1;
         }
+
+        /* Surprise Me Button */
+        .rainbow-btn {
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            animation: rainbow-border 20s linear infinite;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .rainbow-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg-color);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 90%;
+            width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            color: var(--text-color);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .word-display {
+            font-size: 2rem;
+            margin: 20px 0;
+            letter-spacing: 2px;
+            font-family: monospace;
+            word-wrap: break-word;
+        }
+
+        .letter {
+            margin: 0 2px;
+        }
+
+        .letter.spacer {
+            white-space: pre;
+        }
+
+        .keyboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 20px;
+        }
+
+        .key-btn {
+            padding: 10px 15px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-color);
+        }
+
+        .key-btn:hover:not(:disabled) {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .key-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .game-message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+            min-height: 1.5em;
+        }
+
+        .restart-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -146,14 +333,13 @@
     <header>
         <div class="container">
             <div class="university-branding">
-                <img src="https://sites.rmit.edu.au/artschoolgraduates/files/2022/10/rmit-logo-red.png"
-                    alt="RMIT University Logo" class="logo">
-                <span class="university-name">RMIT University</span>
+                <img src="assets/rmit-logo-white.png" alt="RMIT University Logo" class="logo">
             </div>
             <h1>iOS Workshop <span>One App in One Hour</span>📱</h1>
             <p class="intro">Get ready to unleash your creativity! In just one hour, you'll build your very first iPhone
                 app from scratch. This workshop is your fast-track ticket to the world of iOS development, packed with
                 hands-on fun, Swift & SwiftUI magic, and everything you need to bring your ideas to life!</p>
+            <button id="surprise-me-btn" class="rainbow-btn">Surprise Me ✨</button>
         </div>
     </header>
 
@@ -189,7 +375,8 @@
             <div class="collapsible-content">
                 <div class="card instruction-step">
                     <h3>Step 1: Open Spotlight Search</h3>
-                    <p><strong>Description:</strong> This is the quickest way to find and open applications on your Mac.
+                    <p><strong>Description:</strong> This is the quickest way to find and open applications on your
+                        Mac.
                     </p>
                     <p><strong>Instruction:</strong> Press Command + Space bar on your keyboard to bring up the
                         Spotlight Search bar.</p>
@@ -207,7 +394,8 @@
                 </div>
                 <div class="card instruction-step">
                     <h3>Step 3: Create a New SwiftUI App</h3>
-                    <p><strong>Description:</strong> From the application's main window, you will begin a new project.
+                    <p><strong>Description:</strong> From the application's main window, you will begin a new
+                        project.
                     </p>
                     <p><strong>Instruction:</strong> Click the Create New App... button to start building a new
                         application.</p>
@@ -216,15 +404,19 @@
                 </div>
                 <div class="card instruction-step">
                     <h3>Step 4: Understand the Interface</h3>
-                    <p><strong>Description:</strong> The Swift Playgrounds workspace is divided into three main panels
+                    <p><strong>Description:</strong> The Swift Playgrounds workspace is divided into three main
+                        panels
                         that help you build your app.</p>
                     <p><strong>Instruction:</strong></p>
                     <ul style="list-style-type: disc; padding-left: 20px; margin-top: 5px;">
-                        <li><strong>Left Panel - Project Explorer:</strong> Browse and manage your project files. Think
+                        <li><strong>Left Panel - Project Explorer:</strong> Browse and manage your project files.
+                            Think
                             of it as a table of contents for your app.</li>
-                        <li><strong>Center Panel - Code Editor:</strong> This is where you write your app's code using
+                        <li><strong>Center Panel - Code Editor:</strong> This is where you write your app's code
+                            using
                             Swift and SwiftUI to describe what the screen should show.</li>
-                        <li><strong>Right Panel - Live Preview (Canvas):</strong> Instantly shows what your app looks
+                        <li><strong>Right Panel - Live Preview (Canvas):</strong> Instantly shows what your app
+                            looks
                             like based on your code, helping you see changes in real-time.</li>
                     </ul>
                     <img src="assets/guide_imgs/workshop_intruction_imgs/Start with Playgrounds - Step 4.png"
@@ -241,10 +433,13 @@
             <div class="collapsible-content">
                 <div class="card instruction-step">
                     <h3>Step 1: Identify the Error</h3>
-                    <p><strong>Description:</strong> Sometimes, you may encounter an error that prevents the app preview
-                        from loading, such as being "Unable to delete the contents of ExecutionExtension's container."
+                    <p><strong>Description:</strong> Sometimes, you may encounter an error that prevents the app
+                        preview
+                        from loading, such as being "Unable to delete the contents of ExecutionExtension's
+                        container."
                     </p>
-                    <p><strong>Instruction:</strong> Click the red error icon in the top right of the code editor to see
+                    <p><strong>Instruction:</strong> Click the red error icon in the top right of the code editor to
+                        see
                         the specific error message.</p>
                     <img src="assets/guide_imgs/workshop_intruction_imgs/Troubleshoot with Playgrounds - Step 1 .jpg"
                         alt="Identify the Error">
@@ -253,14 +448,16 @@
                     <h3>Step 2: Quit Swift Playgrounds</h3>
                     <p><strong>Description:</strong> To begin troubleshooting, you must first completely close the
                         application.</p>
-                    <p><strong>Instruction:</strong> Right-click on the Swift Playgrounds icon in your Mac's Dock and
+                    <p><strong>Instruction:</strong> Right-click on the Swift Playgrounds icon in your Mac's Dock
+                        and
                         select Quit.</p>
                     <img src="assets/guide_imgs/workshop_intruction_imgs/Troubleshoot with Playgrounds - Step 2.jpg"
                         alt="Quit Swift Playgrounds">
                 </div>
                 <div class="card instruction-step">
                     <h3>Step 3: Open Self Service</h3>
-                    <p><strong>Description:</strong> You will use a utility called Self Service, provided by RMIT ITS,
+                    <p><strong>Description:</strong> You will use a utility called Self Service, provided by RMIT
+                        ITS,
                         to run a troubleshooting script.</p>
                     <p><strong>Instruction:</strong> Click the RMIT icon in the top menu bar, then click the Self
                         Service button to launch the application.</p>
@@ -269,18 +466,22 @@
                 </div>
                 <div class="card instruction-step">
                     <h3>Step 4: Clear the Swift Playground Cache</h3>
-                    <p><strong>Description:</strong> A common fix for this specific error is to clear the application's
+                    <p><strong>Description:</strong> A common fix for this specific error is to clear the
+                        application's
                         cached data, which can become corrupted.</p>
-                    <p><strong>Instruction:</strong> In Self Service, click Browse and then All. Find the "Delete Swift
+                    <p><strong>Instruction:</strong> In Self Service, click Browse and then All. Find the "Delete
+                        Swift
                         Playground Cache" option and click the Run button.</p>
                     <img src="assets/guide_imgs/workshop_intruction_imgs/Troubleshoot with Playgrounds - Step 4.jpg"
                         alt="Clear the Swift Playground Cache">
                 </div>
                 <div class="card instruction-step">
                     <h3>Step 5: Verify the Fix</h3>
-                    <p><strong>Description:</strong> After the cache has been cleared, you can reopen your project to
+                    <p><strong>Description:</strong> After the cache has been cleared, you can reopen your project
+                        to
                         confirm that the issue is resolved.</p>
-                    <p><strong>Instruction:</strong> Launch Swift Playgrounds again and open your app. The app should
+                    <p><strong>Instruction:</strong> Launch Swift Playgrounds again and open your app. The app
+                        should
                         now build successfully and display correctly in the live preview.</p>
                     <img src="assets/guide_imgs/workshop_intruction_imgs/Troubleshoot with Playgrounds - Step 5.png"
                         alt="Verify the Fix">
@@ -301,7 +502,8 @@
             </a>
             <a href="sub_pages/asset-gallery.html" class="card">
                 <h3>Asset Gallery</h3>
-                <p>Browse and download avatars, logos, and other visual assets provided for iOS development projects.
+                <p>Browse and download avatars, logos, and other visual assets provided for iOS development
+                    projects.
                 </p>
                 <span class="go-to-link">View Gallery</span>
             </a>
@@ -329,6 +531,21 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/hangman-game.js"></script>
+
+    <!-- Hangman Game Modal -->
+    <div id="hangman-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Guess the Message!</h2>
+            <div id="guesses-left">Guesses Left: 6</div>
+            <div id="word-display" class="word-display"></div>
+            <div id="game-message" class="game-message"></div>
+            <div id="keyboard" class="keyboard"></div>
+            <button id="restart-btn" class="restart-btn" style="display: none;">Play Again 🔄</button>
+        </div>
+    </div>
+
     <button id="scrollToTopBtn" class="scroll-to-top-button" title="Go to top">⬆️</button>
 </body>
 

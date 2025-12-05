@@ -97,6 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
             restartBtn.style.display = "block";
             disableAllKeys();
             triggerFireworks();
+            const winSound = new Audio('assets/sound_effects/winning.mp3');
+            winSound.play().catch(e => console.error("Error playing sound:", e));
         } else if (guessesLeft <= 0) {
             gameActive = false;
             messageDiv.textContent = "Game Over! Try Again.";

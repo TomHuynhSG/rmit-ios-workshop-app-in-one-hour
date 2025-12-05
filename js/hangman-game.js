@@ -74,7 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update Display
     function updateDisplay() {
-        guessesLeftDiv.textContent = `Guesses Left: ${guessesLeft}`;
+        let emoji = "";
+        if (guessesLeft >= 5) emoji = "🤩";
+        else if (guessesLeft === 4) emoji = "🙂";
+        else if (guessesLeft === 3) emoji = "😐";
+        else if (guessesLeft === 2) emoji = "😟";
+        else if (guessesLeft === 1) emoji = "😱";
+        else emoji = "💀";
+
+        guessesLeftDiv.textContent = `Guesses Left: ${guessesLeft} ${emoji}`;
 
         let displayHTML = '';
         for (let char of targetPhrase) {

@@ -41,7 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle Guess
     function handleGuess(letter) {
-        if (!gameActive || guessedLetters.has(letter)) return;
+        if (!gameActive) return;
+
+        if (guessedLetters.has(letter)) return;
 
         guessedLetters.add(letter);
 
@@ -57,6 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const upperPhrase = targetPhrase.toUpperCase();
         if (!upperPhrase.includes(letter)) {
             guessesLeft--;
+            // Play wrong sound
+            const wrongSound = new Audio('assets/sound_effects/spin.mp3');
+            wrongSound.play().catch(e => console.error("Error playing sound:", e));
+        } else {
+            // Play correct sound
+            const correctSound = new Audio('assets/sound_effects/blink.mp3');
+            correctSound.play().catch(e => console.error("Error playing sound:", e));
         }
 
         updateDisplay();
@@ -97,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
             restartBtn.style.display = "block";
             disableAllKeys();
             triggerFireworks();
-            const winSound = new Audio('assets/sound_effects/winning.mp3');
+            const winSound = new Audio('assets/sound_effects/highscore.mp3');
             winSound.play().catch(e => console.error("Error playing sound:", e));
         } else if (guessesLeft <= 0) {
             gameActive = false;
@@ -105,6 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
             messageDiv.style.color = "#ff0000";
             restartBtn.style.display = "block";
             disableAllKeys();
+            const loseSound = new Audio('assets/sound_effects/mario-die.mp3');
+            loseSound.play().catch(e => console.error("Error playing sound:", e));
         }
     }
 

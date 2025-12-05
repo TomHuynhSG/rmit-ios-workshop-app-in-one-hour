@@ -339,7 +339,8 @@
             <p class="intro">Get ready to unleash your creativity! In just one hour, you'll build your very first iPhone
                 app from scratch. This workshop is your fast-track ticket to the world of iOS development, packed with
                 hands-on fun, Swift & SwiftUI magic, and everything you need to bring your ideas to life!</p>
-            <button id="surprise-me-btn" class="rainbow-btn">Surprise Me ✨</button>
+            <button id="surprise-me-btn" class="rainbow-btn" data-target-phrase="Welcome, Nguyen Thi Minh Khai">Surprise
+                Me ✨</button>
         </div>
     </header>
 
@@ -530,6 +531,7 @@
         <p>© 2025 Created by Tom Huynh with love ❤️</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/hangman-game.js"></script>
 
@@ -538,7 +540,7 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>Guess the Message!</h2>
-            <div id="guesses-left">Guesses Left: 6</div>
+            <div id="guesses-left">Guesses Left: 5</div>
             <div id="word-display" class="word-display"></div>
             <div id="game-message" class="game-message"></div>
             <div id="keyboard" class="keyboard"></div>

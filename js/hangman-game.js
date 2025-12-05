@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const guessesLeftDiv = document.getElementById('guesses-left');
     const restartBtn = document.getElementById('restart-btn');
 
-    const targetPhrase = "Welcome, Nguyen Thi Minh Khai";
-    const maxGuesses = 6;
+    const targetPhrase = surpriseBtn ? (surpriseBtn.getAttribute('data-target-phrase') || "Welcome, Nguyen Thi Minh Khai") : "Welcome, Nguyen Thi Minh Khai";
+    const maxGuesses = 5;
     let guessesLeft = maxGuesses;
     let guessedLetters = new Set();
     let gameActive = false;
@@ -94,7 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
             messageDiv.textContent = "🎉 You Won! Welcome to RMIT! 🎉";
             messageDiv.style.color = "#48ff00";
             restartBtn.style.display = "block";
+            restartBtn.style.display = "block";
             disableAllKeys();
+            triggerFireworks();
         } else if (guessesLeft <= 0) {
             gameActive = false;
             messageDiv.textContent = "Game Over! Try Again.";
@@ -107,6 +109,26 @@ document.addEventListener('DOMContentLoaded', () => {
     function disableAllKeys() {
         const buttons = document.querySelectorAll('.key-btn');
         buttons.forEach(btn => btn.disabled = true);
+    }
+
+    function triggerFireworks() {
+        const duration = 3 * 1000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 2000 };
+
+        const random = (min, max) => Math.random() * (max - min) + min;
+
+        const interval = setInterval(function () {
+            const timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+
+            const particleCount = 50 * (timeLeft / duration);
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.1, 0.3), y: Math.random() - 0.2 } }));
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.7, 0.9), y: Math.random() - 0.2 } }));
+        }, 250);
     }
 
     // Event Listeners

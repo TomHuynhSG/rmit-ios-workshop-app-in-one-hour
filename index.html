@@ -12,13 +12,7 @@
     <link rel="stylesheet" href="css/shared-styles.css">
     <style>
         /* Page-specific styles for index.html */
-        .container {
-            /* max-width: 900px; Provided by base-theme.css */
-        }
 
-        header h1 {
-            /* font-size: 2.5rem; Provided by extended-header.css */
-        }
 
         .grid-container {
             /* Main page grid */
@@ -338,7 +332,9 @@
             font-size: 1rem;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
+            margin: 10px auto;
+            display: block;
+            /* Ensure it behaves as a block for auto margins to work if JS sets it to block */
         }
     </style>
 </head>
@@ -352,7 +348,7 @@
             </div>
             <h1>iOS Workshop <span>One App in One Hour</span>📱</h1>
             <p class="intro">Get ready to unleash your creativity! In just one hour, you'll build your very first iPhone
-                app from scratch. This workshop is your fast-track ticket to the world of iOS development, packed with
+                app. This workshop is your fast-track ticket to the world of iOS development, packed with
                 hands-on fun, Swift & SwiftUI magic, and everything you need to bring your ideas to life!</p>
             <button id="surprise-me-btn" class="rainbow-btn" data-target-phrase="Welcome, Nguyen Thi Minh Khai">Surprise
                 Me ✨</button>
@@ -361,11 +357,11 @@
 
     <main class="container">
         <div class="main-section-header">
-            <h2>Workshop Information</h2>
+            <h2>Workshop Logistics</h2>
         </div>
         <section class="cheatsheet-section" id="course-schedule">
             <h2 class="collapsible-header">
-                Workshop Schedule & Lab Information
+                Lab Information
                 <span class="collapse-icon"></span>
             </h2>
             <div class="collapsible-content">
@@ -374,7 +370,7 @@
                     <p>Building 1, Level 3, Room 006 (1.3.006)</p>
 
                     <h3 style="margin-top: 15px;">Mac Lab Guest Account</h3>
-                    <p><strong>Username:</strong> g00250<br><strong>Password:</strong> Rm!t202E</p>
+                    <p><strong>Username:</strong> g00250<br><strong>Password:</strong> Rm!t@202E!</p>
                 </div>
             </div>
         </section>
